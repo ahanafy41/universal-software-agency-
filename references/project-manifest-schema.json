@@ -1,0 +1,169 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ProjectSpecManifest",
+  "type": "object",
+  "required": [
+    "project_name",
+    "version",
+    "stack",
+    "architecture_tier",
+    "modules",
+    "data_persistence",
+    "last_modified"
+  ],
+  "properties": {
+    "project_name": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "stack": {
+      "type": "object",
+      "properties": {
+        "language": {
+          "type": "string"
+        },
+        "framework": {
+          "type": "string"
+        },
+        "target_runtime": {
+          "type": "string"
+        },
+        "offline_first": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "language",
+        "framework",
+        "offline_first"
+      ]
+    },
+    "architecture_tier": {
+      "type": "object",
+      "properties": {
+        "ui_layer": {
+          "type": "string"
+        },
+        "business_logic_layer": {
+          "type": "string"
+        },
+        "data_storage_layer": {
+          "type": "string"
+        }
+      }
+    },
+    "entry_point": {
+      "type": "string"
+    },
+    "knowledge_base": {
+      "type": "array",
+      "description": "User-supplied reference documentation, JSON schemas, API specs, or framework guides ingested for this project",
+      "items": {
+        "type": "object",
+        "required": [
+          "source_path",
+          "type",
+          "description"
+        ],
+        "properties": {
+          "source_path": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "markdown_doc",
+              "json_schema",
+              "api_spec",
+              "type_definitions",
+              "code_sample",
+              "cheat_sheet"
+            ]
+          },
+          "description": {
+            "type": "string"
+          },
+          "entities_extracted": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "modules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "file_path",
+          "responsibility",
+          "exported_entities"
+        ],
+        "properties": {
+          "file_path": {
+            "type": "string"
+          },
+          "responsibility": {
+            "type": "string"
+          },
+          "exported_entities": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "dependencies": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "data_persistence": {
+      "type": "object",
+      "properties": {
+        "engine": {
+          "type": "string"
+        },
+        "database_file": {
+          "type": "string"
+        },
+        "tables_or_collections": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "build_instructions": {
+      "type": "object",
+      "properties": {
+        "build_command": {
+          "type": "string"
+        },
+        "run_command": {
+          "type": "string"
+        },
+        "launcher_script": {
+          "type": "string"
+        }
+      }
+    },
+    "last_modified": {
+      "type": "string"
+    },
+    "backup_directory": {
+      "type": "string"
+    }
+  }
+}

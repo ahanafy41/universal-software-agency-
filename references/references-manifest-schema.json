@@ -1,0 +1,65 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ReferencesManifestSchema",
+  "type": "object",
+  "required": [
+    "project_name",
+    "total_references",
+    "references"
+  ],
+  "properties": {
+    "project_name": {
+      "type": "string"
+    },
+    "total_references": {
+      "type": "integer"
+    },
+    "references": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "title",
+          "file_path",
+          "doc_type",
+          "summary",
+          "key_symbols"
+        ],
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "file_path": {
+            "type": "string"
+          },
+          "doc_type": {
+            "type": "string",
+            "enum": [
+              "json_schema",
+              "api_spec",
+              "markdown_guide",
+              "type_definitions",
+              "code_sample",
+              "rules_and_constraints"
+            ]
+          },
+          "summary": {
+            "type": "string"
+          },
+          "key_symbols": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "strict_rules": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}
