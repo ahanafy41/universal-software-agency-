@@ -1,35 +1,29 @@
-# Product Manager & Business Scoping Guide
+# Product Management Scoping Guide
 
-The Product Manager & Business Strategist agent ensures that every software project has a clear value proposition, realistic MVP scope, intuitive UX, and actionable ROI before technical engineering begins.
+The agency uses a turn-by-turn interactive scoping protocol to define project boundaries before writing any code.
 
-## 1. Turn-by-Turn Scoping to PRD Generation
-The Orchestrator conducts a single-question-per-turn dialogue. Once the 6 discovery pillars (including custom knowledge/reference ingestion) are answered, the agency immediately compiles the answers into a formal **`PRD.md`** (Product Requirements Document) alongside **`project_spec.json`**.
+---
 
-## 2. Core Evaluation Dimensions
+## 1. The Strict One-Question-Per-Message Rule
+To avoid cognitive overload and ensure crisp alignment:
+- The agent **MUST NEVER** output a list or questionnaire of multiple questions.
+- Ask **exactly ONE question per turn**, analyzing the user's response before formulating the next question.
 
-1. **Problem Clarity & User Persona**:
-   - Who is the end user? (Self, internal team, non-technical clients, blind/visually impaired users, general public).
-   - What pain point does this solve? Is it repetitive manual work, offline accessibility, data organization, or automation?
+---
 
-2. **Custom Knowledge & Reference Ingestion**:
-   - Does this project rely on specialized, obscure, or internal libraries, private APIs, custom JSON schemas, or unique domain rules?
-   - Has the user provided Markdown docs, JSON schemas, cheat sheets, or sample code in `docs/` or `references/`?
-   - Ground truth rule: If custom docs are provided, lock all technical assumptions strictly to those documents.
+## 2. The 6 Discovery Pillars
+1. **Pillar 1: Business Problem & Persona**: Who is the user? What is the single biggest pain point?
+2. **Pillar 2: Knowledge Ingestion**: Are there existing specs, JSON schemas, or reference docs in `docs/` or `references/`?
+3. **Pillar 3: Form Factor & Deployment Track**:
+   - **Track A**: Desktop Application (C# WPF/WinForms, Python GUI).
+   - **Track B**: Standalone Web Tool / API (Single-file HTML/JS, Node/Express, Flask).
+   - **Track C**: Automation & Systems (Shell scripts, Termux, CLI tools).
+4. **Pillar 4: Offline & Data Persistence**: Does it require 100% offline support? Local DB preference (SQLite, LiteDB, JSON)?
+5. **Pillar 5: UI/UX & Accessibility**: Screen reader compatibility, high-contrast dark theme, keyboard navigation.
+6. **Pillar 6: Error Handling & Resilience**: Logging to `app_errors.log`, fallback states.
 
-3. **MVP Prioritization (The MoSCoW Framework)**:
-   - **Must-Have (Core MVP)**: The minimal 2-3 features without which the tool is useless.
-   - **Should-Have**: Important features deferred to v1.1.
-   - **Could-Have**: Nice-to-have visual polish or extra integrations.
-   - **Won't-Have**: Unnecessary bloat that adds complexity without tangible value.
+---
 
-4. **Frictionless Delivery Assessment**:
-   - What is the easiest way for the user to run this?
-     - Standalone `.exe` (C# .NET or PyInstaller)
-     - Zero-dependency Single HTML/JS/CSS file opened in browser
-     - Python script with automated `run.bat`
-   - Does it need to work completely offline (no internet)?
-
-5. **Product Risk & Edge-Case Checklist**:
-   - What happens if the user enters invalid input?
-   - What happens if target files/folders are missing?
-   - How does the user know the tool succeeded (visual feedback, audio cue, status bar, log file)?
+## 3. Locking MVP Scope (MoSCoW)
+- **Must-Have**: The absolute minimum 2-3 features required for the product to be useful.
+- **Out of Scope**: All non-essential features are deferred to prevent scope creep.

@@ -9,36 +9,40 @@ def validate_python(file_path):
         with open(file_path, 'r', encoding='utf-8') as f:
             code = f.read()
         ast.parse(code)
-        print(f"[PASS] Python AST parse successful for {file_path}")
+        print(f"[PASS] Python AST parse verified: {file_path}")
         return True
     except SyntaxError as e:
         print(f"[FAIL] Python SyntaxError in {file_path} at line {e.lineno}: {e.msg}")
         return False
     except Exception as e:
-        print(f"[FAIL] Error parsing {file_path}: {e}")
+        print(f"[FAIL] Error parsing Python file {file_path}: {e}")
         return False
 
 def validate_json(file_path):
     try:
         with open(file_path, 'r', encoding='utf-8') as f:
             json.load(f)
-        print(f"[PASS] JSON parse successful for {file_path}")
+        print(f"[PASS] JSON parse verified: {file_path}")
         return True
     except Exception as e:
-        print(f"[FAIL] JSON error in {file_path}: {e}")
+        print(f"[FAIL] JSON syntax error in {file_path}: {e}")
         return False
 
-def validate_brackets(file_path):
+def validate_bracket_balance(file_path):
     pairs = {'{': '}', '(': ')', '[': ']'}
     stack = []
     try:
         with open(file_path, 'r', encoding='utf-8') as f:
             content = f.read()
-        
+            
         cleaned = re.sub(r'//.*', '', content)
         cleaned = re.sub(r'/\*.*?\*/', '', cleaned, flags=re.DOTALL)
+        cleaned = re.sub(r'--\[\[.*?\]\]', '', cleaned, flags=re.DOTALL)
+        cleaned = re.sub(r'--.*', '', cleaned)
+        cleaned = re.sub(r'#.*', '', cleaned)
         cleaned = re.sub(r'"(\\.|[^"\\])*"', '', cleaned)
         cleaned = re.sub(r"'(\\.|[^'\\])*'", '', cleaned)
+        cleaned = re.sub(r'`(\\.|[^`\\])*`', '', cleaned)
 
         for line_num, char in enumerate(cleaned, 1):
             if char in pairs:
@@ -53,11 +57,11 @@ def validate_brackets(file_path):
                     return False
 
         if stack:
-            unmatched = stack[-1][0]
+            unmatched, lnum = stack[-1]
             print(f"[FAIL] Unclosed bracket '{unmatched}' in {file_path}")
             return False
 
-        print(f"[PASS] Bracket balance verified for {file_path}")
+        print(f"[PASS] Universal bracket and structural balance verified: {file_path}")
         return True
     except Exception as e:
         print(f"[FAIL] Error checking brackets in {file_path}: {e}")
@@ -80,10 +84,10 @@ def main():
         success = validate_python(file_path)
     elif ext == '.json':
         success = validate_json(file_path)
-    elif ext in ['.cs', '.js', '.ts', '.cpp', '.c', '.java', '.lua', '.rs', '.go']:
-        success = validate_brackets(file_path)
+    elif ext in ['.cs', '.js', '.ts', '.jsx', '.tsx', '.cpp', '.c', '.h', '.hpp', '.java', '.kt', '.rs', '.go', '.php', '.rb', '.swift', '.lua', '.sh']:
+        success = validate_bracket_balance(file_path)
     else:
-        print(f"[INFO] Generic file checked: {file_path}")
+        print(f"[INFO] File checked with general parser: {file_path}")
 
     sys.exit(0 if success else 1)
 

@@ -1,56 +1,51 @@
-# Universal Architecture Blueprints & Clean File Structures
+# Architecture Blueprints & File Standards
 
-This reference provides production-tested scaffolding templates and naming conventions for universal stacks (C#, Python, Web), incorporating project-level knowledge base and reference directories.
+## 1. 3-Tier Layer Separation
+Every application regardless of stack separates concerns into 3 tiers:
 
-## 1. Clean File Naming & Directory Convention
-
-Every project contains both the human-readable **`PRD.md`** and the machine-readable **`project_spec.json`** in the root directory, with optional `docs/` and `references/` folders for external knowledge.
-
-### C# / .NET Desktop & Offline Tools
 ```
-MyProject/
-├── PRD.md                        # Product Requirements Document
-├── project_spec.json             # Machine-readable architecture & module manifest
-├── docs/                         # Custom API guides & Markdown documentation
-├── references/                   # Custom JSON schemas & contracts
-├── MyProject.csproj              # TargetFramework net8.0-windows / net8.0
-├── Program.cs                    # Entry point & global exception handling
-├── MainForm.cs / MainWindow.xaml # UI layer
-├── Models/                       # Strongly-typed models matching JSON schemas
-├── Services/                     # Business logic (e.g. FileProcessor.cs)
-├── Data/                         # Offline storage (e.g. DatabaseContext.cs, SQLite)
-├── build.bat                     # 1-click build: dotnet publish -c Release -r win-x64 --self-contained
-└── run.bat                       # 1-click test launcher
+src/
+├── UI/              # User Interface, XAML, HTML/CSS, React components, Views
+├── Core/            # Business Logic, State Machine, Domain Models, Contracts
+└── Data/            # Storage, Repositories, Database Context, File I/O
 ```
 
-### Python Desktop & Automation Tools
-```
-MyProject/
-├── PRD.md                        # Product Requirements Document
-├── project_spec.json             # Machine-readable architecture & module manifest
-├── docs/                         # Custom API guides & Markdown documentation
-├── references/                   # Custom JSON schemas & contracts
-├── main.py                       # Application entry point & GUI/CLI runner
-├── models/                       # Pydantic / dataclass schemas
-├── ui/                           # User interface components (CustomTkinter, Tkinter)
-├── core/                         # Core business logic & algorithms
-├── storage/                      # Local SQLite / JSON state storage
-├── requirements.txt              # Pinned dependencies
-├── run.bat                       # 1-click launcher with venv setup
-└── build_exe.bat                 # PyInstaller single-file packaging
+---
+
+## 2. Universal File Naming Standards
+- **C#**: `PascalCase.cs` (e.g. `AudioRecorder.cs`, `MainWindow.xaml`)
+- **Python**: `snake_case.py` (e.g. `audio_recorder.py`, `main_window.py`)
+- **TypeScript**: `kebab-case.ts` or `PascalCase.tsx` (e.g. `audio-recorder.ts`, `DashboardView.tsx`)
+- **Go**: `snake_case.go` (e.g. `audio_recorder.go`)
+- **Rust**: `snake_case.rs` (e.g. `audio_recorder.rs`)
+
+---
+
+## 3. Platform-Agnostic 1-Click Launchers
+
+### Linux / macOS / Termux (`run.sh` / `build.sh`)
+```bash
+#!/usr/bin/env bash
+set -euo pipefail
+echo "[1/2] Checking dependencies..."
+command -v dotnet >/dev/null 2>&1 || command -v python3 >/dev/null 2>&1 || { echo "Error: Runtime not installed."; exit 1; }
+echo "[2/2] Launching application..."
+# Example Python launch
+python3 main.py "$@"
 ```
 
-### Web & Single-File Offline Tools
+### Windows (`run.bat` / `build.bat`)
+```bat
+@echo off
+setlocal enabledelayedexpansion
+echo [1/2] Checking environment...
+where dotnet >nul 2>nul || where python >nul 2>nul || (
+    echo Error: Required runtime not found.
+    pause
+    exit /b 1
+)
+echo [2/2] Starting application...
+REM Example C# .NET launch
+dotnet run --project src\App.csproj
+pause
 ```
-MyProject/
-├── PRD.md                        # Product Requirements Document
-├── project_spec.json             # Machine-readable architecture & module manifest
-├── docs/                         # Documentation & reference notes
-├── index.html                    # Self-contained single-file HTML/CSS/JS application
-└── README.md                     # 3-step launch guide: Double-click index.html
-```
-
-## 2. 3-Tier Architecture Principles
-1. **Presentation Layer (UI)**: Dispatches user events, renders feedback, non-blocking UI threads.
-2. **Business Logic Layer (Core)**: Pure business rules, validations, algorithms, Design-by-Contract (`Requires`/`Ensures`).
-3. **Data Layer (Storage)**: Offline SQLite/LiteDB/JSON stores, transactional ACID safety, resource disposal.

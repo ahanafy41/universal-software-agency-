@@ -1,0 +1,155 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DebugManifest",
+  "type": "object",
+  "required": [
+    "issue_id",
+    "title",
+    "status",
+    "target_location",
+    "diagnostic_evaluation",
+    "patch_details",
+    "verification"
+  ],
+  "properties": {
+    "issue_id": {
+      "type": "string",
+      "description": "Unique bug identifier (e.g., BUG-2026-001)"
+    },
+    "title": {
+      "type": "string",
+      "description": "Clear summary of the bug"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "reported",
+        "investigating",
+        "diagnosed",
+        "patched",
+        "verified",
+        "reverted"
+      ]
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "critical",
+        "high",
+        "medium",
+        "low"
+      ]
+    },
+    "reported_by_user": {
+      "type": "string"
+    },
+    "environment": {
+      "type": "object",
+      "properties": {
+        "os": {
+          "type": "string"
+        },
+        "runtime": {
+          "type": "string"
+        },
+        "framework_version": {
+          "type": "string"
+        }
+      }
+    },
+    "target_location": {
+      "type": "object",
+      "required": [
+        "file_path",
+        "line_number",
+        "symbol_name"
+      ],
+      "properties": {
+        "file_path": {
+          "type": "string"
+        },
+        "line_number": {
+          "type": "integer"
+        },
+        "symbol_name": {
+          "type": "string",
+          "description": "Exact function, class, or AST node name"
+        },
+        "snippet": {
+          "type": "string"
+        }
+      }
+    },
+    "diagnostic_evaluation": {
+      "type": "object",
+      "required": [
+        "branch_a_contract",
+        "branch_b_lifecycle",
+        "branch_c_data",
+        "root_cause"
+      ],
+      "properties": {
+        "branch_a_contract": {
+          "type": "string"
+        },
+        "branch_b_lifecycle": {
+          "type": "string"
+        },
+        "branch_c_data": {
+          "type": "string"
+        },
+        "root_cause": {
+          "type": "string"
+        }
+      }
+    },
+    "interactive_discovery_log": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "question": {
+            "type": "string"
+          },
+          "user_answer": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "patch_details": {
+      "type": "object",
+      "properties": {
+        "backup_path": {
+          "type": "string"
+        },
+        "modified_lines": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "diff_summary": {
+          "type": "string"
+        }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "properties": {
+        "linter_passed": {
+          "type": "boolean"
+        },
+        "zero_side_effects_confirmed": {
+          "type": "boolean"
+        },
+        "user_verification_steps": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

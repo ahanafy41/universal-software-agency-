@@ -1,53 +1,49 @@
-# Product Requirements Document (PRD)
-
-**Project Name:** [Project Title]
-**Version:** 1.0 (MVP)
-**Date:** [YYYY-MM-DD]
-**Author / Orchestrator:** Universal Software & AI Engineering Agency
-
----
+# Product Requirements Document (PRD Template)
 
 ## 1. Executive Summary & Problem Statement
-- **Problem Overview:** [Clear statement of the user pain point or manual bottleneck].
-- **Proposed Solution:** [Concise description of the application/tool and how it solves the problem].
-- **Target Audience / Persona:** [Who uses this tool? e.g., Citizen Developers, internal teams, non-technical users].
+- **Product Name**: [Name of Application / Script / Tool]
+- **Target User**: [User Persona, e.g. blind students, data engineers, developers]
+- **Core Value Proposition**: [Why this product exists and what core pain point it solves]
 
 ---
 
-## 2. Goals & Success Metrics
-- **Primary Objective:** [What must the tool achieve on day 1?].
-- **Success Criteria:** [e.g., 100% offline functionality, <2s processing time, zero-crash error logging].
+## 2. Ingested Reference Documents
+| Document Name | File Path | Key Concepts Ingested |
+|---|---|---|
+| [Spec / Guide 1] | `docs/...` | [Symbols, rules, constraints] |
+| [JSON Schema 1] | `references/...` | [Data model definitions] |
 
 ---
 
-## 3. User Journey & Core Workflows
-1. **Launch & Setup:** [How the user opens the tool with 1 click].
-2. **Main Interaction:** [Step-by-step user actions and UI responses].
-3. **Completion & Output:** [What the user receives upon task completion].
+## 3. Functional Requirements (MoSCoW Matrix)
+
+### Must-Have (MVP Scope)
+- [ ] **REQ-01**: [Description of core functional capability]
+- [ ] **REQ-02**: [Description of core functional capability]
+
+### Should-Have (Post-MVP)
+- [ ] **REQ-03**: [Secondary feature]
+
+### Won't-Have (Out of Scope for this Release)
+- [ ] [Explicit boundary definition]
 
 ---
 
-## 4. Reference Documents & Ingested Knowledge Base
-- **User Reference Files:** [e.g., `docs/api_manual.md`, `references/data_schema.json`].
-- **Specialized / Custom Frameworks:** [Any proprietary SDK, custom syntax, or private API].
-- **Ingested Constraints & Contracts:** [Key validation rules, DTO formats, and lifecycle rules extracted from references].
+## 4. Technical & Non-Functional Specifications
+- **Target Stack & Track**: Track A (Desktop C# / Python GUI) / Track B (Web/API) / Track C (CLI/Automation)
+- **Offline Guarantee**: 100% offline-first with local persistence (SQLite / LiteDB / JSON).
+- **Accessibility & UX**: Screen reader compatible (labels, semantic navigation), high-contrast palette, non-blocking UI threads.
+- **Error Resilience**: Graceful degradation with exception logging to `app_errors.log`.
 
 ---
 
-## 5. Functional Requirements (MVP Scope)
-- **FR-1:** [Core Feature 1 - Must-Have].
-- **FR-2:** [Core Feature 2 - Must-Have].
-- **FR-3:** [Data Persistence / Offline Storage].
-- **FR-4:** [Error Handling & Local Logging (`app_errors.log`)].
+## 5. User Journeys & Workflow
+1. **Journey 1**: User opens app -> [Action] -> [Expected Result].
+2. **Journey 2**: [Alternative / Error path].
 
 ---
 
-## 6. Non-Functional Requirements
-- **Portability & Deployment:** [100% Offline-First / Single-file `.exe` / Local HTML].
-- **Performance & Reliability:** [Sub-second startup, low RAM consumption].
-- **Accessibility & UX:** [High contrast, keyboard navigability, screen-reader support].
-
----
-
-## 7. Out of Scope (Future Roadmap - v1.1+)
-- [Features deferred to later versions to maintain a lean, robust MVP].
+## 6. Success Metrics & Verification Gatekeepers
+- [ ] All Must-Have functional requirements pass automated tests.
+- [ ] `validate_code.py` passes AST parse with 0 errors.
+- [ ] 1-Click launcher (`run.sh` / `run.bat`) starts cleanly on target platform.

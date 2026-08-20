@@ -1,32 +1,26 @@
-# Project Task Execution Plan (`tasks.md`)
+# Real-Time Task Scratchpad Template (`tasks.md`)
 
-> **Project:** [Project Title]  
-> **Status:** [Planning / In-Progress / Verified / Completed]  
-> **Last Updated:** YYYY-MM-DD HH:MM:SS  
-
----
-
-## 📋 Task Checklist
-
-### Phase 1: Custom Reference Ingestion & Architecture
-- [ ] **Task 1.1:** Parse user reference documents (`docs/` & `references/`) and extract symbol tables.
-- [ ] **Task 1.2:** Generate `project_spec.json` manifest mapping modules and types.
-- [ ] **Task 1.3:** Setup project directory structure and environment.
-
-### Phase 2: Implementation & Modular Synthesis (Workers)
-- [ ] **Task 2.1:** Implement Data Layer & Models (`Data/`) with Design-by-Contract.
-- [ ] **Task 2.2:** Implement Business Logic Layer (`Core/`).
-- [ ] **Task 2.3:** Implement Presentation/UI Layer (`UI/` or CLI/Web).
-
-### Phase 3: Verification, Testing & Compliance Seal
-- [ ] **Task 3.1:** Run static syntax & AST analysis via `scripts/validate_code.py`.
-- [ ] **Task 3.2:** Execute unit / integration tests and verify against all PRD requirements.
-- [ ] **Task 3.3:** Audit 100% of user instructions and references (Zero-Placeholder & Zero-Hallucination check).
-- [ ] **Task 3.4:** Compile `COMPLETION_REPORT.md` and issue final Verification Seal.
+## 1. Project Overview & Execution Track
+- **Project Title**: [Name of Project]
+- **Track**: Track A (Desktop) / Track B (Web/API) / Track C (Automation/CLI)
+- **Active Sprint**: Phase 2 (Implementation & Assembly)
 
 ---
 
-## 📝 Real-Time Execution Log
-| Timestamp | Task ID | Action Taken | Status |
+## 2. Granular Step-by-Step Checklist
+- [ ] **Task 01**: Ingest reference documents and schemas into `references_manifest.json`
+- [ ] **Task 02**: Scaffold 3-tier architecture folders (`src/UI/`, `src/Core/`, `src/Data/`)
+- [ ] **Task 03**: Implement data layer models and storage context
+- [ ] **Task 04**: Implement core business logic routines with Design-by-Contract
+- [ ] **Task 05**: Build accessible high-contrast UI layer with screen reader hooks
+- [ ] **Task 06**: Run `validate_code.py` and unit tests
+- [ ] **Task 07**: Generate platform-appropriate 1-click launcher (`run.sh` / `run.bat`)
+- [ ] **Task 08**: Compile `COMPLETION_REPORT.md` and present verification seal
+
+---
+
+## 3. Real-Time Execution Log
+| Timestamp | Task ID | Status | Summary of Changes |
 |---|---|---|---|
-| YYYY-MM-DD HH:MM | Task 1.1 | Parsed schemas from `references/` | Completed |
+| YYYY-MM-DD HH:MM | Task 01 | Completed | Ingested auth spec and compiled manifest |
+| YYYY-MM-DD HH:MM | Task 02 | Completed | Scaffolded 3-tier project directory tree |
