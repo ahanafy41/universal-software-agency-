@@ -1,0 +1,47 @@
+name: Automated Release & Package
+
+on:
+  push:
+    tags:
+      - 'v*'
+    branches:
+      - 'v1.1.0'
+      - 'main'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Package Skill Zip Archive
+        run: |
+          mkdir -p dist
+          zip -r dist/universal-software-agency-${{ github.ref_name }}.zip . -x ".git/*" ".github/*"
+
+      - name: Create or Update GitHub Release
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/') || github.ref_name == 'v1.1.0'
+        with:
+          tag_name: v1.1.0
+          name: "v1.1.0 — Universal AI Software Agency"
+          body: |
+            ## 🌟 Universal AI Software Engineering Agency v1.1.0
+            
+            ### 🗺️ Features & Upgrades
+            - **Project Architecture & Mental Topology**: Visual Mermaid mindmaps and rapid search index (`project_mindmap.md`).
+            - **Human-Grade Clean Code Craftsmanship**: Idiomatic, flat hierarchy, and single responsibility across all languages.
+            - **Strict Code Preservation & Zero-Corruption Invariants**: Blast Radius Limiter and automated pre-mutation backups.
+            - **Proactive Live Web & SDK Research Engine**: Real-time official documentation lookup and repository forensics.
+            - **Dual Progress Tracking**: Human Markdown (`debug_tasks.md`) + Machine JSON (`debug_manifest.json`).
+          draft: false
+          prerelease: false
+          files: |
+            dist/*.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
