@@ -1,109 +1,42 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "ProjectSpec",
+  "title": "UniversalProjectManifest",
   "type": "object",
   "required": [
     "project_name",
     "version",
-    "track",
-    "language",
-    "framework",
-    "architecture_tiers",
-    "offline_support"
+    "target_languages",
+    "architecture_tier",
+    "modules"
   ],
   "properties": {
-    "project_name": {
-      "type": "string"
+    "project_name": { "type": "string" },
+    "version": { "type": "string" },
+    "target_languages": {
+      "type": "array",
+      "items": { "type": "string" }
     },
-    "version": {
-      "type": "string"
-    },
-    "track": {
+    "architecture_tier": {
       "type": "string",
-      "enum": [
-        "Track_A_Desktop",
-        "Track_B_Web_API",
-        "Track_C_Automation_CLI"
-      ]
+      "enum": ["single-tier", "2-tier", "3-tier-enterprise", "microservices", "cli-tool"]
     },
-    "language": {
-      "type": "string"
-    },
-    "framework": {
-      "type": "string"
-    },
-    "offline_support": {
-      "type": "boolean"
-    },
-    "architecture_tiers": {
-      "type": "object",
-      "required": [
-        "ui",
-        "core",
-        "data"
-      ],
-      "properties": {
-        "ui": {
-          "type": "object",
-          "properties": {
-            "framework": {
-              "type": "string"
-            },
-            "components": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
+    "offline_first": { "type": "boolean" },
+    "modules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "path", "role"],
+        "properties": {
+          "name": { "type": "string" },
+          "path": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["ui", "core-logic", "data-access", "diagnostic", "infrastructure"]
+          },
+          "status": {
+            "type": "string",
+            "enum": ["planned", "in-progress", "completed", "tested"]
           }
-        },
-        "core": {
-          "type": "object",
-          "properties": {
-            "modules": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            },
-            "exported_functions": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          }
-        },
-        "data": {
-          "type": "object",
-          "properties": {
-            "storage_type": {
-              "type": "string",
-              "enum": [
-                "sqlite",
-                "litedb",
-                "json_store",
-                "in_memory"
-              ]
-            },
-            "models": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          }
-        }
-      }
-    },
-    "launchers": {
-      "type": "object",
-      "properties": {
-        "linux_termux": {
-          "type": "string"
-        },
-        "windows": {
-          "type": "string"
         }
       }
     }

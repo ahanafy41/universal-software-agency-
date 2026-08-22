@@ -1,55 +1,22 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "ReferencesManifest",
+  "title": "ReferencesManifestSchema",
   "type": "object",
-  "required": [
-    "references"
-  ],
+  "required": ["catalog_version", "documents"],
   "properties": {
-    "references": {
+    "catalog_version": { "type": "string" },
+    "documents": {
       "type": "array",
       "items": {
         "type": "object",
-        "required": [
-          "title",
-          "file_path",
-          "doc_type",
-          "summary",
-          "key_symbols",
-          "strict_rules"
-        ],
+        "required": ["title", "file_path", "doc_type", "summary"],
         "properties": {
-          "title": {
-            "type": "string"
-          },
-          "file_path": {
-            "type": "string"
-          },
-          "doc_type": {
-            "type": "string",
-            "enum": [
-              "json_schema",
-              "api_spec",
-              "markdown_guide",
-              "type_definitions",
-              "code_sample"
-            ]
-          },
-          "summary": {
-            "type": "string"
-          },
-          "key_symbols": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "strict_rules": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
+          "title": { "type": "string" },
+          "file_path": { "type": "string" },
+          "doc_type": { "type": "string", "enum": ["markdown-guide", "json-schema", "sdk-manual", "code-sample"] },
+          "summary": { "type": "string" },
+          "key_symbols": { "type": "array", "items": { "type": "string" } },
+          "strict_rules": { "type": "array", "items": { "type": "string" } }
         }
       }
     }

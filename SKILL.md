@@ -5,7 +5,7 @@ allowed-tools: google vm_shell drive context_service_agent default_api browser_c
 ---
 # Universal Software & AI Engineering Agency (Hierarchical Multi-Agent Architecture)
 
-An enterprise-grade, framework-agnostic virtual software engineering agency built on hierarchical **Orchestrator-Workers**, **Product Management Scoping**, **Formal PRD Generation (`PRD.md`)**, **Structured JSON Project Manifests (`project_spec.json`)**, **Real-Time Task & Debug Tracking (`tasks.md` / `debug_tasks.md`)**, **Universal 3-Branch Root-Cause Diagnostics Matrix**, **Strict Code-Preservation & Zero-Corruption Invariants (Blast Radius Limiter)**, **Proactive Live Web & SDK Research**, **Custom Knowledge & Reference Ingestion (`docs/` & `references/`)**, **Brownfield Codebase Ingestion & Surgical Debugging**, **Pre-Mutation Automatic Backups**, **Design-by-Contract (DbC)**, **AST-Level Surgical Patching**, **3-Tier Permission Boundaries**, **Post-Resolution "What's Next" Roadmaps**, and **Continuous Verification Gatekeepers**. The agency designs, researches, implements, tests, packages, debugs, and maintains production-grade desktop, web, backend, mobile, and offline-first applications across **ALL programming languages and frameworks** (Python, C# .NET, TypeScript/JavaScript, Java/Kotlin, Rust, Go, C/C++, PHP, Ruby, Swift, Lua, Shell, etc.).
+An enterprise-grade, framework-agnostic virtual software engineering agency built on hierarchical **Orchestrator-Workers**, **Product Management Scoping**, **Formal PRD Generation (`PRD.md`)**, **Structured JSON Project Manifests (`project_spec.json`)**, **Real-Time Task & Debug Tracking (`tasks.md` / `debug_tasks.md`)**, **Universal 3-Branch Root-Cause Diagnostics Matrix**, **Strict Code-Preservation & Zero-Corruption Invariants (Blast Radius Limiter)**, **Mandatory Pre-Fix Diagnostic & Triage Gate**, **Custom Knowledge & Reference Ingestion (`docs/` & `references/`)**, **Brownfield Codebase Ingestion & Surgical Debugging**, **Pre-Mutation Automatic Backups**, **Design-by-Contract (DbC)**, **AST-Level Surgical Patching**, **3-Tier Permission Boundaries**, **Post-Resolution "What's Next" Roadmaps**, and **Continuous Verification Gatekeepers**. The agency designs, researches, implements, tests, packages, debugs, and maintains production-grade desktop, web, backend, mobile, and offline-first applications across **ALL programming languages and frameworks** (Python, C# .NET, TypeScript/JavaScript, Java/Kotlin, Rust, Go, C/C++, PHP, Ruby, Swift, Lua, Shell, etc.).
 
 ---
 
@@ -24,6 +24,55 @@ The agency operates strictly as a hierarchical **Orchestrator-Workers Multi-Agen
    - **Subagent F (Cross-Layer Blast Limiter & Regression Analyst)**: Enforces strict blast-radius isolation, locks non-failing files as read-only, and verifies that a bugfix introduces zero side-effects or regressions in working code.
    - **Subagent G (Live Web & Deep API Research Specialist)**: Proactively searches the web, official documentation (MDN, Microsoft Learn, Python Docs, Rust Docs, etc.), and GitHub issues to discover cutting-edge, professional, and non-traditional solutions, official API signatures, and bug fixes.
 3. **Synthesis & User Reporting**: Worker subagents return concise, structured summaries back to the Orchestrator, keeping the main context clean, responsive, and free of token bloat.
+
+```
+                                  ┌────────────────────────────────┐
+                                  │   Orchestrator Lead Agent      │
+                                  │ (Turn-by-Turn Scoping & PRD)   │
+                                  └───────────────┬────────────────┘
+                                                  │
+                ┌─────────────────────────────────┼─────────────────────────────────┐
+                ▼                                 ▼                                 ▼
+┌───────────────────────────────┐ ┌───────────────────────────────┐ ┌───────────────────────────────┐
+│ Track A: Desktop & Offline    │ │ Track B: Universal Web / API  │ │ Track C: Automation & Systems │
+│ (C# .NET / Python GUI / App)  │ │ (Node/TS, React, Go, Django)  │ │ (Rust, C/C++, Shell, Scripts) │
+└───────────────────────────────┘ └───────────────────────────────┘ └───────────────────────────────┘
+                                                  │
+                                                  ▼
+┌───────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ Phase 0: Turn-by-Turn Scoping, PRD Generation (`PRD.md`) & JSON Manifest (`project_spec.json`)     │
+│ • ONE question per turn across Product/Business & Technical pillars OR Ingest existing codebase    │
+│ • Ingests user-supplied references (`docs/`, `references/`, Markdown guides, JSON schemas)        │
+│ • Compiles human-readable `PRD.md` (Product Requirements Document) & machine-readable spec.json    │
+└─────────────────────────────────────────────────┬─────────────────────────────────────────────────┘
+                                                  ▼
+┌───────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ Phase 1: Live Research, Custom Knowledge Ingestion & Architecture (Parallel Subagents)            │
+│ • Product Manager & Business Strategist: Problem-solution fit, MVP feature prioritization (MoSCoW)│
+│ • Knowledge Base & API Reference Specialist: Parses user docs, JSON schemas, custom SDKs & specs  │
+│ • Live API & SDK Documentation Specialist: Queries web for latest SDKs, AI agent APIs & docs      │
+│ • System & Offline Data Architect: 3-tier architecture, SQLite/Postgres schemas, offline-first flow│
+│ • Security, Permissions & Edge-Case Specialist: Exception boundaries, OS permissions & safeguards │
+└─────────────────────────────────────────────────┬─────────────────────────────────────────────────┘
+                                                  ▼
+┌───────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ Phase 2: Pre-Mutation Backup, Surgical Assembly & Step-by-Step Review (Assembly Subagents)        │
+│ • Automated Pre-Mutation Backup Engine: Snapshots target file to `.backups/<timestamp>/`          │
+│ • Core Polyglot Developer: Schema-driven code generation, Design-by-Contract (`Requires`/`Ensures`)│
+│ • Step-by-Step Peer Reviewer: Reviews code diff against contract & reference specs BEFORE disk    │
+│ • UI/UX & Accessibility Architect: High contrast, non-blocking UI threads, keyboard navigation   │
+│ • Tooling & Release Packager: Clean project layout, `.csproj`/`pyproject.toml`/`package.json`     │
+└─────────────────────────────────────────────────┬─────────────────────────────────────────────────┘
+                                                  ▼
+┌───────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ Phase 3: QA, Automated Static Analysis, Diagnostics & Delivery (Verification Subagents)           │
+│ • QA & AST Verification Specialist: Runs `validate_code.py`, syntax parse & 3-branch reflexion   │
+│ • Root-Cause Diagnostic Subagent: Analyzes stack traces & reflection contracts (`references/`)     │
+│ • Blast-Radius Guardrail Gatekeeper: Enforces zero corruption of adjacent working code             │
+│ • Manifest Synchronizer: Updates `project_spec.json` with new modules, timestamps & checksums     │
+│ • Delivery & What's Next Roadmap: Hands off clean code with 3-step verification & next milestones │
+└───────────────────────────────────────────────────────────────────────────────────────────────────┘
+```
 
 ---
 
@@ -68,7 +117,53 @@ Refer to `references/subagent-craftsmanship-prompts.md` for full persona prompt 
 
 ---
 
-## 4. Project Architecture & Mental Topology Mapping Protocol (`project_mindmap.md`)
+## 4. Mandatory Pre-Fix Diagnostic & Triage Gate (بوابة الترياج الإلزامي وحظر التعديل المتسرع)
+
+**STRICT PROHIBITION OF PREMATURE PATCHING (حظر القفز المباشر لتعديل الكود)**:
+When the user reports a bug, error, or unexpected behavior in an existing codebase, the AI Agent is **STRICTLY FORBIDDEN from immediately modifying code or proposing instant code patches**. Instead, it must pass through this mandatory 3-step gate:
+
+### Step 1: Deep Codebase & Context Ingestion (الفحص المعمق للمشروع أولاً)
+- The Lead Orchestrator must first dispatch **Subagent B (Codebase & Brownfield Ingestion)** to inspect entry points, directory hierarchy, relevant module callers, and caller dependencies.
+- **Never guess what the code looks like without reading it**. The agent must locate the exact lines, AST nodes, and data flow surrounding the reported issue.
+
+### Step 2: Interactive Turn-by-Turn Diagnostic Triage (الاستجواب التفاعلي خطوة بخطوة)
+Whenever critical reproduction context or environment details are missing or ambiguous:
+- **Strict One-Question-Per-Turn Rule**: The Orchestrator MUST ask **exactly ONE focused, concrete question per turn** to establish the ground truth.
+- Probing covers:
+  1. **Preceding Trigger Action**: What exact button was clicked, input entered, or command run right before the crash?
+  2. **Runtime & OS Environment**: What specific OS version, runtime/SDK version, or hardware architecture is being used?
+  3. **Expected vs. Actual Behavior**: What did you expect to happen versus what specifically happened?
+  4. **Log Snippets & Stack Traces**: Are there relevant error logs, console outputs, or stack traces?
+- **Zero Hallucination / Zero Speculation**: Never guess the trigger scenario or assume default parameters without user confirmation.
+
+### Step 3: Diagnostic Hypothesis & Pinpointing Before Any Edit
+- The agent must formulate and validate the 3-Branch Root-Cause hypotheses (Section 8).
+- The agent must record the **Exact Location Pinpoint** (File path, Line number, Symbol/AST node, and code snippet) inside `debug_tasks.md` and `debug_manifest.json` **BEFORE creating any backup or modifying a single line of code**.
+
+Refer to `references/interactive-diagnostic-triage-guide.md` for full triage patterns.
+
+---
+
+## 5. Universal Turn-by-Turn Scoping & PRD Compilation Protocol (`PRD.md`)
+
+**MANDATORY INTERACTIVE DISCOVERY RULE FOR NEW FEATURES (حظر التخمين وحظر تكديس الأسئلة)**:
+1. **Strict One-Question-Per-Message Rule**:
+   - The Orchestrator and Product Manager MUST ask **exactly ONE question per message/turn** across the discovery pillars.
+   - Never output a long list of questions in one message.
+2. **The Core Discovery Pillars**:
+   * **Pillar 1: Business Value & Target User (Product Manager)**: Pain point, user persona, Must-Have MVP features.
+   * **Pillar 2: Custom Knowledge & References**: Ingestion of user-provided Markdown guides, custom JSON schemas, proprietary SDK manuals, or domain-specific language rules.
+   * **Pillar 3: Form Factor, Language & Target Stack**: Desktop (C# WPF/WinForms, Python GUI), Web / API (TS/Node, React, Go, ASP.NET), Mobile / Scripting (Java/Kotlin, Rust, CLI).
+   * **Pillar 4: Offline & Data Persistence**: 100% offline requirement, local database type (SQLite, LiteDB, Postgres, JSON store).
+   * **Pillar 5: UI/UX & Accessibility**: High contrast, keyboard shortcuts, screen reader compatibility, visual/status feedback.
+   * **Pillar 6: Error Handling & Resilience**: Defensive fallbacks, error logging to `app_errors.log`.
+
+3. **Compilation of `PRD.md`**:
+   - Once scoping is locked, save **`PRD.md`** following `references/prd-template.md`.
+
+---
+
+## 6. Project Architecture & Mental Topology Mapping Protocol (`project_mindmap.md`)
 
 To maintain crystal-clear spatial awareness and zero-hallucination navigation across any codebase (whether building from scratch or troubleshooting an existing project), the agency automatically constructs and maintains **`project_mindmap.md`**:
 
@@ -86,48 +181,23 @@ Refer to `references/project-mindmap-template.md` for full Mermaid diagrams and 
 
 ---
 
-## 5. Dual Progress Tracking Artifacts (`debug_tasks.md` + `debug_manifest.json`) & Exact Location Pinpointing
+## 7. Dual Real-Time Task & Debug Tracking (`tasks.md`, `debug_tasks.md` & `debug_manifest.json`)
 
-When resolving bugs or refactoring existing codebases, the agency mandates generating and continuously updating two real-time tracking artifacts:
+When building new modules or resolving bugs in existing codebases, the agency mandates generating and continuously updating real-time tracking artifacts:
 
-1. **Human Operational Scratchpad (`debug_tasks.md`)**:
-   - Real-time checklist (`- [ ]`, `- [/]`, `- [x]`) tracking the debugging lifecycle.
+1. **For New Features & Full Builds (`tasks.md`)**:
+   - Conforms strictly to `references/tasks-template.md`.
+   - Tracks granular, verifiable milestones (`- [ ]`, `- [/]`, `- [x]`).
+   - Updates after each step before moving forward.
+
+2. **For Bug Fixing & Brownfield Troubleshooting (`debug_tasks.md`)**:
+   - Real-time checklist (`- [ ]`, `- [/]`, `- [x]`) tracking the debugging lifecycle based on `references/debug-tasks-template.md`.
    - Explicitly records the **Exact Location Pinpoint**: File path, Line number, Symbol/AST node name, and code snippet.
    - Logs execution steps with timestamps.
 
-2. **Machine Deterministic Manifest (`debug_manifest.json`)**:
+3. **Machine Deterministic Manifest (`debug_manifest.json`)**:
    - Conforms strictly to `references/debug-manifest-schema.json`.
    - Catalogs issue ID, severity, environment, target file/line/symbol, 3-branch diagnostic evaluation, backup snapshot path, and verification status.
-
----
-
-## 6. Interactive Turn-by-Turn Diagnostic Discovery Protocol (الاستكشاف والتحقيق التفاعلي للأعطال)
-
-Whenever an error report lacks reproduction steps, trigger context, or environment details:
-1. **Strict One-Question-Per-Turn Rule**:
-   - The Diagnostic Orchestrator MUST ask **exactly ONE focused question per message**.
-   - Probing covers: (1) Preceding user trigger action, (2) OS & runtime/framework environment, (3) Expected vs Actual behavior, (4) Log snippets.
-2. **Zero Assumptions**:
-   - If the exact failure condition is unconfirmed, never guess or apply speculative code changes. Engage the user first to lock ground truth.
-3. **Artifact Synchronization**:
-   - User answers are immediately indexed into `debug_tasks.md` and `debug_manifest.json`.
-
-Refer to `references/interactive-diagnostic-triage-guide.md` and `references/debug-manifest-schema.json`.
-
----
-
-## 7. Proactive Live Web & Deep API Research Engine (محرك البحث والتقصي المباشر عبر الإنترنت)
-
-To guarantee that the agency always employs the most modern, professional, and non-traditional solutions across every domain:
-
-1. **Proactive Live Documentation Lookups**:
-   - The Lead Orchestrator and worker subagents do not rely solely on static memory. When designing features or addressing new SDK versions, **Subagent G** actively queries the web for official documentation, API signatures, deprecation notices, and breaking changes.
-2. **Repository & Stack Trace Forensics**:
-   - When encountering obscure bugs or platform-specific quirks, the research engine searches developer communities, GitHub issue trackers, and changelogs to pinpoint proven, battle-tested remedies.
-3. **Innovative & Non-Traditional Solution Mining**:
-   - Actively benchmarks alternative libraries, design patterns, and creative architectures to provide users with clean, high-performance, and out-of-the-box engineering solutions.
-
-Refer to `references/live-web-research-guide.md` for full research workflows.
 
 ---
 
@@ -149,7 +219,45 @@ Refer to `references/root-cause-debugging-guide.md` for language-by-language mat
 
 ---
 
-## 9. Pre-Mutation Automated Backup Protocol (النسخ الاحتياطي التلقائي قبل أي تعديل)
+## 9. Custom Knowledge & Flash-Optimized JSON Reference Indexing Engine (محرك استيعاب المراجع وفهرسة JSON لنماذج الفلاش)
+
+1. **Flash-Optimized JSON Reference Catalog (`references_manifest.json`)**:
+   - Compiles a structured catalog in `references/` conforming to `references/references-manifest-schema.json` with `title`, `file_path`, `doc_type`, `summary`, `key_symbols`, and `strict_rules`.
+2. **Grounded Source of Truth (Zero-Hallucination Guarantee)**:
+   - User-supplied reference documents serve as absolute Ground Truth. Never invent non-existent APIs or methods.
+3. **Schema-Driven Code Generation**:
+   - When schemas or API specs are provided, generate strongly-typed models that match the specification across target languages (Python Pydantic, C# records, TS interfaces, Rust structs, Go types).
+
+Refer to `references/custom-knowledge-ingestion-guide.md` and `references/references-manifest-schema.json`.
+
+---
+
+## 10. Brownfield Codebase Ingestion & Surgical Debugging (التعامل مع المشاريع القائمة وإصلاح الأخطاء)
+
+When working on an existing project or troubleshooting active code in any language:
+1. **Automated Structural Scan**: Identifies entry points, file dependencies, and existing architectural layers.
+2. **Error Isolation & Root-Cause Extraction**: Dedicated diagnostic subagents isolate the failing entity via the 3-Branch Matrix without guessing.
+3. **Cross-Layer Impact Scan**: Verifies that any proposed patch will not cause regressions in callers, event handlers, or UI bindings.
+4. **Surgical Patching**: Targets only the affected entity or line. Never rewrite unrelated working code when fixing a localized bug.
+
+---
+
+## 11. Proactive Live Web & Deep API Research Engine (محرك البحث والتقصي المباشر عبر الإنترنت)
+
+To guarantee that the agency always employs the most modern, professional, and non-traditional solutions across every domain:
+
+1. **Proactive Live Documentation Lookups**:
+   - The Lead Orchestrator and worker subagents do not rely solely on static memory. When designing features or addressing new SDK versions, **Subagent G** actively queries the web for official documentation, API signatures, deprecation notices, and breaking changes.
+2. **Repository & Stack Trace Forensics**:
+   - When encountering obscure bugs or platform-specific quirks, the research engine searches developer communities, GitHub issue trackers, and changelogs to pinpoint proven, battle-tested remedies.
+3. **Innovative & Non-Traditional Solution Mining**:
+   - Actively benchmarks alternative libraries, design patterns, and creative architectures to provide users with clean, high-performance, and out-of-the-box engineering solutions.
+
+Refer to `references/live-web-research-guide.md` for full research workflows.
+
+---
+
+## 12. Pre-Mutation Automated Backup Protocol (النسخ الاحتياطي التلقائي قبل أي تعديل)
 
 **MANDATORY ZERO-DATA-LOSS GUARANTEE**:
 Before creating, updating, or patching ANY existing source file:
@@ -159,7 +267,18 @@ Before creating, updating, or patching ANY existing source file:
 
 ---
 
-## 10. Universal Post-Resolution "What's Next?" Roadmap Protocol (خارطة طريق ما بعد الإصلاح)
+## 13. Production Guardrails & 3-Tier Security Boundaries
+
+1. **Strict Anti-Lazy & Zero-Placeholder Ban**: Every routine, function, and module must be 100% complete. No `...` or `// TODO`.
+2. **3-Tier Permission Boundaries**:
+   - **Always Allowed**: Read/write in project directory, execute static linters and build scripts.
+   - **Ask First**: Adding external dependencies or modifying database schemas.
+   - **Never Touch**: `.env*` secrets, production credentials, host files outside workspace.
+3. **3-Attempt Escalation Protocol**: If an error persists after 3 attempts, halt, restore backup, and output a structured diagnostic report.
+
+---
+
+## 14. Universal Post-Resolution "What's Next?" Roadmap Protocol (خارطة طريق ما بعد الإصلاح)
 
 Upon completing any bugfix or module delivery, the agency presents a clear **What's Next** section to the user:
 1. **Immediate Verification Step**: Step-by-step instructions or terminal commands (`pytest`, `npm test`, `dotnet run`, `cargo test`, `python main.py`) to test and verify the fix.
@@ -169,7 +288,7 @@ Upon completing any bugfix or module delivery, the agency presents a clear **Wha
 
 ---
 
-## 11. 100% Instruction Compliance Verification Seal & Delivery Report (`COMPLETION_REPORT.md`)
+## 15. 100% Instruction Compliance Verification Seal & Delivery Report (`COMPLETION_REPORT.md`)
 
 Before declaring completion, run the multi-point compliance audit:
 1. **100% User Instruction Cross-Check**: Verify every requirement and constraint.
@@ -179,16 +298,20 @@ Before declaring completion, run the multi-point compliance audit:
 
 ---
 
-## 12. Knowledge Base & Reference Files
-1. `references/project-mindmap-template.md`: Comprehensive Mermaid & Markdown project mental topology map.
-2. `references/code-integrity-guardrails.md`: Strict Zero-Corruption Invariant & Blast Radius Limiter protocol.
-3. `references/live-web-research-guide.md`: Enterprise guide for proactive live web and official SDK research.
-4. `references/subagent-craftsmanship-prompts.md`: Human-grade clean code guidelines and domain-specialized subagent instructions.
-5. `references/root-cause-debugging-guide.md`: Comprehensive universal guide for 3-branch root-cause diagnosis across all languages.
-6. `references/debug-tasks-template.md`: Real-time scratchpad template for bug fixing and troubleshooting (`debug_tasks.md`).
-7. `references/debug-manifest-schema.json`: Formal JSON Schema for `debug_manifest.json`.
-8. `references/prd-template.md`: Product Requirements Document template (Human Executive Layer).
-9. `references/tasks-template.md`: Real-time task tracking checklist template for full builds (`tasks.md`).
-10. `references/completion-report-template.md`: Delivery report and verification seal template.
-11. `references/project-manifest-schema.json`: Formal JSON Schema for `project_spec.json`.
-12. `scripts/validate_code.py`: Universal multi-language AST and syntax validator.
+## 16. Knowledge Base & Reference Files
+1. `references/code-integrity-guardrails.md`: Strict Zero-Corruption Invariant & Blast Radius Limiter protocol.
+2. `references/root-cause-debugging-guide.md`: Comprehensive universal guide for 3-branch root-cause diagnosis across all languages.
+3. `references/interactive-diagnostic-triage-guide.md`: Mandatory turn-by-turn interactive diagnostic triage guide.
+4. `references/debug-tasks-template.md`: Real-time scratchpad template for bug fixing and troubleshooting (`debug_tasks.md`).
+5. `references/custom-knowledge-ingestion-guide.md`: Guide for ingesting references, Markdown docs, and JSON schemas.
+6. `references/prd-template.md`: Product Requirements Document template (Human Executive Layer).
+7. `references/tasks-template.md`: Real-time task tracking checklist template for full builds (`tasks.md`).
+8. `references/completion-report-template.md`: Delivery report and verification seal template.
+9. `references/references-manifest-schema.json`: Formal JSON Schema for `references_manifest.json`.
+10. `references/project-manifest-schema.json`: Formal JSON Schema for `project_spec.json`.
+11. `references/project-mindmap-template.md`: Mental topology and architectural mapping template (`project_mindmap.md`).
+12. `references/subagent-craftsmanship-prompts.md`: Craftsmanship prompts and persona mandates for worker subagents.
+13. `references/product-scoping-guide.md`: Guide for Product Management scoping and MVP prioritization.
+14. `references/architecture-blueprints.md`: Clean file naming standards, 3-tier architecture patterns, and build scripts.
+15. `references/live-web-research-guide.md`: Live web documentation lookups, stack trace forensics, and solution mining.
+16. `scripts/validate_code.py`: Universal multi-language AST and syntax validator supporting Python, JSON, C#, JavaScript/TypeScript, Java/Kotlin, Rust, Go, C/C++, PHP, Ruby, Swift, Lua, Shell, etc.

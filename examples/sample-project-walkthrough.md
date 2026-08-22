@@ -1,51 +1,23 @@
-# Sample Project Walkthrough: Building an Offline Voice Notes App (C# WPF)
+# Sample Walkthrough: Building an Offline-First SQLite Contact Book in C# .NET
 
-This walkthrough illustrates the full lifecycle of the Universal Software Agency constructing a complete desktop tool from scratch.
+This walkthrough demonstrates the Universal Software Agency lifecycle for a greenfield C# .NET application.
 
----
+## Phase 0: Scoping (Turn-by-Turn)
+- Turn 1: "Who is the primary user and what is the core problem?" -> Answer: "A solo desktop user who needs to manage contacts without internet."
+- Turn 2: "What is the target framework and persistence choice?" -> Answer: "C# .NET 8 WPF, SQLite with Dapper."
+- Turn 3: "Are there specific accessibility requirements?" -> Answer: "High contrast UI, tab navigation, screen reader labels."
+- Result: Generated `PRD.md` and `project_spec.json`.
 
-## Phase 0: Turn-by-Turn Scoping
-- **Turn 1**: User asks to build a desktop audio notes app.
-- **Agent Question 1**: "Who is the primary user, and what are the 3 non-negotiable MVP features?"
-- **User Reply**: "For blind students to record lectures and search notes offline."
-- **Agent Question 2**: "Do you have any custom reference docs, API specs, or audio formats we must follow?"
-- **User Reply**: "Use standard WAV/MP3 and save metadata to SQLite."
-- **Agent Action**: Generates `PRD.md`, `tasks.md`, and `project_spec.json`.
+## Phase 1: Custom Knowledge & Architecture
+- Subagent A parsed schema specs.
+- Subagent G retrieved the latest Microsoft Learn guidelines for SQLite in .NET 8.
+- Result: 3-tier architecture defined (UI -> ContactService -> SqliteRepository).
 
----
+## Phase 2: Assembly
+- Pre-mutation backup initialized.
+- Subagent C generated `Contact.cs`, `IContactRepository.cs`, `SqliteContactRepository.cs`, and `MainWindow.xaml.cs`.
+- Implemented Design-by-Contract guard clauses.
 
-## Phase 1: Architecture & Contract
-- Subagent A ingests SQLite schema and compiles `references_manifest.json`.
-- Subagent C designs the 3-tier architecture:
-  1. `UI/MainWindow.xaml` + `MainWindow.xaml.cs` (Accessible WPF UI).
-  2. `Core/AudioRecorder.cs` + `Core/NoteManager.cs` (Domain Logic with DbC).
-  3. `Data/DatabaseContext.cs` (SQLite Storage).
-
----
-
-## Phase 2: Assembly & Pre-Mutation Snapshot
-- Pre-mutation backup engine verifies target files.
-- Code generated with full accessibility tags:
-  ```xml
-  <Button AutomationProperties.Name="Start Recording" 
-          AutomationProperties.HelpText="Starts lecture audio capture"
-          Click="OnRecordClicked" />
-  ```
-- Design-by-Contract enforced in C#:
-  ```csharp
-  public void SaveNote(Note note)
-  {
-      if (note == null) throw new ArgumentNullException(nameof(note));
-      if (string.IsNullOrWhiteSpace(note.Title)) throw new ArgumentException("Title required", nameof(note));
-      
-      _dbContext.Notes.Add(note);
-      _dbContext.SaveChanges();
-  }
-  ```
-
----
-
-## Phase 3: QA & Delivery
-- Validator runs: `python3 scripts/validate_code.py Core/AudioRecorder.cs` -> `[PASS]`.
-- Launch script generated: `run.bat`.
-- Agency outputs `COMPLETION_REPORT.md` with 100% Verification Seal.
+## Phase 3: Verification & Delivery
+- Subagent D executed `validate_code.py`.
+- Generated `COMPLETION_REPORT.md` and What's Next Roadmap.
