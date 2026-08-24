@@ -1,41 +1,65 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "UniversalProjectManifest",
+  "title": "ProjectSpec",
   "type": "object",
   "required": [
     "project_name",
     "version",
-    "target_languages",
-    "architecture_tier",
+    "target_stack",
+    "accessibility_standard",
+    "architecture_layers",
     "modules"
   ],
   "properties": {
     "project_name": { "type": "string" },
     "version": { "type": "string" },
-    "target_languages": {
+    "target_stack": {
+      "type": "object",
+      "required": ["language", "framework"],
+      "properties": {
+        "language": { "type": "string" },
+        "framework": { "type": "string" },
+        "runtime_version": { "type": "string" }
+      }
+    },
+    "accessibility_standard": {
+      "type": "string",
+      "enum": ["Universal Keyboard-First & Screen-Reader Compatible", "WCAG 2.2 AA", "CLI Plain-Text Optimized"]
+    },
+    "architecture_layers": {
       "type": "array",
       "items": { "type": "string" }
     },
-    "architecture_tier": {
-      "type": "string",
-      "enum": ["single-tier", "2-tier", "3-tier-enterprise", "microservices", "cli-tool"]
-    },
-    "offline_first": { "type": "boolean" },
     "modules": {
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["name", "path", "role"],
+        "required": ["path", "layer", "description"],
         "properties": {
-          "name": { "type": "string" },
           "path": { "type": "string" },
-          "role": {
+          "layer": { "type": "string", "enum": ["UI", "Core", "Data", "Test", "DevOps"] },
+          "description": { "type": "string" }
+        }
+      }
+    },
+    "knowledge_base": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["file_path", "type"],
+        "properties": {
+          "file_path": { "type": "string" },
+          "type": {
             "type": "string",
-            "enum": ["ui", "core-logic", "data-access", "diagnostic", "infrastructure"]
-          },
-          "status": {
-            "type": "string",
-            "enum": ["planned", "in-progress", "completed", "tested"]
+            "enum": [
+              "markdown_guide",
+              "json_schema",
+              "api_spec",
+              "type_definitions",
+              "code_sample",
+              "rules_and_constraints",
+              "cheat_sheet"
+            ]
           }
         }
       }

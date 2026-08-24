@@ -1,13 +1,13 @@
-# 🚀 Universal AI Software Engineering Agency (v1.2.0)
+# 🚀 Universal AI Software Engineering Agency (v1.3.0)
 ### وكالة هندسة البرمجيات بالذكاء الاصطناعي الشاملة لكافة لغات البرمجة
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE.md)
-[![Release: v1.2.0](https://img.shields.io/badge/Release-v1.2.0-blueviolet.svg)](https://github.com/ahanafy41/universal-software-agency-/releases/tag/v1.2.0)
+[![Release: v1.3.0](https://img.shields.io/badge/Release-v1.3.0-blueviolet.svg)](https://github.com/ahanafy41/universal-software-agency-/releases/tag/v1.3.0)
 [![Standard: PRD & Spec-Driven](https://img.shields.io/badge/Standard-PRD%20%26%20JSON%20Manifest-green.svg)](references/prd-template.md)
 [![Tracking: Dual Artifacts](https://img.shields.io/badge/Tracking-Markdown%20%26%20JSON-orange.svg)](references/debug-manifest-schema.json)
 [![Safety: Zero-Corruption](https://img.shields.io/badge/Safety-Blast%20Radius%20Limiter-red.svg)](references/code-integrity-guardrails.md)
 
-وكالة هندسة برمجية متكاملة مدعومة بالذكاء الاصطناعي، مصممة للتخطيط، والبناء، والتشخيص الجذري، والتصحيح الدقيق، والتطوير الشامل للمشاريع والبرمجيات عبر **كافة لغات البرمجة وأطر العمل** (Python, C# .NET, JavaScript/TypeScript, Java/Kotlin, Rust, Go, C/C++, PHP, Ruby, Swift, Lua, Shell, إلخ).
+وكالة هندسة برمجية متكاملة مدعومة بالذكاء الاصطناعي، مصممة للتخطيط، والبناء، والتشخيص الجذري، والتصحيح الدقيق، والتطوير الشامل للمشاريع والبرمجيات عبر **كافة لغات البرمجة وأطر العمل** (Python, C# .NET, JavaScript/TypeScript, Java/Kotlin, Rust, Go, C/C++, PHP, Ruby, Swift, Shell, إلخ).
 
 ---
 
@@ -30,96 +30,67 @@
 
 ---
 
-## 🛠️ أبرز الميزات والقدرات المحدثة (v1.2.0)
+## 🛠️ أبرز الميزات والقدرات المحدثة (v1.3.0)
 
-### 1. 🛑 بوابة الترياج الإلزامي وحظر التعديل المتسرع (Mandatory Pre-Fix Diagnostic Gate)
-* **حظر القفز المباشر لتعديل الكود**: إلزام الذكاء الاصطناعي بالمرور عبر بوابة تشخيص إجبارية قبل كتابة أو اقتراح أي كود لحل عطل قائم.
-* **الفحص المعمق للمشروع أولاً**: فحص شجرة الملفات وتتبع مسارات الاستدعاء وقراءة الكود المحيط بموضع المشكلة بالكامل لمنع التخمين.
-* **الاستجواب التفاعلي المنضبط**: توجيه سؤال واحد فقط في كل دورة لاستيضاح ظروف العطل، والبيئة، والسجلات، والسلوك المتوقع.
+### 1. 🌐 محرك البحث المباشر لعام 2026 (Proactive 2026 Google Search Integration)
+* **إلزامية البحث لكافة الوكلاء**: إلزام كافة الوكلاء الفرعيين بالبحث الحي في توثيقات عام 2026 الرسمية عبر Google Search للتحقق من أحدث توقيعات الدوال، وتوافق الحزم، ومنع استخدام أي دوال ملغاة (Deprecated APIs).
+* **تقصي حلول الأعطال**: البحث المباشر في GitHub Issues ومجتمعات المطورين عند مواجهة استثناءات أو أخطاء غامضة لعزل السبب الجذري.
 
----
+### 2. ♿ إمكانية الوصول الشاملة والتنقل بلوحة المفاتيح (Universal Accessibility & Keyboard-First)
+* **دعم افتراضي كامل**: بناء كافة الواجهات وعناصر التحكم لتكون قابلة للتشغيل الكامل عبر لوحة المفاتيح (Keyboard-First) ومتوافقة بنسبة 100% مع قارئات الشاشة للمكفوفين وعموم المطورين.
+* **دقة المخرجات والتباين**: اعتماد وسوم ARIA الدقيقة، وعناصر التحكم القياسية، ومخرجات سطر الأوامر النظيفة والجداول القابلة للقراءة بوضوح.
 
-### 2. 🗺️ الخريطة الذهنية الطوبولوجية للمشروع (`project_mindmap.md`)
-* **رسم المعمارية البصرية (Visual Topology)**: بناء مخطط هيكلي مرئي (Mermaid & ASCII) يوضح طبقات المشروع (الواجهة -> المنطق والعمليات -> التخزين وقواعد البيانات -> مراقبة الأخطاء).
-* **خريطة النقاط النشطة والأعطال (Bug & Hotspot Map)**: تحديد وتمييز الأماكن المعطلة، والمناطق التي تم إصلاحها، والمسارات الحساسة.
-* **فهرس البحث والاستكشاف السريع (Rapid Search Index)**: دليل شجري يتيح للذكاء الاصطناعي الوصول الفوري لأي موديول أو دالة أو كلاس دون استهلاك السياق في إعادة قراءة المشروع بالكامل.
+### 3. ⚡ بروتوكول الاستكشاف المزدوج (Dual Scoping Protocols)
+* **نمط الحوار التفاعلي (Interactive Mode)**: سؤال واحد محدد ومركز في كل رسالة عند وجود متطلبات مفتوحة أو غموض في بيئة التشغيل.
+* **نمط المسار السريع (Fast-Track Mode)**: البدء الفوري في التخطيط والتنفيذ المعماري دون أسئلة مكررة عند تزويد الوكالة بمواصفات كاملة أو PRD جاهز.
 
----
+### 4. 🧪 منظومة هندسة الاختبارات الآلية (Automated Multi-Language Testing)
+* **توليد اختبارات بنمط AAA**: كتابة اختبارات الوحدة والتكامل لكافة اللغات (Python `pytest`, C# `xUnit`, TypeScript `Vitest`, Rust `cargo test`, Go `go test`) وضمان عدم وجود اختبارات هشة (Zero-Flakiness).
 
-### 3. 🎯 كود بشري نظيف واحترافي (Human-Grade Clean Code)
-* **معايير برمجية طبيعية وغير مكررة**: استخدام الأنماط الأصيلة لكل لغة (Idiomatic Patterns) مثل PEP 8 في بايثون، و PascalCase و LINQ في C#, والأنواع الصارمة في TypeScript، وإدارة الملكية في Rust، وتزامن Goroutines في Go.
-* **تسميات واضحة ومسؤولية واحدة (SRP)**: منع الأسماء المبهمة (`temp`, `data`) والاعتماد على تسميات معبرة عن الغرض الفعلي، مع كتابة تعليقات توضح "السبب المعماري" لا "السطر البرمجي الواضح".
-* **بنية مسطحة وسلسة (Guard Clauses)**: تجنب التعقيدات والتفريعات المتداخلة العميقة (`if/else`) والاعتماد على العودة المبكرة.
+### 5. 🚀 قوالب النشر والحاويات (DevOps & Production Packaging)
+* **حاويات Docker خفيفة ومتعددة المراحل**: قوالب جاهزة لبايثون، و .NET 8، و Node/TS، و Rust، و Go مع مستخدمين غير مميزين (Non-root).
+* **سير عمل GitHub Actions**: فحص الـ Linting، وتشغيل الاختبارات، والـ Build التلقائي.
 
----
-
-### 4. 🛡️ قانون السلامة المطلقة وتطويق نطاق التعديل (Zero-Corruption & Blast-Radius Limiter)
-* **حظر إفساد الكود القائم**: منع تعديل أو "إعادة صياغة" أي كود شغال ومحيط بموضع الخطأ.
-* **حظر التعديلات غير المطلوبة**: منع تغيير أسماء المتغيرات أو حذف التعليقات أو الدوال المساعدة القائمة.
-* **التدقيق والمقارنة التلقائية (Diff Audit)**: حفظ نسخة احتياطية فورية في مجلد `.backups/` قبل أي تعديل، ومقارنة التعديل بالنسخة الأصلية لضمان عدم حدوث أي تغييرات جانبية، والتراجع الفوري عند أي حياد.
+### 6. 🛡️ أدوات الحماية والتحقق من الأكواد (`scripts/`)
+* **`validate_code.py`**: فحص بنيوي حقيقي للغات (Python AST, JSON, YAML) مع دعم المخرجات المهيكلة (`--json`) ومنع الأكواد غير المكتملة (`--strict`).
+* **`backup_manager.py`**: محرك النسخ الاحتياطي التلقائي الفوري والاستعادة بضغطة زر.
+* **`diff_verifier.py`**: فاحص نطاق التعديل (Blast Radius Limiter) لمنع إفساد الأكواد المحيطة.
 
 ---
 
-### 5. 🔍 محرك البحث المباشر والتقصي عبر الإنترنت (Proactive Live Web & SDK Research)
-* **استخراج التوثيقات الرسمية لحظياً**: البحث المباشر في بوابات التوثيق الرسمية (MDN, Microsoft Learn, Python Docs, Rust Docs, Android Developers, Go Docs) لضمان استخدام أحدث توقيعات الدوال الرسمية.
-* **استكشاف الحلول المبتكرة وغير التقليدية**: البحث عن أفضل المعماريات البرمجية وحل الأعطال الغامضة عبر مستودعات GitHub وقضايا المطورين.
-
----
-
-### 6. 📋 نظام التتبع المزدوج للتقدم والأعطال (Dual Tracking Artifacts)
-* **سجل المارك داون البشري (`debug_tasks.md` / `tasks.md`)**: سجل تفاعلي لمتابعة خطوات البناء أو التصحيح خطوة بخطوة مع خانات اختيار (`- [ ]`, `- [/]`, `- [x]`).
-* **سجل الجيسون الهيكلي (`debug_manifest.json` / `project_spec.json`)**: ملف جيسون مبني على مخطط رسمي لتوثيق معرّف الخطأ، المسار، السطر، تقييم الفرضيات، وحالة الاختبار آلياً.
-
----
-
-### 7. 🎯 تحديد مكان الخطأ بدقة متناهية (Exact Location Pinpointing)
-إلزام الذكاء الاصطناعي بتحديد 4 عناصر أساسية قبل لمس الكود:
-1. **مسار الملف الدقيق (File Path)**.
-2. **رقم السطر (Line Number)**.
-3. **اسم الكلاس / الدالة / عقدة الـ AST (Target Symbol)**.
-4. **مقتطف الكود المسبب للخطأ (Failing Code Snippet)**.
-
----
-
-### 8. 🔬 مصفوفة التشخيص ثلاثية الفرضيات (Universal 3-Branch Diagnostic Matrix)
-فحص 3 مسارات حتمية لعزل أي مشكلة في أي لغة:
-1. **الفرضية الأولى**: عدم تطابق توقيعات الدوال أو الـ Reflection مع المنصة أو المكتبة.
-2. **الفرضية الثانية**: أخطاء دورة الحياة (Lifecycle)، وتزامن الخيوط (Concurrency/Threading)، وحالة الذاكرة.
-3. **الفرضية الثالثة**: أخطاء حدود البيانات، والقيم الفارغة (`null`/`None`/`nil`)، وتراكيب الأقواس.
-
----
-
-### 9. 🚀 خارطة طريق ما بعد الإنجاز (What's Next? Roadmap)
-توثيق إلزامي في نهاية كل مهمة يقدم:
-* **أمر التحقق والتجربة الفورية** بحسب لغة المشروع (`pytest`, `npm test`, `dotnet run`, `cargo test`, `python app.py`).
-* **قائمة مراجعة الأمان (Regression Watchlist)** للتأكد من سلامة باقي الميزات.
-* **نصائح التحصين البرمجي الوقائي (Defensive Hardening)**.
-* **المعالم التطويرية التالية المقترحة للمشروع**.
-
----
-
-## 📁 هيكل الأدلة والملفات المرجعية في الوكالة
+## 📂 هيكلية المشروع والمجلدات
 
 ```text
 universal-software-agency/
 ├── .github/workflows/
 │   └── release.yml                          # أتمتة البناء والنشر عبر GitHub Actions
 ├── SKILL.md                                 # الدستور والبروتوكول الهندسي الرئيسي للوكالة
-├── README.md                                # الوثيقة التعريفية الشاملة والمحدثة (v1.2.0)
+├── README.md                                # الوثيقة التعريفية الشاملة والمحدثة (v1.3.0)
 ├── AGENT_GUIDE.md                           # دليل تشغيل الذكاء الاصطناعي ومحددات السلوك
+├── LICENSE.md                               # رخصة الاستخدام (MIT)
 ├── scripts/
-│   └── validate_code.py                     # مدقق السلامة البرمجية والـ AST لكافة اللغات
-└── references/
-    ├── project-mindmap-template.md          # قالب الخريطة الذهنية الطوبولوجية للمشروع
-    ├── code-integrity-guardrails.md         # بروتوكول حماية الكود وتطويق نطاق التعديل
-    ├── live-web-research-guide.md           # دليل البحث الحي واستخراج التوثيقات الرسمية
-    ├── subagent-craftsmanship-prompts.md    # معايير الكود الإنساني والتوجيهات التخصصية
-    ├── root-cause-debugging-guide.md        # دليل مصفوفة التشخيص ثلاثية الفرضيات
-    ├── interactive-diagnostic-triage-guide.md # دليل الاستكشاف التفاعلي للأعطال
-    ├── debug-tasks-template.md              # قالب سجل تتبع الأعطال (debug_tasks.md)
-    ├── debug-manifest-schema.json           # مخطط الجيسون الرسمي لتوثيق الأخطاء
-    ├── prd-template.md                      # قالب وثيقة متطلبات المنتج (PRD.md)
+│   ├── validate_code.py                     # فاحص السلامة البرمجية والـ AST لكافة اللغات
+│   ├── backup_manager.py                    # محرك النسخ الاحتياطي التلقائي والاستعادة
+│   └── diff_verifier.py                     # فاحص نطاق التعديل ومنع إفساد الأكواد
+├── examples/
+│   └── sample-project-walkthrough.md        # مثال عملي لبناء مشروع متكامل
+└── references/                              # قوالب ومخططات الوكالة الرسمية
+    ├── architecture-blueprints.md           # الهياكل المعمارية وإمكانية الوصول
+    ├── testing-frameworks-guide.md          # دليل هندسة الاختبارات الآلية
+    ├── devops-ci-cd-blueprints.md           # قوالب الـ Dockerfile وخطوط GitHub Actions
+    ├── live-web-research-guide.md           # دليل البحث المباشر وتوثيقات 2026
+    ├── subagent-craftsmanship-prompts.md    # ميثاق وتوجيهات الوكلاء الفرعيين
+    ├── root-cause-debugging-guide.md        # مصفوفة التشخيص الجذري ثلاثية الفرضيات
+    ├── code-integrity-guardrails.md         # بروتوكول حماية الكود وتطويق التعديل
+    ├── interactive-diagnostic-triage-guide.md # دليل الترياج والاستكشاف التفاعلي
+    ├── product-scoping-guide.md             # دليل مدير المنتج لتحديد الـ MVP
+    ├── custom-knowledge-ingestion-guide.md  # دليل استيعاب المراجع ونماذج البيانات
+    ├── prd-template.md                      # وثيقة متطلبات المنتج الرسمية (PRD.md)
+    ├── project-mindmap-template.md          # قالب الخريطة الذهنية الطوبولوجية
+    ├── debug-tasks-template.md              # قالب تتبع تشخيص وإصلاح الأعطال
+    ├── debug-manifest-schema.json           # مخطط الجيسون الرسمي للأعطال
     ├── tasks-template.md                    # قالب تتبع مهام البناء الجديد (tasks.md)
     ├── project-manifest-schema.json         # مخطط الجيسون الرسمي لهيكل المشروع
+    ├── references-manifest-schema.json      # مخطط الجيسون الرسمي لفهرسة المراجع
     └── completion-report-template.md        # قالب تقرير الإنجاز وخاتم التحقق الشامل
 ```

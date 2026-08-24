@@ -1,4 +1,4 @@
-name: Automated Release & Package
+name: Release Universal Software Agency Skill
 
 on:
   push:
@@ -12,7 +12,7 @@ permissions:
   contents: write
 
 jobs:
-  build-and-release:
+  release:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -24,7 +24,7 @@ jobs:
           if [[ "${{ github.ref }}" == refs/tags/v* ]]; then
             echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
           else
-            echo "TAG_NAME=v1.2.0" >> $GITHUB_OUTPUT
+            echo "TAG_NAME=v1.3.0" >> $GITHUB_OUTPUT
           fi
 
       - name: Package Skill Zip Archive
@@ -41,12 +41,17 @@ jobs:
             ## 🌟 Universal AI Software Engineering Agency ${{ steps.vars.outputs.TAG_NAME }}
 
             ### 🚀 What's New in this Release
-            - **Mandatory Pre-Fix Diagnostic & Triage Gate**: Strict prohibition of premature patching. Enforces deep codebase inspection, caller mapping, and turn-by-turn interactive diagnostic discovery before touching any code.
-            - **Sequential Section Numbering**: Re-organized and harmonized all 16 engineering protocols into a clean, logical sequence.
-            - **Worker Subagent Mandate Isolation**: Clear, independent mandates for Blast-Radius Limiter (`Subagent F`) and Live Web & API Documentation Specialist (`Subagent G`).
-            - **Project Architecture & Mental Topology**: Visual Mermaid mindmaps and rapid search index (`project_mindmap.md`).
-            - **Strict Code Preservation & Zero-Corruption Invariants**: Blast Radius Limiter and automated pre-mutation backups.
-            - **Dual Progress Tracking**: Human Markdown (`debug_tasks.md`) + Machine JSON (`debug_manifest.json`).
+            - **Proactive 2026 Google Search & Live API Documentation Integration**: Every specialized subagent is mandated to query Google Search for official 2026 SDK docs, API signatures, breaking changes, and verified bug solutions.
+            - **Universal Accessibility (A11y) & Keyboard-First by Default**: 100% keyboard operability, screen-reader friendly semantic CLI/GUI/Web architecture, ARIA landmarks, and clean tabular outputs.
+            - **Dual Scoping Protocols**: Seamless switching between Interactive Turn-by-Turn Scoping (1 question per turn) and Fast-Track Mode for instant blueprinting and execution.
+            - **Expanded Subagent Roster (A through J)**: Dedicated subagents for Knowledge Ingestion, Brownfield Analysis, UI/Accessibility, Core Logic, Data Persistence, Root-Cause Diagnostics, Blast-Radius Limiter, Live Web Research, Automated Test Engineering, and DevOps/CI/CD Packaging.
+            - **Automated Multi-Language Testing Standards**: Standardized AAA pattern test suites across Python (`pytest`), C# (`xUnit`), TypeScript (`Vitest`), Rust (`cargo test`), and Go (`go test`).
+            - **DevOps & Production Blueprints**: Multi-stage Dockerfile patterns and GitHub Actions CI pipelines.
+            - **Upgraded Tooling Suite**:
+              - `validate_code.py`: True AST parser for Python, strict JSON/YAML validation, compiler checks, with `--json` and `--strict` flags.
+              - `backup_manager.py`: Automated pre-mutation snapshots in `.backups/YYYYMMDD_HHMMSS/` and 1-click rollback.
+              - `diff_verifier.py`: Automated blast-radius diff audit to guarantee zero unauthorized code drift.
+            - **Harmonized JSON Schemas**: Complete synchronization across `project_spec.json`, `debug_manifest.json`, and `references_manifest.json`.
           draft: false
           prerelease: false
           files: |

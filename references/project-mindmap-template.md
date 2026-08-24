@@ -1,15 +1,47 @@
-# Project Architecture & Mental Topology Mapping Template (`project_mindmap.md`)
+# Project Mental Topology & Mindmap Protocol (`project_mindmap.md`)
+
+```markdown
+# 🗺️ Project Mental Topology & Architecture Mindmap
 
 ```mermaid
 graph TD
-    A[Presentation Tier / UI] --> B[Core Logic & Services]
-    B --> C[Data Persistence & Repositories]
-    B --> D[External APIs & SDKs]
-    C --> E[(SQLite / Local Store)]
+    subgraph UI_Layer [UI & Universal Accessibility Tier]
+        MainWindow[Accessible UI / Terminal Dashboard]
+        KeyNav[Keyboard Navigation & Focus Manager]
+    end
+
+    subgraph Core_Layer [Core Logic & State Management]
+        AppService[Application Service & Business Rules]
+        StateEngine[Finite State Machine]
+    end
+
+    subgraph Data_Layer [Data & Persistence Tier]
+        Repository[Data Repository]
+        LocalDB[(Offline SQLite / JSON Store)]
+    end
+
+    subgraph Testing_DevOps [QA & Automation]
+        Tests[Automated Test Suite]
+        Docker[Multi-stage Dockerfile]
+    end
+
+    MainWindow --> KeyNav
+    MainWindow --> AppService
+    AppService --> StateEngine
+    AppService --> Repository
+    Repository --> LocalDB
+    Tests --> AppService
+    Tests --> Repository
 ```
 
-## Symbol Directory
-- **UI Components**: `MainWindow`, `ContactView`
-- **Core Logic**: `ContactService`, `ValidationEngine`
-- **Data Repositories**: `SqliteContactRepository`
-- **Diagnostic Nodes**: `app_errors.log`
+---
+
+## 🔎 Rapid Search & Symbol Index
+
+| Tier / Layer | Component / File | Key Classes / Functions | Responsibility |
+| :--- | :--- | :--- | :--- |
+| **UI** | `ui/accessible_dashboard.py` | `DashboardView` | Keyboard-first rendering |
+| **Core** | `core/business_service.py` | `AppService` | Domain operations |
+| **Data** | `data/sqlite_store.py` | `DatabaseContext` | Atomic data storage |
+| **Tests** | `tests/test_service.py` | `test_valid_operations` | Automated unit testing |
+```
