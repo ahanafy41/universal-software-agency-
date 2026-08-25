@@ -1,95 +1,43 @@
-# Example Walkthrough: Building with Custom Knowledge, Automated Tests & Accessibility
+# End-to-End Walkthrough: Building a Production Tool with the Universal Agency
 
-This example demonstrates how the Universal Software & AI Engineering Agency builds a production-grade application using a user-provided custom JSON schema, proactive 2026 live search, automated unit testing, and keyboard-first accessibility.
-
----
-
-## Scenario
-A developer wants to build a desktop telemetry monitor in Python that parses IoT sensor payloads matching a custom JSON schema, logs readings to an offline SQLite database, provides an accessible terminal UI, and runs automated tests.
+This walkthrough demonstrates the end-to-end multi-agent execution pipeline on a sample project.
 
 ---
 
-## Step 1: User Supplies Custom Reference Files
-The user creates `references/sensor_payload_schema.json`:
-```json
-{
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "SensorPayload",
-  "type": "object",
-  "required": ["sensor_id", "timestamp", "temperature", "humidity", "status"],
-  "properties": {
-    "sensor_id": { "type": "string" },
-    "timestamp": { "type": "integer" },
-    "temperature": { "type": "number", "minimum": -50, "maximum": 100 },
-    "humidity": { "type": "number", "minimum": 0, "maximum": 100 },
-    "status": { "type": "string", "enum": ["NORMAL", "WARNING", "CRITICAL"] }
-  }
-}
-```
+## Phase 0: Scoping & Project Contract
+
+1. **User Request**: "Build an accessible CLI and GUI markdown notes tool with encrypted local SQLite storage in Python."
+2. **Scoping Execution**:
+   - Agency activates **Fast-Track Mode** because the tech stack, UI requirements, and persistence layer are fully specified.
+   - Compiles `PRD.md` (Human contract) and `project_spec.json` (Machine contract).
+   - Generates `project_mindmap.md` showing UI, Core, and Storage layer separation.
+   - Creates `tasks.md` checklist with assigned worker subagent tags.
 
 ---
 
-## Step 2: Agency Ingests Schema & Generates Models
-The agency's **Subagent A (Knowledge & Specs)** parses the schema and generates `models/sensor_model.py`:
-```python
-from dataclasses import dataclass
-from typing import Literal
+## Phase 1: Knowledge Ingestion & Live 2026 Web Search
 
-@dataclass(frozen=True)
-class SensorPayload:
-    sensor_id: str
-    timestamp: int
-    temperature: float
-    humidity: float
-    status: Literal["NORMAL", "WARNING", "CRITICAL"]
-
-    def __post_init__(self):
-        if not (-50 <= self.temperature <= 100):
-            raise ValueError(f"Temperature out of range: {self.temperature}")
-        if not (0 <= self.humidity <= 100):
-            raise ValueError(f"Humidity out of range: {self.humidity}")
-```
+1. Subagent A inspects `references/agency-schemas.json` and user-provided API notes.
+2. Subagent G searches Google for modern 2026 SQLite encryption patterns (`sqlcipher3` / `cryptography`).
+3. Subagent B confirms baseline environment and library compatibility.
 
 ---
 
-## Step 3: Dual Blueprint & Architecture Generation
-The agency compiles:
-1. `PRD.md`: Documenting user stories, alert thresholds, and offline storage.
-2. `project_spec.json`: Mapping `models/sensor_model.py`, `storage/sqlite_store.py`, `ui/accessible_dashboard.py`, and `tests/test_sensor.py`.
-3. `project_mindmap.md`: Mapping 3-tier architecture with clean keyboard navigation hooks.
+## Phase 2: Implementation with Human-Grade Craftsmanship
+
+1. **Subagent C (Storage Engine)**: Implements `storage/db.py` with **Atomic I/O**, connection pooling, and exponential backoff retries.
+2. **Subagent C (Core Domain)**: Implements `core/notes_service.py` using pure domain models, Design-by-Contract (`Requires`/`Ensures`), and custom actionable exceptions.
+3. **Subagent C (UI & CLI)**: Implements `cli/main.py` with `--doctor` self-check, `--json` output, and **Graceful Shutdown (`SIGINT`)** handling.
 
 ---
 
-## Step 4: Automated Testing & Verification
-The agency's **Subagent D (QA & Testing Engineer)** authors `tests/test_sensor.py`:
-```python
-import pytest
-from models.sensor_model import SensorPayload
+## Phase 3: Automated QA & Deterministic Validation
 
-def test_valid_sensor_payload():
-    payload = SensorPayload(
-        sensor_id="sensor-01",
-        timestamp=1700000000,
-        temperature=22.5,
-        humidity=45.0,
-        status="NORMAL"
-    )
-    assert payload.sensor_id == "sensor-01"
-
-def test_invalid_temperature_raises_value_error():
-    with pytest.raises(ValueError):
-        SensorPayload(
-            sensor_id="sensor-01",
-            timestamp=1700000000,
-            temperature=150.0,
-            humidity=45.0,
-            status="CRITICAL"
-        )
-```
-
----
-
-## Step 5: AST Static Analysis & 1-Click Launch
-1. Run `python3 scripts/validate_code.py --strict` across all source files.
-2. Provide `run.sh` / `run.bat` and `tests/run_tests.sh`.
-3. Deliver `COMPLETION_REPORT.md` with the Final Verification Seal.
+1. **Subagent D (Testing Engineer)**: Authors `tests/test_notes.py` covering:
+   - Happy paths (create, read, search, delete).
+   - Failure-mode tests (corrupted DB file, invalid encryption key, disk full).
+2. **Subagent F (Verification)**: Runs `python3 scripts/validate_code.py --strict .` to ensure:
+   - Zero syntax/AST errors.
+   - Zero `TODO` or `FIXME` placeholders.
+   - 100% adherence to human-grade standards.
+3. **Delivery**: Outputs `COMPLETION_REPORT.md` with 1-click execution commands and the Verification Seal.

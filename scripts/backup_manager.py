@@ -1,122 +1,52 @@
 #!/usr/bin/env python3
 """
-Pre-Mutation Backup Manager & Snapshot Rollback Engine
-Creates timestamped backups in .backups/YYYYMMDD_HHMMSS/ before any file mutation.
+backup_manager.py - Automated Pre-Mutation Snapshot and Instant Rollback Tool
 """
+
 import os
 import sys
 import shutil
-import json
-import argparse
-from datetime import datetime
+import datetime
 
 BACKUP_ROOT = ".backups"
 
-def create_snapshot(target_file_path):
-    if not os.path.exists(target_file_path):
-        return {"success": False, "error": f"Target file does not exist: {target_file_path}"}
-
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    snapshot_dir = os.path.join(BACKUP_ROOT, timestamp)
-    os.makedirs(snapshot_dir, exist_ok=True)
-
-    filename = os.path.basename(target_file_path)
-    snapshot_path = os.path.join(snapshot_dir, filename)
-    shutil.copy2(target_file_path, snapshot_path)
-    return {
-        "success": True,
-        "action": "backup",
-        "original_file": target_file_path,
-        "snapshot_path": snapshot_path,
-        "timestamp": timestamp
-    }
-
-def restore_latest_snapshot(target_file_path):
-    if not os.path.exists(BACKUP_ROOT):
-        return {"success": False, "error": f"No backup directory found at '{BACKUP_ROOT}'"}
-
-    filename = os.path.basename(target_file_path)
-    snapshots = sorted([d for d in os.listdir(BACKUP_ROOT) if os.path.isdir(os.path.join(BACKUP_ROOT, d))], reverse=True)
-    
-    for snap in snapshots:
-        candidate_path = os.path.join(BACKUP_ROOT, snap, filename)
-        if os.path.exists(candidate_path):
-            shutil.copy2(candidate_path, target_file_path)
-            return {
-                "success": True,
-                "action": "restore",
-                "restored_file": target_file_path,
-                "source_snapshot": candidate_path,
-                "snapshot_id": snap
-            }
-
-    return {"success": False, "error": f"No matching snapshot found for '{filename}' in '{BACKUP_ROOT}'"}
-
-def list_snapshots(target_file_path=None):
-    if not os.path.exists(BACKUP_ROOT):
-        return {"success": True, "snapshots": []}
-    
-    snapshots = sorted([d for d in os.listdir(BACKUP_ROOT) if os.path.isdir(os.path.join(BACKUP_ROOT, d))], reverse=True)
-    results = []
-    
-    filter_filename = os.path.basename(target_file_path) if target_file_path else None
-
-    for s in snapshots:
-        s_dir = os.path.join(BACKUP_ROOT, s)
-        files = os.listdir(s_dir)
-        if filter_filename:
-            if filter_filename in files:
-                results.append({"timestamp": s, "files": [filter_filename], "path": os.path.join(s_dir, filter_filename)})
-        else:
-            results.append({"timestamp": s, "files": files, "directory": s_dir})
-            
-    return {"success": True, "snapshots": results}
-
-def main():
-    parser = argparse.ArgumentParser(description="Pre-Mutation Snapshot & Backup Manager")
-    parser.add_argument("action", choices=["backup", "restore", "list"], help="Action to perform")
-    parser.add_argument("file_path", nargs="?", default=None, help="Target file path (required for backup/restore, optional for list)")
-    parser.add_argument("--json", action="store_true", help="Output machine-readable JSON")
-    args = parser.parse_args()
-
-    if args.action == "list":
-        res = list_snapshots(args.file_path)
-        if args.json:
-            print(json.dumps(res, indent=2))
-        else:
-            print(f"Available Snapshots in '{BACKUP_ROOT}':")
-            for s in res["snapshots"]:
-                print(f"  - {s['timestamp']}: {', '.join(s['files'])}")
-        sys.exit(0)
-
-    if not args.file_path:
-        if args.json:
-            print(json.dumps({"success": False, "error": "file_path is required for backup and restore actions."}, indent=2))
-        else:
-            print("[ERROR] file_path is required for backup and restore actions.")
+def create_backup(target_file):
+    if not os.path.isfile(target_file):
+        print(f"Error: Target file '{target_file}' does not exist.")
         sys.exit(1)
 
-    if args.action == "backup":
-        res = create_snapshot(args.file_path)
-        if args.json:
-            print(json.dumps(res, indent=2))
-        else:
-            if res["success"]:
-                print(f"[BACKUP_SUCCESS] Created snapshot: {res['snapshot_path']}")
-            else:
-                print(f"[ERROR] {res['error']}")
-        sys.exit(0 if res["success"] else 1)
+    timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+    backup_dir = os.path.join(BACKUP_ROOT, timestamp)
+    os.makedirs(backup_dir, exist_ok=True)
 
-    elif args.action == "restore":
-        res = restore_latest_snapshot(args.file_path)
-        if args.json:
-            print(json.dumps(res, indent=2))
-        else:
-            if res["success"]:
-                print(f"[RESTORED] Reverted {res['restored_file']} from snapshot '{res['snapshot_id']}'")
-            else:
-                print(f"[FAIL] {res['error']}")
-        sys.exit(0 if res["success"] else 1)
+    dest_file = os.path.join(backup_dir, os.path.basename(target_file))
+    shutil.copy2(target_file, dest_file)
+    print(f"Backup successfully created at: {dest_file}")
+    return dest_file
 
-if __name__ == '__main__':
+def restore_backup(backup_file, target_file):
+    if not os.path.isfile(backup_file):
+        print(f"Error: Backup file '{backup_file}' does not exist.")
+        sys.exit(1)
+    shutil.copy2(backup_file, target_file)
+    print(f"File successfully restored from '{backup_file}' to '{target_file}'")
+
+def main():
+    if len(sys.argv) < 3:
+        print("Usage: python3 backup_manager.py [backup <file>] | [restore <backup_file> <target_file>]")
+        sys.exit(1)
+
+    command = sys.argv[1]
+    if command == "backup":
+        create_backup(sys.argv[2])
+    elif command == "restore":
+        if len(sys.argv) < 4:
+            print("Usage: python3 backup_manager.py restore <backup_file> <target_file>")
+            sys.exit(1)
+        restore_backup(sys.argv[2], sys.argv[3])
+    else:
+        print(f"Unknown command: {command}")
+        sys.exit(1)
+
+if __name__ == "__main__":
     main()

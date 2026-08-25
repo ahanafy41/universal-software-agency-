@@ -1,0 +1,138 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Universal Software Agency Unified Schema Catalog",
+  "description": "Unified JSON Schema definitions for project specifications, debug manifests, reference knowledge manifests, and craftsmanship rules.",
+  "$defs": {
+    "project_spec": {
+      "type": "object",
+      "required": ["project_name", "version", "target_track", "tech_stack", "architecture_layers"],
+      "properties": {
+        "project_name": { "type": "string" },
+        "version": { "type": "string" },
+        "target_track": { "type": "string", "enum": ["Track A: Desktop & Offline", "Track B: Universal Web & API", "Track C: Systems & Backend"] },
+        "tech_stack": {
+          "type": "object",
+          "required": ["language", "runtime_version", "frameworks"],
+          "properties": {
+            "language": { "type": "string" },
+            "runtime_version": { "type": "string" },
+            "frameworks": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "architecture_layers": {
+          "type": "object",
+          "required": ["ui_presentation", "core_domain", "data_storage"],
+          "properties": {
+            "ui_presentation": { "type": "string" },
+            "core_domain": { "type": "string" },
+            "data_storage": { "type": "string" }
+          }
+        },
+        "accessibility_standards": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "debug_manifest": {
+      "type": "object",
+      "required": ["bug_id", "severity", "environment", "exact_location_pinpoint", "root_cause_branch"],
+      "properties": {
+        "bug_id": { "type": "string" },
+        "severity": { "type": "string", "enum": ["CRITICAL", "HIGH", "MEDIUM", "LOW"] },
+        "environment": { "type": "object" },
+        "exact_location_pinpoint": {
+          "type": "object",
+          "required": ["file_path", "line_range", "symbol"],
+          "properties": {
+            "file_path": { "type": "string" },
+            "line_range": { "type": "string" },
+            "symbol": { "type": "string" }
+          }
+        },
+        "root_cause_branch": { "type": "string", "enum": ["Branch A: API Contract", "Branch B: Concurrency/Lifecycle", "Branch C: Data Boundary"] }
+      }
+    },
+    "references_manifest": {
+      "type": "object",
+      "required": ["schema_version", "reference_files", "symbols_index"],
+      "properties": {
+        "schema_version": { "type": "string" },
+        "reference_files": { "type": "array", "items": { "type": "string" } },
+        "symbols_index": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["symbol_name", "symbol_type", "defined_in_file"],
+            "properties": {
+              "symbol_name": { "type": "string" },
+              "symbol_type": { "type": "string", "enum": ["class", "method", "function", "interface", "enum", "constant"] },
+              "defined_in_file": { "type": "string" },
+              "parameters": { "type": "array" },
+              "return_type": { "type": "string" },
+              "is_async": { "type": "boolean" },
+              "constraints": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        }
+      }
+    },
+    "craftsmanship_rules": {
+      "type": "object",
+      "required": ["rule_id", "title", "category", "invariant"],
+      "properties": {
+        "rule_id": { "type": "string" },
+        "title": { "type": "string" },
+        "category": { "type": "string" },
+        "invariant": { "type": "string" }
+      }
+    }
+  },
+  "craftsmanship_rules_catalog": [
+    {
+      "rule_id": "CRAFT-001",
+      "title": "Atomic File I/O",
+      "category": "Defensive Engineering",
+      "invariant": "Never write directly to destination file. Write to .tmp first and atomic rename."
+    },
+    {
+      "rule_id": "CRAFT-002",
+      "title": "Graceful Shutdown",
+      "category": "Resilience",
+      "invariant": "Intercept SIGINT/SIGTERM, flush open buffers, close database connections cleanly."
+    },
+    {
+      "rule_id": "CRAFT-003",
+      "title": "Actionable Error Messages",
+      "category": "Developer Experience",
+      "invariant": "Error messages must state What happened, Why it failed, and How to fix it."
+    },
+    {
+      "rule_id": "CRAFT-004",
+      "title": "Structured Logging",
+      "category": "Observability",
+      "invariant": "No raw print statements in production code. Use standard leveled loggers."
+    },
+    {
+      "rule_id": "CRAFT-005",
+      "title": "Universal Accessibility",
+      "category": "A11y",
+      "invariant": "Full keyboard navigation, semantic ARIA landmarks, clean non-flashing console output."
+    },
+    {
+      "rule_id": "CRAFT-006",
+      "title": "Doctor Health-Check",
+      "category": "Tooling",
+      "invariant": "Provide a built-in --doctor command to verify prerequisites and permissions."
+    },
+    {
+      "rule_id": "CRAFT-007",
+      "title": "Blast Radius Limiter",
+      "category": "Code Preservation",
+      "invariant": "Lock non-failing files as read-only. Confine changes strictly to target fault node."
+    },
+    {
+      "rule_id": "CRAFT-008",
+      "title": "Failure-Mode Testing",
+      "category": "Quality Assurance",
+      "invariant": "Mandatory testing of network drops, data corruption, and concurrency race conditions."
+    }
+  ]
+}

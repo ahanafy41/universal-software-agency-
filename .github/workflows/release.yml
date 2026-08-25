@@ -1,4 +1,4 @@
-name: Release Universal Software Agency Skill
+name: Automated Release & Package
 
 on:
   push:
@@ -12,7 +12,7 @@ permissions:
   contents: write
 
 jobs:
-  release:
+  build-and-release:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -24,7 +24,7 @@ jobs:
           if [[ "${{ github.ref }}" == refs/tags/v* ]]; then
             echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
           else
-            echo "TAG_NAME=v1.3.0" >> $GITHUB_OUTPUT
+            echo "TAG_NAME=v2.0" >> $GITHUB_OUTPUT
           fi
 
       - name: Package Skill Zip Archive
@@ -38,20 +38,20 @@ jobs:
           tag_name: ${{ steps.vars.outputs.TAG_NAME }}
           name: "${{ steps.vars.outputs.TAG_NAME }} — Universal AI Software Agency"
           body: |
-            ## 🌟 Universal AI Software Engineering Agency ${{ steps.vars.outputs.TAG_NAME }}
+            ## 🚀 Universal AI Software Engineering Agency ${{ steps.vars.outputs.TAG_NAME }} (Lean & Mean 5-File Architecture)
 
-            ### 🚀 What's New in this Release
-            - **Proactive 2026 Google Search & Live API Documentation Integration**: Every specialized subagent is mandated to query Google Search for official 2026 SDK docs, API signatures, breaking changes, and verified bug solutions.
-            - **Universal Accessibility (A11y) & Keyboard-First by Default**: 100% keyboard operability, screen-reader friendly semantic CLI/GUI/Web architecture, ARIA landmarks, and clean tabular outputs.
-            - **Dual Scoping Protocols**: Seamless switching between Interactive Turn-by-Turn Scoping (1 question per turn) and Fast-Track Mode for instant blueprinting and execution.
-            - **Expanded Subagent Roster (A through J)**: Dedicated subagents for Knowledge Ingestion, Brownfield Analysis, UI/Accessibility, Core Logic, Data Persistence, Root-Cause Diagnostics, Blast-Radius Limiter, Live Web Research, Automated Test Engineering, and DevOps/CI/CD Packaging.
-            - **Automated Multi-Language Testing Standards**: Standardized AAA pattern test suites across Python (`pytest`), C# (`xUnit`), TypeScript (`Vitest`), Rust (`cargo test`), and Go (`go test`).
-            - **DevOps & Production Blueprints**: Multi-stage Dockerfile patterns and GitHub Actions CI pipelines.
-            - **Upgraded Tooling Suite**:
-              - `validate_code.py`: True AST parser for Python, strict JSON/YAML validation, compiler checks, with `--json` and `--strict` flags.
-              - `backup_manager.py`: Automated pre-mutation snapshots in `.backups/YYYYMMDD_HHMMSS/` and 1-click rollback.
-              - `diff_verifier.py`: Automated blast-radius diff audit to guarantee zero unauthorized code drift.
-            - **Harmonized JSON Schemas**: Complete synchronization across `project_spec.json`, `debug_manifest.json`, and `references_manifest.json`.
+            ### 🌟 Major Release Highlights (v2.0)
+            - **5-File Consolidated Architecture**: Merged 21 fragmented files into 3 powerhouse playbooks (`project-lifecycle.md`, `diagnostics-and-qa.md`, `craftsmanship-and-devops.md`) and 1 unified schema catalog (`agency-schemas.json`), cutting token bloat by over 40% while preserving 100% of capabilities.
+            - **Strict Zero-Skipping Reference Ingestion**: Mandatory extraction of symbol tables and API contracts into `references_manifest.json` before writing code, backed by deterministic coverage validation.
+            - **6 Pillars of Senior Human Software Engineering**:
+              1. **Atomic File I/O**: Temporary file writes + atomic rename to guarantee zero data corruption on crash.
+              2. **Actionable Errors & `--doctor` Self-Check**: Clear 3-part diagnostic guidance (What, Why, Fix) and environment prerequisite checks.
+              3. **Graceful Shutdown (`SIGINT`) & Clean CLI Ergonomics**: Safe resource disposal on `Ctrl+C` with standard flags.
+              4. **Structured Logging**: Standard log levels (`DEBUG`, `INFO`, `WARN`, `ERROR`), eliminating raw unformatted prints.
+              5. **Failure-Mode & Edge-Case Testing**: Mandatory simulation of network cuts, disk errors, malformed payloads, and concurrency races.
+              6. **Universal Accessibility (A11y)**: Built-in keyboard-first navigation, ARIA landmarks, and screen-reader friendly terminal outputs.
+            - **Proactive Live 2026 Google Search Integration**: Mandates live search lookups across all worker subagents (A through I) for modern 2026 API signatures and GitHub Issues triage.
+            - **Upgraded Verification Engine (`validate_code.py`)**: Strict AST parser, bracket matcher, JSON schema validator, placeholder inhibitor, and symbol manifest coverage verifier.
           draft: false
           prerelease: false
           files: |

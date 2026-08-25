@@ -1,96 +1,62 @@
-# 🚀 Universal AI Software Engineering Agency (v1.3.0)
-### وكالة هندسة البرمجيات بالذكاء الاصطناعي الشاملة لكافة لغات البرمجة
+# 🚀 Universal AI Software Engineering Agency (v2.0)
+### وكالة هندسة البرمجيات بالذكاء الاصطناعي الشاملة لكافة لغات البرمجة (الجيل الثاني المدمج)
 
+[![Version: 2.0](https://img.shields.io/badge/Version-2.0%20Lean%20Powerhouse-blue.svg)](SKILL.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE.md)
-[![Release: v1.3.0](https://img.shields.io/badge/Release-v1.3.0-blueviolet.svg)](https://github.com/ahanafy41/universal-software-agency-/releases/tag/v1.3.0)
-[![Standard: PRD & Spec-Driven](https://img.shields.io/badge/Standard-PRD%20%26%20JSON%20Manifest-green.svg)](references/prd-template.md)
-[![Tracking: Dual Artifacts](https://img.shields.io/badge/Tracking-Markdown%20%26%20JSON-orange.svg)](references/debug-manifest-schema.json)
-[![Safety: Zero-Corruption](https://img.shields.io/badge/Safety-Blast%20Radius%20Limiter-red.svg)](references/code-integrity-guardrails.md)
+[![Architecture: 5-File Powerhouse](https://img.shields.io/badge/Architecture-5--File%20Consolidated-green.svg)](SKILL.md)
+[![Schema: Unified Manifests](https://img.shields.io/badge/Schema-agency--schemas.json-orange.svg)](references/agency-schemas.json)
+[![Safety: Zero-Corruption](https://img.shields.io/badge/Safety-Blast%20Radius%20Limiter-red.svg)](references/craftsmanship-and-devops.md)
 
-وكالة هندسة برمجية متكاملة مدعومة بالذكاء الاصطناعي، مصممة للتخطيط، والبناء، والتشخيص الجذري، والتصحيح الدقيق، والتطوير الشامل للمشاريع والبرمجيات عبر **كافة لغات البرمجة وأطر العمل** (Python, C# .NET, JavaScript/TypeScript, Java/Kotlin, Rust, Go, C/C++, PHP, Ruby, Swift, Shell, إلخ).
+وكالة هندسة برمجية متكاملة مدعومة بالذكاء الاصطناعي، مبنية بهندسة خماسية رشيقة فائقة السرعة (**v2.0 Lean & Mean Architecture**). مصممة للتخطيط، والتطوير، والتشخيص الجذري، والتصحيح الدقيق، والاختبارات الآلية للمشاريع والبرمجيات عبر **كافة لغات البرمجة وأطر العمل** (Python, C# .NET, JavaScript/TypeScript, Java/Kotlin, Rust, Go, C/C++, PHP, Ruby, Swift, Lua, Shell، إلخ).
 
 ---
 
-## 🌟 الركائز الهندسية الأساسية للوكالة
+## 🌟 الهيكل المعماري المدمج للجيل الثاني (v2.0 Architecture)
 
 ```text
 ┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                             🧠 وكالة هندسة البرمجيات بالذكاء الاصطناعي                           │
-│                     Universal AI Software & Systems Engineering Agency                           │
+│                     🧠 وكالة هندسة البرمجيات بالذكاء الاصطناعي (الإصدار 2.0)                       │
+│                     Universal AI Software & Systems Engineering Agency (v2.0)                    │
 └────────────────────────────────────────────────┬─────────────────────────────────────────────────┘
                                                  │
       ┌───────────────────────────┬──────────────┴──────────────┬───────────────────────────┐
       ▼                           ▼                             ▼                           ▼
 ┌───────────┐               ┌───────────┐                 ┌───────────┐               ┌───────────┐
-│ 🗺️ الخريطة │               │ 🎯 الجودة  │                 │ 🛡️ حماية   │                 │ 🔍 التقصي │
-│  الذهنية   │               │  الإنسانية │                 │   الكود   │                 │   الحي    │
-│ Mindmap   │               │Clean Code │                 │Guardrails │                 │LiveSearch │
+│ 🗺️ دورة   │               │ 🔬 التشخيص │                 │ 🎯 الحرفية │                 │ 📦 المخططات│
+│   الحياة   │               │  والجودة  │                 │ والديف أوبس│                 │  الموحدة  │
+│ Lifecycle │               │ Diagnostics│                │Craftsmanship│               │  Schemas  │
 └───────────┘               └───────────┘                 └───────────┘               └───────────┘
 ```
 
 ---
 
-## 🛠️ أبرز الميزات والقدرات المحدثة (v1.3.0)
+## 📂 خريطة ملفات المهارة (v2.0 File Map)
 
-### 1. 🌐 محرك البحث المباشر لعام 2026 (Proactive 2026 Google Search Integration)
-* **إلزامية البحث لكافة الوكلاء**: إلزام كافة الوكلاء الفرعيين بالبحث الحي في توثيقات عام 2026 الرسمية عبر Google Search للتحقق من أحدث توقيعات الدوال، وتوافق الحزم، ومنع استخدام أي دوال ملغاة (Deprecated APIs).
-* **تقصي حلول الأعطال**: البحث المباشر في GitHub Issues ومجتمعات المطورين عند مواجهة استثناءات أو أخطاء غامضة لعزل السبب الجذري.
-
-### 2. ♿ إمكانية الوصول الشاملة والتنقل بلوحة المفاتيح (Universal Accessibility & Keyboard-First)
-* **دعم افتراضي كامل**: بناء كافة الواجهات وعناصر التحكم لتكون قابلة للتشغيل الكامل عبر لوحة المفاتيح (Keyboard-First) ومتوافقة بنسبة 100% مع قارئات الشاشة للمكفوفين وعموم المطورين.
-* **دقة المخرجات والتباين**: اعتماد وسوم ARIA الدقيقة، وعناصر التحكم القياسية، ومخرجات سطر الأوامر النظيفة والجداول القابلة للقراءة بوضوح.
-
-### 3. ⚡ بروتوكول الاستكشاف المزدوج (Dual Scoping Protocols)
-* **نمط الحوار التفاعلي (Interactive Mode)**: سؤال واحد محدد ومركز في كل رسالة عند وجود متطلبات مفتوحة أو غموض في بيئة التشغيل.
-* **نمط المسار السريع (Fast-Track Mode)**: البدء الفوري في التخطيط والتنفيذ المعماري دون أسئلة مكررة عند تزويد الوكالة بمواصفات كاملة أو PRD جاهز.
-
-### 4. 🧪 منظومة هندسة الاختبارات الآلية (Automated Multi-Language Testing)
-* **توليد اختبارات بنمط AAA**: كتابة اختبارات الوحدة والتكامل لكافة اللغات (Python `pytest`, C# `xUnit`, TypeScript `Vitest`, Rust `cargo test`, Go `go test`) وضمان عدم وجود اختبارات هشة (Zero-Flakiness).
-
-### 5. 🚀 قوالب النشر والحاويات (DevOps & Production Packaging)
-* **حاويات Docker خفيفة ومتعددة المراحل**: قوالب جاهزة لبايثون، و .NET 8، و Node/TS، و Rust، و Go مع مستخدمين غير مميزين (Non-root).
-* **سير عمل GitHub Actions**: فحص الـ Linting، وتشغيل الاختبارات، والـ Build التلقائي.
-
-### 6. 🛡️ أدوات الحماية والتحقق من الأكواد (`scripts/`)
-* **`validate_code.py`**: فحص بنيوي حقيقي للغات (Python AST, JSON, YAML) مع دعم المخرجات المهيكلة (`--json`) ومنع الأكواد غير المكتملة (`--strict`).
-* **`backup_manager.py`**: محرك النسخ الاحتياطي التلقائي الفوري والاستعادة بضغطة زر.
-* **`diff_verifier.py`**: فاحص نطاق التعديل (Blast Radius Limiter) لمنع إفساد الأكواد المحيطة.
+| الملف | الوصف والمسؤولية |
+| :--- | :--- |
+| **`SKILL.md`** | النواة التوجيهية الرشيقة، تفويض الوكلاء الفرعيين (Subagents A إلى I)، والبحث الحي لعام 2026. |
+| **`references/project-lifecycle.md`** | دليل دورة حياة المشروع: النمط التفاعلي، وثيقة الـ `PRD.md`، الخريطة الذهنية `project_mindmap.md`، المهام `tasks.md`، والمعمارية للطبقات الثلاث. |
+| **`references/diagnostics-and-qa.md`** | دليل التشخيص والجودة: بوابة الترياج، مصفوفة 3-Branch، تتبع الأعطال، اختبارات الـ AAA وسيناريوهات الفشل، وتقرير التسليم. |
+| **`references/craftsmanship-and-devops.md`** | دليل الحرفية الإنسانية: قواعد الكود الإنساني الـ 6، بروتوكول استيعاب المراجع (Zero-Skipping)، حماية الكود، وقوالب الـ Docker و CI/CD. |
+| **`references/agency-schemas.json`** | ملف المخططات الموحد المتضمن لـ `project_spec` و `debug_manifest` و `references_manifest` وقواعد `craftsmanship_rules`. |
+| **`scripts/validate_code.py`** | السكربت الشامل لفحص الـ AST ومطابقة مراجع الـ JSON آلياً وكشف النواقص. |
+| **`scripts/backup_manager.py`** | أداة النسخ الاحتياطي اللحظي قبل التعديل والاستعادة الفورية بنقرة واحدة. |
+| **`scripts/diff_verifier.py`** | أداة تدقيق الفروقات وتطويق نطاق التعديل (Blast Radius Limiter). |
 
 ---
 
-## 📂 هيكلية المشروع والمجلدات
+## 🛠️ أبرز ميزات الإصدار 2.0
 
-```text
-universal-software-agency/
-├── .github/workflows/
-│   └── release.yml                          # أتمتة البناء والنشر عبر GitHub Actions
-├── SKILL.md                                 # الدستور والبروتوكول الهندسي الرئيسي للوكالة
-├── README.md                                # الوثيقة التعريفية الشاملة والمحدثة (v1.3.0)
-├── AGENT_GUIDE.md                           # دليل تشغيل الذكاء الاصطناعي ومحددات السلوك
-├── LICENSE.md                               # رخصة الاستخدام (MIT)
-├── scripts/
-│   ├── validate_code.py                     # فاحص السلامة البرمجية والـ AST لكافة اللغات
-│   ├── backup_manager.py                    # محرك النسخ الاحتياطي التلقائي والاستعادة
-│   └── diff_verifier.py                     # فاحص نطاق التعديل ومنع إفساد الأكواد
-├── examples/
-│   └── sample-project-walkthrough.md        # مثال عملي لبناء مشروع متكامل
-└── references/                              # قوالب ومخططات الوكالة الرسمية
-    ├── architecture-blueprints.md           # الهياكل المعمارية وإمكانية الوصول
-    ├── testing-frameworks-guide.md          # دليل هندسة الاختبارات الآلية
-    ├── devops-ci-cd-blueprints.md           # قوالب الـ Dockerfile وخطوط GitHub Actions
-    ├── live-web-research-guide.md           # دليل البحث المباشر وتوثيقات 2026
-    ├── subagent-craftsmanship-prompts.md    # ميثاق وتوجيهات الوكلاء الفرعيين
-    ├── root-cause-debugging-guide.md        # مصفوفة التشخيص الجذري ثلاثية الفرضيات
-    ├── code-integrity-guardrails.md         # بروتوكول حماية الكود وتطويق التعديل
-    ├── interactive-diagnostic-triage-guide.md # دليل الترياج والاستكشاف التفاعلي
-    ├── product-scoping-guide.md             # دليل مدير المنتج لتحديد الـ MVP
-    ├── custom-knowledge-ingestion-guide.md  # دليل استيعاب المراجع ونماذج البيانات
-    ├── prd-template.md                      # وثيقة متطلبات المنتج الرسمية (PRD.md)
-    ├── project-mindmap-template.md          # قالب الخريطة الذهنية الطوبولوجية
-    ├── debug-tasks-template.md              # قالب تتبع تشخيص وإصلاح الأعطال
-    ├── debug-manifest-schema.json           # مخطط الجيسون الرسمي للأعطال
-    ├── tasks-template.md                    # قالب تتبع مهام البناء الجديد (tasks.md)
-    ├── project-manifest-schema.json         # مخطط الجيسون الرسمي لهيكل المشروع
-    ├── references-manifest-schema.json      # مخطط الجيسون الرسمي لفهرسة المراجع
-    └── completion-report-template.md        # قالب تقرير الإنجاز وخاتم التحقق الشامل
-```
+### 1. ⚡ ترشيق واختصار بنسبة 60% مع استيعاب فائق السرعة
+تم دمج 21 ملفاً مشتتاً في 5 ملفات مركزية رشيقة لتفادي إجهاد السياق وتوفير سرعة استجابة فائقة للنماذج السريعة مثل Gemini Flash و GPT-4o-mini و Claude Haiku.
+
+### 2. 🔒 بروتوكول استيعاب المراجع الإلزامي الصارم (Zero-Skipping Invariant)
+إلزام الوكلاء بتفريغ كافة التوثيقات والمراجع في ملف `references_manifest.json` وفحص التطابق آلياً عبر `validate_code.py --manifest` لمنع تخطي أي سطر أو دالة.
+
+### 3. 🎯 الركائز الست للهندسة البرمجية الإنسانية الاحترافية (Senior Human Standards)
+1. **الكتابة الذرية للملفات (Atomic I/O)**: منع تلف البيانات عند انقطاع البرامج.
+2. **رسائل الخطأ الإرشادية وأمر الفحص الذاتي (`--doctor`)**: تشخيص متطلبات البيئة قبل التشغيل.
+3. **الإغلاق النظيف (Graceful Shutdown)**: معالجة إشارات `SIGINT` / `Ctrl+C` بأمان.
+4. **السجلات المنظمة (Structured Logging)**: إلغاء الـ `print` العشوائي واستخدام السجلات بمستويات محددة.
+5. **اختبارات سيناريوهات الفشل (Failure-Mode Testing)**: محاكاة انقطاع الاتصال وتلف البيانات وتجاوز الحدود.
+6. **إمكانية الوصول الشاملة (Universal A11y)**: توافق كامل مع قارئات الشاشة والتحكم بلوحة المفاتيح.

@@ -1,31 +1,58 @@
-# AI Agent Execution Guide: Universal Software Agency (2026 Edition)
+# Universal AI Software Engineering Agency: Agent Integration Guide
 
-System instruction manual for the AI Software Engineering Agency when planning, executing, and verifying tasks.
-
----
-
-## 🎯 Primary Role & Identity
-You operate as the **Lead Technical Director & Orchestrator** of an enterprise AI Software Engineering Agency. You do not generate raw unvalidated code dumps in chat. You follow structured engineering lifecycle protocols:
+This guide explains how autonomous AI agents, orchestrators, and prompt pipelines integrate with and leverage the Universal AI Software Engineering Agency skill.
 
 ---
 
-## 🧭 Core Operational Protocols
+## 1. High-Level Agent Integration Flow
 
-### 1. Greenfield Projects (New Software from Scratch)
-- **Phase 0 (Dual Scoping)**: 
-  - *Interactive Mode*: Ask exactly ONE question per turn if specifications are ambiguous.
-  - *Fast-Track Mode*: If the user provides a full specification or PRD, proceed immediately to execution without exploratory delays.
-- **Phase 1 (Blueprints & Topology)**: Generate `PRD.md`, `project_mindmap.md`, `tasks.md`, and `project_spec.json`.
-- **Phase 2 (Architecture, Accessibility & Code Generation)**: Enforce human-grade craftsmanship, domain separation (UI / Core / Data), Universal Accessibility (Keyboard-First & Screen-Reader friendly), and Design-by-Contract.
-- **Phase 3 (Automated Testing, Verification & Delivery)**: Run automated test suites (`pytest`, `xUnit`, `Vitest`, `cargo test`, `go test`), validate with `python3 scripts/validate_code.py --strict`, deliver 1-click launchers (`run.sh`/`run.bat`), and present `COMPLETION_REPORT.md`.
+```text
+┌───────────────────────────┐
+│     User Task Request     │
+└─────────────┬─────────────┘
+              ▼
+┌───────────────────────────┐
+│   Dual Scoping Protocol   │
+│ (Interactive / Fast-Track)│
+└─────────────┬─────────────┘
+              ▼
+┌───────────────────────────┐
+│ Reference Knowledge Ingest│
+│ (references_manifest.json)│
+└─────────────┬─────────────┘
+              ▼
+┌───────────────────────────┐
+│ Architectural Blueprinting│
+│    (project_mindmap.md)   │
+└─────────────┬─────────────┘
+              ▼
+┌───────────────────────────┐
+│  Pre-Mutation Snapshots   │
+│   (backup_manager.py)     │
+└─────────────┬─────────────┘
+              ▼
+┌───────────────────────────┐
+│ Polyglot Code Synthesis   │
+│   (Human-Grade Craft)     │
+└─────────────┬─────────────┘
+              ▼
+┌───────────────────────────┐
+│ AST & Schema Verification │
+│    (validate_code.py)     │
+└─────────────┬─────────────┘
+              ▼
+┌───────────────────────────┐
+│ Delivery & Seal of Quality│
+│   (COMPLETION_REPORT.md)  │
+└───────────────────────────┘
+```
 
-### 2. Brownfield Projects & Bug Fixing
-- **Step 1 (Pre-Mutation Backup)**: Execute `python3 scripts/backup_manager.py backup <file>` to snapshot target file into `.backups/YYYYMMDD_HHMMSS/`.
-- **Step 2 (Exact Location & Mindmap)**: Record File, Line, Symbol, and Snippet in `debug_tasks.md` and `debug_manifest.json`. Map out `project_mindmap.md`.
-- **Step 3 (3-Branch Diagnostics & Forensics)**: Formulate hypotheses across API/Reflection, Lifecycle/Concurrency, and Data/Boundaries, backed by live error searches on GitHub/Google.
-- **Step 4 (Surgical Patching)**: Apply AST-level surgical modification ONLY to the target node. Zero unrequested refactoring.
-- **Step 5 (Diff Audit & Verification)**: Run `python3 scripts/diff_verifier.py <backup> <modified>` to verify that churn is within threshold. Validate with `python3 scripts/validate_code.py --strict`.
-- **Step 6 (What's Next Roadmap)**: Deliver verification steps, regression watchlist, defensive tips, and next milestones.
+---
 
-### 3. Proactive Live 2026 Google Search & SDK Research
-- Mandate all subagents to query **Google Search** and official developer documentation (MDN, Microsoft Learn, Python Docs, Rust Docs, Go Docs) for live 2026 API signatures, breaking changes, and modern best practices before writing code.
+## 2. Key Orchestration Invariants for AI Agents
+
+1. **Subagent Delegation is Mandatory**: The root orchestrator agent must never bloat its own primary context window with deep file dumps or multi-page documentation parsing. Always spawn specialized worker subagents (`invoke_subagent`).
+2. **Proactive Live 2026 Google Search**: When encountering any third-party framework, package, or API signature, the agent is strictly required to query Google Search for official 2026 documentation.
+3. **Strict Reference Grounding**: When custom user documentation is provided under `docs/` or `references/`, the agent must parse it into `references_manifest.json` before implementing code.
+4. **Non-Destructive Mutation**: When diagnosing or modifying existing code, the agent must run `backup_manager.py backup <file>` and pinpoint the exact AST node before modifying any code.
+5. **Deterministic Verification**: Every deliverable must be validated using `validate_code.py --strict` before presenting the final verification seal.
