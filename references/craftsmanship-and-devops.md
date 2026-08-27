@@ -1,87 +1,56 @@
-# Human-Grade Craftsmanship, Reference Ingestion & DevOps Standards (دليل الحرفية البرمجية واستيعاب المراجع والـ DevOps)
+# 🎯 Senior Craftsmanship, Reference Ingestion & DevOps Playbook
 
-Defines senior human engineering standards, reference ingestion rules, code preservation guardrails, and DevOps CI/CD blueprints.
-
----
-
-## 1. The 6 Pillars of Senior Human Software Engineering
-
-```text
-┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                   🏛️ The 6 Pillars of Senior Human Software Engineering                          │
-├───────────────────────────────┬───────────────────────────────┬──────────────────────────────────┤
-│ 1. Atomic I/O & Defense       │ 2. Actionable Errors & Doctor │ 3. Graceful Shutdown & Ergonomics│
-├───────────────────────────────┼───────────────────────────────┼──────────────────────────────────┤
-│ 4. Structured Logging         │ 5. Failure-Mode Testing       │ 6. Universal Accessibility (A11y)│
-└───────────────────────────────┴───────────────────────────────┴──────────────────────────────────┘
-```
-
-1. **Pillar 1: Defensive Programming & Atomic I/O**
-   - Always write data to a temporary file (`.tmp`) and replace the original via an atomic rename operation (`os.replace` in Python, `File.Move` with overwrite in C#).
-   - Implement exponential backoff with jitter for network operations.
-2. **Pillar 2: Actionable Error Messages & `--doctor` Self-Check**
-   - Error messages must answer 3 questions: **What failed? Why did it fail? How does the user fix it?**
-   - Provide a built-in `--doctor` / `--check-env` CLI command to verify prerequisites, permissions, and dependencies before running.
-3. **Pillar 3: Graceful Shutdown (`SIGINT`) & Clean CLI Ergonomics**
-   - Catch termination signals (`SIGINT`, `SIGTERM`, `Ctrl+C`) to flush buffers, close database pools, and delete temporary files cleanly.
-   - Support standard flags: `--help`, `--version`, `--verbose`, `--json`.
-4. **Pillar 4: Structured Logging over Raw Prints**
-   - Eliminate raw unformatted `print()` / `Console.WriteLine()` statements in production code. Use leveled loggers (`DEBUG`, `INFO`, `WARN`, `ERROR`).
-5. **Pillar 5: Failure-Mode & Edge-Case Testing**
-   - Never test only the happy path. Test network cuts, disk full conditions, malformed payloads, and race conditions.
-6. **Pillar 6: Built-in Universal Accessibility (Keyboard-First / Screen-Reader Friendly)**
-   - 100% keyboard operability (`Tab`, `Shift+Tab`, `Enter`, `Esc`), explicit ARIA landmarks, high contrast visual cues, and accessible console output without flashing ANSI escape codes.
+This playbook establishes the technical standards, file formats, and execution rules for **Human-Grade Code Craftsmanship**, **Zero-Skipping Reference Ingestion**, and **Production Deployment**.
 
 ---
 
-## 2. Zero-Skipping Mandatory Reference Ingestion Protocol
+## 1. The 6 Pillars of Senior Human Craftsmanship
 
-When user-supplied documentation or proprietary SDK guides exist in `docs/` or `references/`:
-1. **Zero-Skipping Invariant**: The agent is strictly prohibited from summarizing, skimming, or skipping sections.
-2. **Symbol Table Extraction in JSON**: Subagent A must parse reference files and emit `references_manifest.json` conforming to `references/agency-schemas.json`.
-3. **Coverage Verification**: Subagent A generates `references_coverage_matrix.md` certifying 100% mapping of exported classes, methods, parameters, and constraints before writing code.
-4. **Deterministic Validation**: `scripts/validate_code.py --manifest references_manifest.json` checks that all extracted symbols are implemented.
+All code produced by any subagent must rigorously adhere to these 6 principles:
+
+### 1.1. Defensive Engineering & Atomic File I/O
+- **Atomic File Writes**: Never overwrite a target file directly. Write to a temporary file (`.tmp`) in the same directory, flush/sync to disk, and perform an atomic rename.
+- **Network Resilience**: Wrap all external HTTP and RPC calls in exponential backoff retries with explicit timeout limits.
+
+### 1.2. Actionable Error Messages
+Errors must never be silent or generic. Every thrown or logged exception must clearly answer:
+1. **What failed**: (e.g., `Failed to bind to port 8080`).
+2. **Why it failed**: (e.g., `Address already in use by another process PID 1234`).
+3. **Actionable recovery**: (e.g., `Specify a different port via --port or terminate the conflicting process`).
+
+### 1.3. Built-In `--doctor` Self-Check
+Every CLI utility or service must implement a `--doctor` diagnostic command that verifies:
+- Runtime environment and dependencies.
+- Required system permissions and disk space.
+- Configuration file schema validity.
+
+### 1.4. Graceful Shutdown & Signal Traps
+- Intercept termination signals (`SIGINT`, `SIGTERM`, `Ctrl+C`).
+- Safely close database connection pools, flush pending logs, and release acquired file locks.
+
+### 1.5. Structured Logging & Clean Terminal Ergonomics
+- Replace raw console print statements with structured logging libraries.
+- Support standard log levels: `DEBUG`, `INFO`, `WARNING`, `ERROR`.
+- Provide `--verbose` and `--json` command-line flags.
+
+### 1.6. Universal Accessibility (A11y) & Keyboard-First Design
+- Full keyboard operability (`Tab`, `Shift+Tab`, `Enter`, `Space`, Arrows).
+- Screen-reader friendly terminal outputs without flashing escape codes.
+- Explicit ARIA landmarks and WCAG AAA color contrast compliance in GUI/Web applications.
 
 ---
 
-## 3. Strict Code Preservation & Blast Radius Limiter
+## 2. Mandatory Zero-Skipping Reference Ingestion Protocol
 
-1. **Pre-Mutation Snapshot**: Run `python3 scripts/backup_manager.py backup <target_file>` before any edit.
-2. **Blast Radius Limiter**: Changes must be isolated exclusively to the target fault line or AST node. The agent is strictly forbidden from modifying surrounding working code.
-3. **Diff Verification**: Run `python3 scripts/diff_verifier.py <backup_file> <modified_file>` to ensure code churn stays within bounds.
+When documentation, SDK references, or API contracts are provided:
 
----
-
-## 4. Proactive Live 2026 Google Search Mandate
-
-Every worker subagent is equipped and mandated to query Google Search for:
-- Official 2026 SDK documentation and modern framework idioms.
-- Exact error signatures and GitHub Issues triage.
-- Deprecation warnings and breaking changes in recent library versions.
+1. **Subagent A Ingestion**: Subagent A parses reference files in `docs/` or `references/` line-by-line.
+2. **Extraction into `references_manifest.json`**: Extract all symbols, function signatures, data types, and parameters into a structured manifest adhering to `references/agency-schemas.json`.
+3. **Deterministic Coverage Verification**: Run `python3 scripts/validate_code.py --manifest references_manifest.json <implementation_file>` to ensure 100% adherence.
 
 ---
 
-## 5. DevOps & CI/CD Packaging Blueprints
+## 3. DevOps, CI/CD & Production Packaging
 
-### Multi-Stage Production Dockerfile Pattern:
-```dockerfile
-# Multi-stage lightweight build
-FROM python:3.12-slim AS builder
-WORKDIR /app
-COPY requirements.txt .
-RUN pip install --no-cache-dir --user -r requirements.txt
-
-FROM python:3.12-slim AS runner
-WORKDIR /app
-RUN useradd -u 1000 appuser && chown -R appuser:appuser /app
-COPY --from=builder /root/.local /home/appuser/.local
-COPY --chown=appuser:appuser src/ ./src/
-USER appuser
-ENV PATH=/home/appuser/.local/bin:$PATH
-CMD ["python3", "src/main.py"]
-```
-
-### 1-Click Launchers (`run.sh` / `run.bat`):
-- Automatically check runtime prerequisites.
-- Install dependencies into virtual environments if missing.
-- Launch the application smoothly.
+- **Multi-Stage Dockerfile**: Keep final container images lean by separating the build environment from the runtime container.
+- **GitHub Actions CI**: Automated linting, static analysis, unit test suites, and release artifact packaging.

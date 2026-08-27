@@ -1,74 +1,80 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Universal Software Agency Unified Schema Catalog",
-  "description": "Unified JSON Schema definitions for project specifications, debug manifests, reference knowledge manifests, and craftsmanship rules.",
-  "$defs": {
+  "definitions": {
     "project_spec": {
       "type": "object",
-      "required": ["project_name", "version", "target_track", "tech_stack", "architecture_layers"],
+      "required": ["project_name", "architecture_tier", "primary_language", "scoping_mode", "components"],
       "properties": {
         "project_name": { "type": "string" },
-        "version": { "type": "string" },
-        "target_track": { "type": "string", "enum": ["Track A: Desktop & Offline", "Track B: Universal Web & API", "Track C: Systems & Backend"] },
-        "tech_stack": {
-          "type": "object",
-          "required": ["language", "runtime_version", "frameworks"],
-          "properties": {
-            "language": { "type": "string" },
-            "runtime_version": { "type": "string" },
-            "frameworks": { "type": "array", "items": { "type": "string" } }
+        "architecture_tier": { "type": "string", "enum": ["Track A (Desktop/Offline)", "Track B (Web/API)", "Track C (Systems/CLI)"] },
+        "primary_language": { "type": "string" },
+        "scoping_mode": { "type": "string", "enum": ["Interactive", "Fast-Track"] },
+        "components": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "tier", "file_path"],
+            "properties": {
+              "name": { "type": "string" },
+              "tier": { "type": "string", "enum": ["UI/Accessibility", "Core Logic", "Data Engine", "CLI/Runner"] },
+              "file_path": { "type": "string" }
+            }
           }
         },
-        "architecture_layers": {
+        "accessibility_standards": {
           "type": "object",
-          "required": ["ui_presentation", "core_domain", "data_storage"],
           "properties": {
-            "ui_presentation": { "type": "string" },
-            "core_domain": { "type": "string" },
-            "data_storage": { "type": "string" }
+            "keyboard_navigable": { "type": "boolean" },
+            "aria_landmarks": { "type": "boolean" },
+            "clean_terminal_output": { "type": "boolean" }
           }
-        },
-        "accessibility_standards": { "type": "array", "items": { "type": "string" } }
+        }
       }
     },
     "debug_manifest": {
       "type": "object",
-      "required": ["bug_id", "severity", "environment", "exact_location_pinpoint", "root_cause_branch"],
+      "required": ["issue_id", "status", "root_cause_branch", "fault_location"],
       "properties": {
-        "bug_id": { "type": "string" },
-        "severity": { "type": "string", "enum": ["CRITICAL", "HIGH", "MEDIUM", "LOW"] },
-        "environment": { "type": "object" },
-        "exact_location_pinpoint": {
+        "issue_id": { "type": "string" },
+        "status": { "type": "string", "enum": ["TRIAGING", "REPRODUCED", "DIAGNOSED", "FIXED", "VERIFIED"] },
+        "root_cause_branch": { "type": "string", "enum": ["Branch A (API Contract)", "Branch B (Concurrency/Lifecycle)", "Branch C (Data Boundary)"] },
+        "fault_location": {
           "type": "object",
-          "required": ["file_path", "line_range", "symbol"],
+          "required": ["file", "line_number"],
           "properties": {
-            "file_path": { "type": "string" },
-            "line_range": { "type": "string" },
-            "symbol": { "type": "string" }
+            "file": { "type": "string" },
+            "line_number": { "type": "integer" },
+            "ast_node": { "type": "string" },
+            "faulty_snippet": { "type": "string" }
           }
         },
-        "root_cause_branch": { "type": "string", "enum": ["Branch A: API Contract", "Branch B: Concurrency/Lifecycle", "Branch C: Data Boundary"] }
+        "blast_radius_limit": {
+          "type": "object",
+          "properties": {
+            "max_churn_lines": { "type": "integer", "default": 50 },
+            "backup_path": { "type": "string" }
+          }
+        }
       }
     },
     "references_manifest": {
       "type": "object",
-      "required": ["schema_version", "reference_files", "symbols_index"],
+      "required": ["source_doc", "ingestion_timestamp", "symbols"],
       "properties": {
-        "schema_version": { "type": "string" },
-        "reference_files": { "type": "array", "items": { "type": "string" } },
-        "symbols_index": {
+        "source_doc": { "type": "string" },
+        "ingestion_timestamp": { "type": "string" },
+        "symbols": {
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["symbol_name", "symbol_type", "defined_in_file"],
+            "required": ["name", "kind"],
             "properties": {
-              "symbol_name": { "type": "string" },
-              "symbol_type": { "type": "string", "enum": ["class", "method", "function", "interface", "enum", "constant"] },
-              "defined_in_file": { "type": "string" },
+              "name": { "type": "string" },
+              "kind": { "type": "string", "enum": ["function", "class", "interface", "constant", "endpoint"] },
               "parameters": { "type": "array" },
               "return_type": { "type": "string" },
-              "is_async": { "type": "boolean" },
-              "constraints": { "type": "array", "items": { "type": "string" } }
+              "constraints": { "type": "string" }
             }
           }
         }
@@ -76,63 +82,14 @@
     },
     "craftsmanship_rules": {
       "type": "object",
-      "required": ["rule_id", "title", "category", "invariant"],
       "properties": {
-        "rule_id": { "type": "string" },
-        "title": { "type": "string" },
-        "category": { "type": "string" },
-        "invariant": { "type": "string" }
+        "atomic_io": { "type": "boolean", "default": true },
+        "actionable_errors": { "type": "boolean", "default": true },
+        "doctor_self_check": { "type": "boolean", "default": true },
+        "graceful_shutdown": { "type": "boolean", "default": true },
+        "structured_logging": { "type": "boolean", "default": true },
+        "universal_accessibility": { "type": "boolean", "default": true }
       }
     }
-  },
-  "craftsmanship_rules_catalog": [
-    {
-      "rule_id": "CRAFT-001",
-      "title": "Atomic File I/O",
-      "category": "Defensive Engineering",
-      "invariant": "Never write directly to destination file. Write to .tmp first and atomic rename."
-    },
-    {
-      "rule_id": "CRAFT-002",
-      "title": "Graceful Shutdown",
-      "category": "Resilience",
-      "invariant": "Intercept SIGINT/SIGTERM, flush open buffers, close database connections cleanly."
-    },
-    {
-      "rule_id": "CRAFT-003",
-      "title": "Actionable Error Messages",
-      "category": "Developer Experience",
-      "invariant": "Error messages must state What happened, Why it failed, and How to fix it."
-    },
-    {
-      "rule_id": "CRAFT-004",
-      "title": "Structured Logging",
-      "category": "Observability",
-      "invariant": "No raw print statements in production code. Use standard leveled loggers."
-    },
-    {
-      "rule_id": "CRAFT-005",
-      "title": "Universal Accessibility",
-      "category": "A11y",
-      "invariant": "Full keyboard navigation, semantic ARIA landmarks, clean non-flashing console output."
-    },
-    {
-      "rule_id": "CRAFT-006",
-      "title": "Doctor Health-Check",
-      "category": "Tooling",
-      "invariant": "Provide a built-in --doctor command to verify prerequisites and permissions."
-    },
-    {
-      "rule_id": "CRAFT-007",
-      "title": "Blast Radius Limiter",
-      "category": "Code Preservation",
-      "invariant": "Lock non-failing files as read-only. Confine changes strictly to target fault node."
-    },
-    {
-      "rule_id": "CRAFT-008",
-      "title": "Failure-Mode Testing",
-      "category": "Quality Assurance",
-      "invariant": "Mandatory testing of network drops, data corruption, and concurrency race conditions."
-    }
-  ]
+  }
 }

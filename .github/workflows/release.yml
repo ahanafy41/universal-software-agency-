@@ -24,7 +24,7 @@ jobs:
           if [[ "${{ github.ref }}" == refs/tags/v* ]]; then
             echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
           else
-            echo "TAG_NAME=v2.0" >> $GITHUB_OUTPUT
+            echo "TAG_NAME=v2.1.0" >> $GITHUB_OUTPUT
           fi
 
       - name: Package Skill Zip Archive
@@ -38,20 +38,15 @@ jobs:
           tag_name: ${{ steps.vars.outputs.TAG_NAME }}
           name: "${{ steps.vars.outputs.TAG_NAME }} — Universal AI Software Agency"
           body: |
-            ## 🚀 Universal AI Software Engineering Agency ${{ steps.vars.outputs.TAG_NAME }} (Lean & Mean 5-File Architecture)
+            ## 🚀 Universal AI Software Engineering Agency ${{ steps.vars.outputs.TAG_NAME }} (Google Antigravity 2.0 & Gemini Agent Ready)
 
-            ### 🌟 Major Release Highlights (v2.0)
-            - **5-File Consolidated Architecture**: Merged 21 fragmented files into 3 powerhouse playbooks (`project-lifecycle.md`, `diagnostics-and-qa.md`, `craftsmanship-and-devops.md`) and 1 unified schema catalog (`agency-schemas.json`), cutting token bloat by over 40% while preserving 100% of capabilities.
-            - **Strict Zero-Skipping Reference Ingestion**: Mandatory extraction of symbol tables and API contracts into `references_manifest.json` before writing code, backed by deterministic coverage validation.
-            - **6 Pillars of Senior Human Software Engineering**:
-              1. **Atomic File I/O**: Temporary file writes + atomic rename to guarantee zero data corruption on crash.
-              2. **Actionable Errors & `--doctor` Self-Check**: Clear 3-part diagnostic guidance (What, Why, Fix) and environment prerequisite checks.
-              3. **Graceful Shutdown (`SIGINT`) & Clean CLI Ergonomics**: Safe resource disposal on `Ctrl+C` with standard flags.
-              4. **Structured Logging**: Standard log levels (`DEBUG`, `INFO`, `WARN`, `ERROR`), eliminating raw unformatted prints.
-              5. **Failure-Mode & Edge-Case Testing**: Mandatory simulation of network cuts, disk errors, malformed payloads, and concurrency races.
-              6. **Universal Accessibility (A11y)**: Built-in keyboard-first navigation, ARIA landmarks, and screen-reader friendly terminal outputs.
-            - **Proactive Live 2026 Google Search Integration**: Mandates live search lookups across all worker subagents (A through I) for modern 2026 API signatures and GitHub Issues triage.
-            - **Upgraded Verification Engine (`validate_code.py`)**: Strict AST parser, bracket matcher, JSON schema validator, placeholder inhibitor, and symbol manifest coverage verifier.
+            ### 🌟 Major Release Highlights (${{ steps.vars.outputs.TAG_NAME }})
+            - **Google Antigravity 2.0 Compatibility**: Cleaned and standard YAML frontmatter compliant with `.agents/skills/` and Antigravity slash-command `/universal-software-agency` indexing.
+            - **Cross-Platform Tool Abstraction**: Unified tool mappings supporting both Antigravity 2.0 native execution (`run_command`, `view_file`, `replace_file_content`, `grep_search`, `invoke_subagent`) and cloud/web agent environments.
+            - **Native Subagent Orchestration**: Seamless integration with `.agents/agents/` hierarchical subagent roster (Subagents A through I) with Arrange-Act-Assert testing and zero main-loop bloat.
+            - **5-File Consolidated Powerhouse Architecture**: Lean and mean structure (`SKILL.md`, `project-lifecycle.md`, `diagnostics-and-qa.md`, `craftsmanship-and-devops.md`, and `agency-schemas.json`).
+            - **Senior Human Software Engineering Invariants**: Atomic file I/O, actionable error messages, `--doctor` self-check, graceful `SIGINT` handling, structured logging, and Blast Radius Limiter code preservation.
+            - **Deterministic Verification Engine**: Python AST parser, JSON schema validator, bracket matcher, and reference symbol ingestion verifier (`validate_code.py`).
           draft: false
           prerelease: false
           files: |
