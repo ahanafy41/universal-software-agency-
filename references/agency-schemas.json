@@ -1,103 +1,119 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Universal Software Agency Unified Schemas & Rules",
-  "description": "Unified machine-readable contracts for project manifests, debug triage, reference ingestion, and senior human-grade craftsmanship.",
-  "$defs": {
+  "title": "Universal Agency Schemas",
+  "description": "Unified JSON schema catalog for universal software agency manifests, support tickets, and specifications.",
+  "definitions": {
     "project_spec": {
       "type": "object",
-      "required": ["project_id", "project_name", "architecture_tier", "target_stack", "modules"],
+      "required": ["project_name", "version", "track", "language", "entry_point", "architecture_pattern", "modules", "accessibility_standard", "diagnostics"],
       "properties": {
-        "project_id": { "type": "string" },
         "project_name": { "type": "string" },
-        "architecture_tier": { "type": "string", "enum": ["3-tier-desktop", "3-tier-web-api", "microservice", "cli-utility"] },
-        "target_stack": {
-          "type": "object",
-          "required": ["language", "framework"],
-          "properties": {
-            "language": { "type": "string" },
-            "framework": { "type": "string" },
-            "test_framework": { "type": "string" },
-            "database": { "type": "string" }
-          }
-        },
-        "accessibility_standards": {
-          "type": "object",
-          "properties": {
-            "keyboard_navigable": { "type": "boolean" },
-            "screen_reader_friendly": { "type": "boolean" },
-            "aria_landmarks": { "type": "boolean" }
-          }
-        },
+        "version": { "type": "string" },
+        "track": { "type": "string", "enum": ["Track A (Desktop & Offline)", "Track B (Universal Web & Cloud APIs)", "Track C (High-Performance Systems & Backend)"] },
+        "language": { "type": "string" },
+        "entry_point": { "type": "string" },
+        "architecture_pattern": { "type": "string" },
         "modules": {
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["name", "tier", "file_path", "responsibilities"],
+            "required": ["name", "path", "responsibility"],
             "properties": {
               "name": { "type": "string" },
-              "tier": { "type": "string", "enum": ["ui", "core_logic", "data_engine"] },
-              "file_path": { "type": "string" },
-              "responsibilities": { "type": "array", "items": { "type": "string" } }
+              "path": { "type": "string" },
+              "responsibility": { "type": "string" }
             }
+          }
+        },
+        "accessibility_standard": { "type": "string" },
+        "diagnostics": {
+          "type": "object",
+          "required": ["doctor_flag", "error_log"],
+          "properties": {
+            "doctor_flag": { "type": "string" },
+            "error_log": { "type": "string" }
+          }
+        }
+      }
+    },
+    "support_ticket": {
+      "type": "object",
+      "required": ["ticket_id", "severity", "status", "symptoms", "diagnostic_branch", "proposed_patch_plan", "approval_gate"],
+      "properties": {
+        "ticket_id": { "type": "string" },
+        "severity": { "type": "string", "enum": ["Critical", "High", "Medium", "Low"] },
+        "status": { "type": "string", "enum": ["OPEN", "INVESTIGATING", "AWAITING_APPROVAL", "APPROVED", "REJECTED", "EXECUTING", "VERIFIED", "CLOSED"] },
+        "symptoms": { "type": "string" },
+        "runtime_logs": { "type": "string" },
+        "live_search_findings": { "type": "string" },
+        "diagnostic_branch": { "type": "string", "enum": ["Branch A (API Contract)", "Branch B (Concurrency)", "Branch C (Data Boundary)"] },
+        "fault_location": {
+          "type": "object",
+          "properties": {
+            "file": { "type": "string" },
+            "line_range": { "type": "string" },
+            "ast_node": { "type": "string" }
+          }
+        },
+        "proposed_patch_plan": { "type": "string" },
+        "approval_gate": {
+          "type": "object",
+          "required": ["approved"],
+          "properties": {
+            "approved": { "type": "boolean" },
+            "user_notes": { "type": "string" }
           }
         }
       }
     },
     "debug_manifest": {
       "type": "object",
-      "required": ["incident_id", "target_file", "fault_location", "diagnosed_branch", "root_cause_summary"],
+      "required": ["issue_id", "severity", "diagnostic_branch", "exact_location", "reproduction_command", "root_cause_hypothesis", "fix_status"],
       "properties": {
-        "incident_id": { "type": "string" },
-        "target_file": { "type": "string" },
-        "fault_location": {
+        "issue_id": { "type": "string" },
+        "severity": { "type": "string", "enum": ["Critical", "High", "Medium", "Low"] },
+        "diagnostic_branch": { "type": "string", "enum": ["Branch A (Contract)", "Branch B (Lifecycle)", "Branch C (Data)"] },
+        "exact_location": {
           "type": "object",
-          "required": ["line_number", "ast_node_type", "faulty_symbol"],
+          "required": ["file", "line_range", "ast_node"],
           "properties": {
-            "line_number": { "type": "integer" },
-            "ast_node_type": { "type": "string" },
-            "faulty_symbol": { "type": "string" },
-            "snippet": { "type": "string" }
+            "file": { "type": "string" },
+            "line_range": { "type": "string" },
+            "ast_node": { "type": "string" }
           }
         },
-        "diagnosed_branch": {
-          "type": "string",
-          "enum": ["Branch A (API Contract Mismatch)", "Branch B (Concurrency / Lifecycle)", "Branch C (Data Boundary / Syntax)"]
-        },
-        "root_cause_summary": { "type": "string" },
-        "pre_mutation_backup_path": { "type": "string" },
-        "diff_verification_passed": { "type": "boolean" }
+        "reproduction_command": { "type": "string" },
+        "root_cause_hypothesis": { "type": "string" },
+        "fix_status": { "type": "string", "enum": ["Diagnosed", "In-Progress", "Fixed", "Verified"] }
       }
     },
     "references_manifest": {
       "type": "object",
-      "required": ["reference_id", "source_file", "extracted_symbols"],
+      "required": ["extracted_at", "total_symbols", "modules"],
       "properties": {
-        "reference_id": { "type": "string" },
-        "source_file": { "type": "string" },
-        "extracted_symbols": {
+        "extracted_at": { "type": "string" },
+        "total_symbols": { "type": "integer" },
+        "modules": {
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["symbol_name", "symbol_type", "signature"],
+            "required": ["module_name", "source_file", "symbols"],
             "properties": {
-              "symbol_name": { "type": "string" },
-              "symbol_type": { "type": "string", "enum": ["function", "class", "method", "interface", "type", "constant"] },
-              "signature": { "type": "string" },
-              "parameters": {
+              "module_name": { "type": "string" },
+              "source_file": { "type": "string" },
+              "symbols": {
                 "type": "array",
                 "items": {
                   "type": "object",
-                  "required": ["name", "type"],
+                  "required": ["name", "kind", "signature"],
                   "properties": {
                     "name": { "type": "string" },
-                    "type": { "type": "string" },
-                    "required": { "type": "boolean" },
-                    "description": { "type": "string" }
+                    "kind": { "type": "string" },
+                    "signature": { "type": "string" },
+                    "constraints": { "type": "string" }
                   }
                 }
-              },
-              "return_type": { "type": "string" },
-              "constraints": { "type": "array", "items": { "type": "string" } }
+              }
             }
           }
         }
@@ -105,14 +121,22 @@
     },
     "craftsmanship_rules": {
       "type": "object",
-      "required": ["atomic_io", "actionable_errors", "doctor_self_check", "graceful_shutdown", "structured_logging", "universal_accessibility"],
+      "required": ["version", "rules"],
       "properties": {
-        "atomic_io": { "type": "boolean", "description": "Enforce atomic temp-file-write and rename on disk operations." },
-        "actionable_errors": { "type": "boolean", "description": "Ensure error messages include What, Why, and How to Fix." },
-        "doctor_self_check": { "type": "boolean", "description": "Support --doctor flag for pre-flight environment validation." },
-        "graceful_shutdown": { "type": "boolean", "description": "Properly trap SIGINT/SIGTERM to release resources cleanly." },
-        "structured_logging": { "type": "boolean", "description": "Use structured logging levels (DEBUG, INFO, WARN, ERROR) instead of raw prints." },
-        "universal_accessibility": { "type": "boolean", "description": "Enforce keyboard navigation and screen-reader accessibility standards." }
+        "version": { "type": "string" },
+        "rules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "title", "severity", "description"],
+            "properties": {
+              "id": { "type": "string" },
+              "title": { "type": "string" },
+              "severity": { "type": "string" },
+              "description": { "type": "string" }
+            }
+          }
+        }
       }
     }
   }

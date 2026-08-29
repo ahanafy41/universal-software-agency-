@@ -1,83 +1,35 @@
-# Human-Grade Craftsmanship, Code Preservation, Reference Ingestion & DevOps Playbook
+# Human-Grade Craftsmanship, Live Search & DevOps Playbook
 
-This consolidated reference defines the operational, architectural, and quality standards enforced across all worker subagents to ensure production-grade software engineering, rigorous reference ingestion, strict code preservation, and robust packaging across all languages.
-
----
-
-## 1. The 6 Pillars of Senior Human-Grade Software Engineering
-
-Every line of code, CLI interface, API, or GUI authored by the agency must reflect senior engineering craftsmanship:
-
-### 🌟 Pillar 1: Atomic File I/O & Defensive Resilience
-- Never overwrite destination files directly in place.
-- **Pattern**: Write to a temporary file (`.tmp`), flush buffers to disk (`flush()` + `fsync`), and perform an atomic rename/replace.
-- Protect against sudden power loss, process termination, or concurrent access collisions.
-
-### 🌟 Pillar 2: 3-Part Actionable Error Messages
-Every handled exception and user-facing error message must strictly provide 3 components:
-1. **What Failed**: Clear explanation of the operation that was interrupted.
-2. **Why It Failed**: The exact underlying technical cause or unmet precondition.
-3. **How to Fix**: Concrete, actionable recovery steps (e.g., exact command to run, file permission to check, or configuration key to fix).
-
-### 🌟 Pillar 3: Built-In Environment Self-Check (`--doctor`)
-- All CLI utilities, server daemons, and standalone applications must provide a `--doctor` (or `doctor`) subcommand.
-- Validates runtime prerequisites: directory permissions, database connection strings, external binary dependencies, and configuration presence.
-- Returns a structured status report (`[PASS]`, `[WARN]`, `[FAIL]`) with explicit remedies for any failed checks.
-
-### 🌟 Pillar 4: Graceful Process Shutdown & Signal Trapping
-- Always register signal handlers (`SIGINT`, `SIGTERM`) across all runtimes (Python `signal`, Node.js `process.on`, Go `os.Interrupt`, C# `AppDomain.CurrentDomain.ProcessExit`).
-- Flush and close open file handles, commit or rollback in-flight database transactions, and terminate child worker threads cleanly.
-
-### 🌟 Pillar 5: Structured Logging & Clean Telemetry
-- Never use unformatted print statements (`print()`, `console.log()`) for operational logging.
-- Use structured loggers supporting standard severity levels (`DEBUG`, `INFO`, `WARNING`, `ERROR`, `CRITICAL`).
-- Support CLI flags: `--verbose` (enables DEBUG output), `--quiet` (suppresses non-error output), and `--json` (outputs machine-parsable JSON lines).
-
-### 🌟 Pillar 6: Universal Accessibility (A11y) & Keyboard-First Design
-- **Keyboard-First**: 100% of functionality accessible without a mouse (`Tab`, `Shift+Tab`, `Enter`, `Space`, Arrows).
-- **Screen-Reader Compatibility**: Explicit ARIA roles, semantic landmarks, live regions for dynamic alerts, and high-contrast color ratios.
-- **Accessible CLI Output**: Clean formatting, avoid flashing ANSI characters that crash Braille displays or screen readers.
+This playbook establishes the technical engineering pillars, live web research protocols, blast-radius code preservation controls, and multi-stage packaging blueprints across all languages.
 
 ---
 
-## 2. Zero-Skipping Reference Ingestion Protocol
+## 1. Mandatory Live Web & 2026 SDK Search Gate
 
-When custom API documentation, schemas, or specs exist in `docs/` or `references/`, Subagent A must execute the Zero-Skipping protocol:
-
-1. **Full Symbol Extraction**: Extract every function signature, argument type, return type, exception, and schema definition.
-2. **Structured JSON Manifestation**: Generate `references_manifest.json` conforming to `references/agency-schemas.json`.
-3. **Automated Coverage Check**: Execute `python3 scripts/validate_code.py --manifest references_manifest.json <file>` to verify 100% compliance.
-
----
-
-## 3. Strict Blast Radius Control & Pre-Mutation Safeguards
-
-When fixing bugs or refactoring existing code, Subagent F enforces strict isolation:
-
-```text
-┌────────────────────────────────────────────────────────┐
-│ 1. Pre-Mutation Snapshot: python3 backup_manager.py     │
-└──────────────────────────┬─────────────────────────────┘
-                           ▼
-┌────────────────────────────────────────────────────────┐
-│ 2. Pinpoint Surgical AST Node in debug_tasks.md        │
-└──────────────────────────┬─────────────────────────────┘
-                           ▼
-┌────────────────────────────────────────────────────────┐
-│ 3. Apply Targeted Patch Exclusively to Diagnosed Node   │
-└──────────────────────────┬─────────────────────────────┘
-                           ▼
-┌────────────────────────────────────────────────────────┐
-│ 4. Verify Diff Bounds: python3 diff_verifier.py         │
-└────────────────────────────────────────────────────────┘
-```
+To prevent hallucinated APIs, breaking changes, and outdated syntax:
+1. **Compulsory Search Invariant**: Every subagent is mandated to query Google Search / official developer documentation for modern 2026 library signatures before writing code.
+2. **Targeted Queries**: Search exact error messages, official SDK upgrade guides, and GitHub Issues for modern frameworks.
+3. **Symbol Verification**: Verify all methods, types, and parameters against live 2026 documentation.
 
 ---
 
-## 4. DevOps, Multi-Stage Packaging & CI/CD Standards
+## 2. 10 Pillars of Human-Grade Senior Craftsmanship
 
-Subagent H packages deliverables for production distribution:
+1. **Mandatory Human-in-the-Loop Approval Gate**: Stop and wait for user approval on all specs, RFCs, and patch plans.
+2. **Defensive Engineering & Atomic I/O**: Write to `.tmp` file, flush, and atomically replace to prevent corruption.
+3. **Actionable Error Messages**: 3-part messages (What failed, Why it failed, Actionable fix).
+4. **Self-Check Diagnostic (`--doctor`)**: CLI/server flag to validate dependencies, environment, and connectivity.
+5. **Graceful Shutdown (`SIGINT`)**: Clean trap for `Ctrl+C` releasing locks and closing connections safely.
+6. **Structured Logging**: Standard log levels (`DEBUG`, `INFO`, `WARN`, `ERROR`) supporting `--verbose` and `--json`.
+7. **Universal Accessibility (A11y)**: 100% keyboard navigable, semantic ARIA landmarks, and clean terminal outputs.
+8. **Failure-Mode Testing**: AAA pattern testing edge cases, network timeouts, and malformed inputs.
+9. **Blast Radius Limiter**: Restrict code churn strictly to diagnosed fault nodes.
+10. **Pre-Mutation Snapshot**: Always execute `backup_manager.py` before modifying existing files.
 
-- **Multi-Stage Dockerfiles**: Separate build-time dependencies from lightweight production runtimes with non-root security users.
-- **GitHub Actions Workflows**: Automated linting, test execution, coverage gates, and multi-platform artifact packaging.
-- **1-Click Execution Launchers**: Cross-platform execution scripts (`run.sh` / `run.bat`) that check dependencies and start the app cleanly.
+---
+
+## 3. DevOps, CI/CD & Automated Packaging
+
+- **Multi-Stage Dockerfiles**: Lean container builds isolating compile-time dependencies.
+- **GitHub Actions CI/CD**: Automated linting, testing, and multi-platform release packaging.
+- **1-Click Launchers**: Standalone `run.sh` / `run.bat` scripts for friction-free execution.

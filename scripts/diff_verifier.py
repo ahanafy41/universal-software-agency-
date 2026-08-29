@@ -1,81 +1,45 @@
 #!/usr/bin/env python3
 """
-Blast Radius & Code Preservation Verifier (Zero-Dependency)
-Compares modified files against backup snapshots to enforce zero-corruption invariants.
-Compatible with Google Anti-Gravity 2.0 sandbox.
+diff_verifier.py - AST & Line Diff Bounds Verifier (Blast Radius Limiter)
+Part of Universal Software & AI Engineering Agency
 """
 
 import sys
+import os
 import difflib
-import argparse
-import json
-from pathlib import Path
 
+def verify_diff(original_file, modified_file, max_allowed_churn=100):
+    if not os.path.exists(original_file) or not os.path.exists(modified_file):
+        print("Error: One or both files do not exist.")
+        return False
 
-def calculate_churn(original_lines, modified_lines):
-    matcher = difflib.SequenceMatcher(None, original_lines, modified_lines)
-    total_lines = max(len(original_lines), len(modified_lines), 1)
-    changes = 0
-    for tag, i1, i2, j1, j2 in matcher.get_opcodes():
-        if tag in ('replace', 'delete', 'insert'):
-            changes += max(i2 - i1, j2 - j1)
-    return (changes / total_lines) * 100.0
+    with open(original_file, "r", encoding="utf-8", errors="ignore") as f1:
+        lines1 = f1.readlines()
+    with open(modified_file, "r", encoding="utf-8", errors="ignore") as f2:
+        lines2 = f2.readlines()
 
+    diff = list(difflib.unified_diff(lines1, lines2, fromfile=original_file, tofile=modified_file))
+    churn = len([l for l in diff if l.startswith("+") or l.startswith("-")]) - 2
 
-def verify_diff(orig_path: str, mod_path: str, max_churn: float = 30.0, json_output: bool = False, compact: bool = False) -> int:
-    orig = Path(orig_path)
-    mod = Path(mod_path)
+    print(f"Diff verification: Total modified lines (churn) = {churn}")
+    if churn > max_allowed_churn:
+        print(f"Warning: Blast radius exceeded maximum allowed churn ({max_allowed_churn}).")
+        return False
 
-    if not orig.is_file() or not mod.is_file():
-        err = {"status": "error", "message": "Both original and modified files must exist."}
-        if json_output:
-            print(json.dumps(err))
-        else:
-            print(f"[-] Error: {err['message']}", file=sys.stderr)
-        return 1
-
-    with open(orig, "r", encoding="utf-8", errors="ignore") as f:
-        orig_lines = f.readlines()
-    with open(mod, "r", encoding="utf-8", errors="ignore") as f:
-        mod_lines = f.readlines()
-
-    churn = calculate_churn(orig_lines, mod_lines)
-    passed = churn <= max_churn
-
-    report = {
-        "status": "PASS" if passed else "FAIL",
-        "original_file": str(orig),
-        "modified_file": str(mod),
-        "original_lines": len(orig_lines),
-        "modified_lines": len(mod_lines),
-        "churn_percentage": round(churn, 2),
-        "max_churn_threshold": max_churn,
-        "is_within_bounds": passed,
-    }
-
-    if json_output:
-        print(json.dumps(report, indent=None if compact else 2))
-    else:
-        status_tag = "[PASS]" if passed else "[FAIL]"
-        print(f"{status_tag} Diff Churn: {report['churn_percentage']}% (Max allowed: {max_churn}%)")
-        if not passed:
-            print(f"[-] Blast Radius Warning: Code churn exceeded safety limit!", file=sys.stderr)
-
-    return 0 if passed else 2
-
+    print("Diff verification passed: Blast radius within bounds.")
+    return True
 
 def main():
-    parser = argparse.ArgumentParser(description="Blast Radius & Code Diff Verifier (Zero-Dependency)")
-    parser.add_argument("original_path", help="Original snapshot file path")
-    parser.add_argument("modified_path", help="Modified active file path")
-    parser.add_argument("--max-churn", type=float, default=30.0, help="Maximum allowed churn percentage (default: 30.0)")
-    parser.add_argument("--json", action="store_true", help="Output formatted JSON")
-    parser.add_argument("--compact", action="store_true", help="Output compact single-line JSON")
-    parser.add_argument("-q", "--quiet", action="store_true", help="Silent mode (exit code only)")
+    if len(sys.argv) < 3:
+        print("Usage: diff_verifier.py <original_file> <modified_file> [max_churn]")
+        sys.exit(1)
 
-    args = parser.parse_args()
-    sys.exit(verify_diff(args.original_path, args.modified_path, max_churn=args.max_churn, json_output=args.json, compact=args.compact))
+    orig = sys.argv[1]
+    mod = sys.argv[2]
+    max_c = int(sys.argv[3]) if len(sys.argv) > 3 else 100
 
+    success = verify_diff(orig, mod, max_c)
+    sys.exit(0 if success else 1)
 
 if __name__ == "__main__":
     main()

@@ -1,79 +1,93 @@
-# Diagnostics, Root-Cause Debugging & Automated QA Guide (دليل التشخيص الجذري وضمان الجودة والاختبارات الآلية)
+# Diagnostics, Root-Cause Debugging & Support Ticket Guide
 
-This reference consolidates the agency's diagnostic triage protocols, 3-branch root-cause analysis matrix, automated testing standards (AAA pattern), failure-mode coverage, and delivery verification artifacts across all supported programming languages.
-
----
-
-## 1. Mandatory Pre-Fix Diagnostic & Triage Gate
-
-Modifying code before completing diagnostic triage is strictly forbidden:
-
-1. **Step 1: Codebase Ingestion & Caller Tracing**: Subagent B scans the repository, identifies entry points, and produces `project_mindmap.md`.
-2. **Step 2: Interactive Scoping & Triage**: If error logs, repro steps, or environment details are missing, ask strictly ONE focused question per turn.
-3. **Step 3: 3-Branch Root-Cause Isolation**: Evaluate the 3 diagnostic branches to isolate the fault AST node.
-4. **Step 4: Manifest Recording**: Record the exact file, line number, AST node, and hypothesized fix in `debug_tasks.md` and `debug_manifest.json`.
+This reference consolidates the agency's diagnostic triage protocols, support ticket lifecycle (`TICKET.md`), 3-branch root-cause analysis matrix, live error lookups, patch plan approval gate, automated testing standards (AAA pattern), and delivery verification artifacts across all supported programming languages.
 
 ---
 
-## 2. The 3-Branch Root-Cause Diagnostic Matrix
+## 1. Support Ticket Protocol & Pre-Fix Diagnostic Gate
 
-```text
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│                           3-Branch Root-Cause Diagnostic Matrix                        │
-└───────────────────────────────────────────┬────────────────────────────────────────────┘
+**STRICT PROHIBITION OF PREMATURE PATCHING**: When troubleshooting bugs in an existing codebase, the AI Agent is **STRICTLY FORBIDDEN from immediately modifying code**. It must complete the support ticket workflow:
+
+### Step 1: Open Formal Support Ticket (`TICKET.md`)
+Create `TICKET.md` capturing:
+1. Symptom summary and severity level (`Critical`, `High`, `Medium`, `Low`).
+2. Exact steps to reproduce and observed vs expected behavior.
+3. Runtime environment details (OS, language version, dependencies).
+4. Raw stack traces, error messages, and logs.
+
+### Step 2: Interactive Diagnostic Investigation & Live Lookups
+- Dispatch **Subagent B** to map call graphs and pinpoint execution paths.
+- Query Google Search / GitHub Issues for exact error signatures and 2026 breaking changes.
+- Conduct two-way clarifying dialogue with the user if logs or environment parameters are missing.
+
+### Step 3: 3-Branch Root-Cause Isolation
+Classify failure into:
+- **Branch A (API Contract & Type Boundaries)**: Signature drift, wrong payload shape, type mismatches.
+- **Branch B (Concurrency, Lifecycle & State)**: Race conditions, unhandled async states, leaked handles.
+- **Branch C (Data Boundary, Syntax & Input)**: Null pointer exceptions, encoding mismatches, schema violations.
+
+### Step 4: Mandatory Patch Plan Approval Gate (Stop & Wait Invariant)
+- Formulate the minimal surgical patch, affected files, line numbers, and blast radius.
+- Present the patch plan to the user in `TICKET.md` and **HALT execution**.
+- **Await explicit user approval (`Approved` / `موافق`) before modifying any code.**
+
+---
+
+## 2. Universal 3-Branch Root-Cause Matrix
+
+```
+                          ┌──────────────────────────────────┐
+                          │   Root-Cause Diagnostic Matrix   │
+                          └─────────────────┬────────────────┘
                                             │
         ┌───────────────────────────────────┼───────────────────────────────────┐
         ▼                                   ▼                                   ▼
-┌───────────────────────────────┐ ┌───────────────────────────────┐ ┌───────────────────────────────┐
-│ Branch A: Contract & API      │ │ Branch B: Lifecycle & Async   │ │ Branch C: Data & Boundaries   │
-├───────────────────────────────┤ ├───────────────────────────────┤ ├───────────────────────────────┤
-│ • Signature / Schema Drift    │ │ • Race Conditions             │ │ • Null / Nil Pointer Reference│
-│ • Serialization Shape Mismatch│ │ • Unhandled Async Rejections  │ │ • Text / Encoding Collisions  │
-│ • Wrong Param Types / Arity   │ │ • Thread Deadlocks / Leaks    │ │ • Off-by-One / Array Bounds   │
-│ • Deprecated API Calls        │ │ • Unclosed DB / File Handles  │ │ • Missing Env Vars / Secrets  │
-└───────────────────────────────┘ └───────────────────────────────┘ └───────────────────────────────┘
+┌───────────────────────────┐   ┌───────────────────────────┐   ┌───────────────────────────┐
+│ Branch A: API Contract    │   │ Branch B: Concurrency     │   │ Branch C: Data Boundary   │
+│ • Signature drift         │   │ • Race conditions         │   │ • Null/None references    │
+│ • Payload schema mismatch │   │ • Unhandled async states  │   │ • Encoding & parsing error│
+│ • Type & return mismatches│   │ • Resource handle leaks   │   │ • Boundary / off-by-one   │
+└───────────────────────────┘   └───────────────────────────┘   └───────────────────────────┘
 ```
 
 ---
 
-## 3. Automated QA & Testing Engineering Standards
-
-Subagent D constructs comprehensive automated test suites using the **Arrange-Act-Assert (AAA)** pattern:
-
-### 🧪 Test Coverage Requirements:
-1. **Happy Path (Nominal Flow)**: Verify valid inputs yield expected outputs.
-2. **Boundary & Edge Cases**: Test empty strings, zero values, max values, null inputs, and unexpected types.
-3. **Failure Modes & Fault Injections**:
-   - Simulated network timeouts and DNS failures.
-   - File system permission errors and disk-full scenarios.
-   - Corrupted JSON / malformed payload handling.
-   - Database connection drops and automatic reconnection retries.
-4. **Zero Flakiness Invariant**: Tests must not rely on unseeded randomness or unmanaged sleep timers.
-
----
-
-## 4. Completion Report & Final Verification Seal
-
-Upon completing implementation, testing, and static analysis, generate `COMPLETION_REPORT.md` featuring the **Final Verification Seal (خاتم المراجعة والتحقق الشامل)**:
+## 3. Real-Time Support Ticket Tracker (`TICKET.md`)
 
 ```markdown
-# 🏆 Universal Engineering Completion Report & Verification Seal
+# 🎫 Support Ticket #001: [Issue Title]
 
-## 📋 Execution Summary
-- **Project / Task**: <Project Name or Bug ID>
-- **Stack & Architecture**: <Language / Framework / 3-Tier Layering>
-- **Test Results**: <X tests passed, 0 failures, 0 skipped>
-- **Static Analysis & Schema Validation**: [PASS] (`validate_code.py --strict`)
+**Status:** Awaiting Approval | **Severity:** High | **Branch:** Branch A (Contract)
 
-## 🛡️ Senior Craftsmanship Verification Matrix
-- [x] Atomic File I/O Enforced
-- [x] Actionable Error Messages Implemented (What, Why, Fix)
-- [x] Environment Self-Check Supported (`--doctor`)
-- [x] Graceful Signal Shutdown Handled (`SIGINT`)
-- [x] Structured Logging Configured
-- [x] Universal Keyboard-First & Screen-Reader Accessibility Verified
+## 1. Problem Description & Reproduction
+- **Observed Behavior:** [Exact failure]
+- **Expected Behavior:** [Intended behavior]
+- **Reproduction Command:** `pytest tests/test_failure.py`
+
+## 2. Diagnostic Investigation & Root Cause
+- **Live Search Findings:** [Relevant GitHub Issue / 2026 doc insight]
+- **Fault Pinpoint:** `src/services/auth.py` (Lines 42-55, `validate_token` method)
+- **Root Cause:** Token format changed in SDK v2.3.0.
+
+## 3. Proposed Surgical Patch Plan
+- **Pre-Mutation Snapshot:** Take backup via `backup_manager.py`.
+- **Targeted Diff:** Update token parsing logic in `validate_token`.
+- **Blast Radius:** Max 15 lines in `src/services/auth.py`.
+
+## 🚨 Approval Gate
+- [ ] User Approval Received (`Approved` / `Proceed`)
+```
 
 ---
-### 🎖️ خاتم المراجعة والتحقق الشامل (Seal of Verified Engineering Quality)
-*Certified 100% complete, verified against all architectural and testing specifications.*
-```
+
+## 4. Automated Testing Standards & AAA Pattern
+
+All test suites engineered by **Subagent D** must follow the **Arrange-Act-Assert (AAA)** pattern and explicitly test both the happy path and failure modes:
+- Multi-language coverage: Python (`pytest`), C# (`xUnit`), TypeScript (`Vitest`), Rust (`cargo test`), Go (`go test`).
+- Mandatory failure modes: Network dropouts, malformed JSON, boundary values, resource exhaustion.
+
+---
+
+## 5. Completion Report & Final Verification Seal (`COMPLETION_REPORT.md`)
+
+Upon completing development or debugging, generate `COMPLETION_REPORT.md` featuring test matrices, 1-click launch commands, and the **Final Verification Seal (خاتم المراجعة والتحقق الشامل)**.

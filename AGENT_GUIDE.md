@@ -1,57 +1,23 @@
-# AI Agent Execution Guide: Universal Software Agency (v2.1 Edition (Antigravity 2.0 & Gemini Compatible))
+# Quick Agent Guide: Universal Software Agency (v2.3.0 Anti-Gravity 2.0 Edition)
 
-System instruction manual for the AI Software Engineering Agency when planning, executing, and verifying tasks.
+## 🚀 Execution Invariants for AI Agents
 
----
+1. **Mandatory Live 2026 Web Search Gate**:
+   - Query Google Search / live SDK documentation for official 2026 API signatures, models, and libraries before drafting specifications.
 
-## ⚡ 1. مبادئ التشغيل الأساسية (Operational Invariants)
+2. **Mandatory Human-in-the-Loop Approval Gate (Stop & Wait)**:
+   - Present `PRD.md`, `project_spec.json`, and `tasks.md` (or `TICKET.md`) to the user.
+   - **HALT** execution immediately and await explicit user approval (`Approved` / `موافق`) before spawning implementation subagents.
 
-1. **الترشيق ومنع تضخم السياق (Zero Main-Loop Bloat)**:
-   - يمنع على الوكيل القائد (Lead Orchestrator) تحليل المراجع الضخمة أو كتابة الأكواد المتعددة أو تتبع الأخطاء الطويلة في المحادثة الرئيسية.
-   - يتم تفويض المهام المعقدة للوكلاء الفرعيين (`invoke_subagent`).
+3. **Two-Way Comprehensive Scoping**:
+   - Explore all layers (business logic, library ecosystem, persistence, A11y, error handling, edge cases).
+   - Inquire open-endedly and ask if the user has any questions or specific libraries in mind.
 
-2. **البحث الحي والتوثيق لعام 2026 (Live 2026 Web Lookups)**:
-   - قبل توليد أو تعديل أي كود لمكتبة خارجية أو إطار عمل، يلزم البحث عن التوثيق الرسمي لعام 2026 والتأكد من توافق التواقيع البرمجية.
+4. **Support Ticket & Bug Triage Workflow**:
+   - Open `TICKET.md` for any defect or runtime error.
+   - Investigate environment and logs, classify via 3-Branch Root-Cause Matrix, formulate patch plan, and seek user approval before touching code.
 
-3. **حظر الترقيع المبكر (Pre-Fix Diagnostic Gate)**:
-   - يمنع تعديل أي كود قائم قبل إتمام الاستيعاب، ورسم الخريطة الذهنية (`project_mindmap.md`)، وعزل السبب الجذري عبر مصفوفة الفروع الثلاثة (`3-Branch Matrix`).
-
-4. **تطويق نطاق التعديل (Strict Blast Radius Control)**:
-   - أخذ نسخة احتياطية آلية قبل التعديل (`backup_manager.py`).
-   - حصر التعديل في العقدة المعطوبة فقط مع التحقق من الفروقات (`diff_verifier.py`).
-
----
-
-## 🧭 2. خريطة استدعاء المراجع (On-Demand Loading Map)
-
-لا تقم بقراءة جميع الملفات دفعة واحدة. استدعِ الملف المناسب للمرحلة الحالية فقط:
-
-```text
-┌─────────────────────────────────────────────────────────────────────────────────────────┐
-│ المرحلة المطلوبة                      │ الملف المرجعي للتحميل الفوري                    │
-├──────────────────────────────────────┼──────────────────────────────────────────────────┤
-│ 1. بدء مشروع جديد / مواصفات / تخطيط    │ references/project-lifecycle.md                  │
-│ 2. تشخيص أعطال / فحص واختبارات       │ references/diagnostics-and-qa.md                 │
-│ 3. كتابة كود / حماية / نشر وحاويات     │ references/craftsmanship-and-devops.md           │
-│ 4. التحقق من صحة مخططات الـ JSON     │ references/agency-schemas.json                   │
-└─────────────────────────────────────────────────────────────────────────────────────────┘
-```
-
----
-
-## 🛠️ 3. أدوات التحقق والأتمتة المدمجة (Local Tooling)
-
-- **فحص الكود والمخططات والمراجع**:
-  ```bash
-  python3 scripts/validate_code.py --strict <target_file_or_dir>
-  python3 scripts/validate_code.py --manifest references_manifest.json <source_file>
-  ```
-- **النسخ الاحتياطي اللحظي**:
-  ```bash
-  python3 scripts/backup_manager.py backup <file_path>
-  python3 scripts/backup_manager.py restore <backup_id>
-  ```
-- **تدقيق الفروقات ونطاق التعديل**:
-  ```bash
-  python3 scripts/diff_verifier.py <backup_file> <modified_file>
-  ```
+5. **Strict Code Preservation & Zero Main-Loop Bloat**:
+   - Take pre-mutation backup via `scripts/backup_manager.py`.
+   - Restrict code churn using `scripts/diff_verifier.py`.
+   - Delegate heavy parsing and implementation to subagents.
