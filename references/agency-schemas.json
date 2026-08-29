@@ -1,80 +1,103 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Universal Software Agency Unified Schema Catalog",
-  "definitions": {
+  "title": "Universal Software Agency Unified Schemas & Rules",
+  "description": "Unified machine-readable contracts for project manifests, debug triage, reference ingestion, and senior human-grade craftsmanship.",
+  "$defs": {
     "project_spec": {
       "type": "object",
-      "required": ["project_name", "architecture_tier", "primary_language", "scoping_mode", "components"],
+      "required": ["project_id", "project_name", "architecture_tier", "target_stack", "modules"],
       "properties": {
+        "project_id": { "type": "string" },
         "project_name": { "type": "string" },
-        "architecture_tier": { "type": "string", "enum": ["Track A (Desktop/Offline)", "Track B (Web/API)", "Track C (Systems/CLI)"] },
-        "primary_language": { "type": "string" },
-        "scoping_mode": { "type": "string", "enum": ["Interactive", "Fast-Track"] },
-        "components": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "required": ["name", "tier", "file_path"],
-            "properties": {
-              "name": { "type": "string" },
-              "tier": { "type": "string", "enum": ["UI/Accessibility", "Core Logic", "Data Engine", "CLI/Runner"] },
-              "file_path": { "type": "string" }
-            }
+        "architecture_tier": { "type": "string", "enum": ["3-tier-desktop", "3-tier-web-api", "microservice", "cli-utility"] },
+        "target_stack": {
+          "type": "object",
+          "required": ["language", "framework"],
+          "properties": {
+            "language": { "type": "string" },
+            "framework": { "type": "string" },
+            "test_framework": { "type": "string" },
+            "database": { "type": "string" }
           }
         },
         "accessibility_standards": {
           "type": "object",
           "properties": {
             "keyboard_navigable": { "type": "boolean" },
-            "aria_landmarks": { "type": "boolean" },
-            "clean_terminal_output": { "type": "boolean" }
+            "screen_reader_friendly": { "type": "boolean" },
+            "aria_landmarks": { "type": "boolean" }
+          }
+        },
+        "modules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "tier", "file_path", "responsibilities"],
+            "properties": {
+              "name": { "type": "string" },
+              "tier": { "type": "string", "enum": ["ui", "core_logic", "data_engine"] },
+              "file_path": { "type": "string" },
+              "responsibilities": { "type": "array", "items": { "type": "string" } }
+            }
           }
         }
       }
     },
     "debug_manifest": {
       "type": "object",
-      "required": ["issue_id", "status", "root_cause_branch", "fault_location"],
+      "required": ["incident_id", "target_file", "fault_location", "diagnosed_branch", "root_cause_summary"],
       "properties": {
-        "issue_id": { "type": "string" },
-        "status": { "type": "string", "enum": ["TRIAGING", "REPRODUCED", "DIAGNOSED", "FIXED", "VERIFIED"] },
-        "root_cause_branch": { "type": "string", "enum": ["Branch A (API Contract)", "Branch B (Concurrency/Lifecycle)", "Branch C (Data Boundary)"] },
+        "incident_id": { "type": "string" },
+        "target_file": { "type": "string" },
         "fault_location": {
           "type": "object",
-          "required": ["file", "line_number"],
+          "required": ["line_number", "ast_node_type", "faulty_symbol"],
           "properties": {
-            "file": { "type": "string" },
             "line_number": { "type": "integer" },
-            "ast_node": { "type": "string" },
-            "faulty_snippet": { "type": "string" }
+            "ast_node_type": { "type": "string" },
+            "faulty_symbol": { "type": "string" },
+            "snippet": { "type": "string" }
           }
         },
-        "blast_radius_limit": {
-          "type": "object",
-          "properties": {
-            "max_churn_lines": { "type": "integer", "default": 50 },
-            "backup_path": { "type": "string" }
-          }
-        }
+        "diagnosed_branch": {
+          "type": "string",
+          "enum": ["Branch A (API Contract Mismatch)", "Branch B (Concurrency / Lifecycle)", "Branch C (Data Boundary / Syntax)"]
+        },
+        "root_cause_summary": { "type": "string" },
+        "pre_mutation_backup_path": { "type": "string" },
+        "diff_verification_passed": { "type": "boolean" }
       }
     },
     "references_manifest": {
       "type": "object",
-      "required": ["source_doc", "ingestion_timestamp", "symbols"],
+      "required": ["reference_id", "source_file", "extracted_symbols"],
       "properties": {
-        "source_doc": { "type": "string" },
-        "ingestion_timestamp": { "type": "string" },
-        "symbols": {
+        "reference_id": { "type": "string" },
+        "source_file": { "type": "string" },
+        "extracted_symbols": {
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["name", "kind"],
+            "required": ["symbol_name", "symbol_type", "signature"],
             "properties": {
-              "name": { "type": "string" },
-              "kind": { "type": "string", "enum": ["function", "class", "interface", "constant", "endpoint"] },
-              "parameters": { "type": "array" },
+              "symbol_name": { "type": "string" },
+              "symbol_type": { "type": "string", "enum": ["function", "class", "method", "interface", "type", "constant"] },
+              "signature": { "type": "string" },
+              "parameters": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["name", "type"],
+                  "properties": {
+                    "name": { "type": "string" },
+                    "type": { "type": "string" },
+                    "required": { "type": "boolean" },
+                    "description": { "type": "string" }
+                  }
+                }
+              },
               "return_type": { "type": "string" },
-              "constraints": { "type": "string" }
+              "constraints": { "type": "array", "items": { "type": "string" } }
             }
           }
         }
@@ -82,13 +105,14 @@
     },
     "craftsmanship_rules": {
       "type": "object",
+      "required": ["atomic_io", "actionable_errors", "doctor_self_check", "graceful_shutdown", "structured_logging", "universal_accessibility"],
       "properties": {
-        "atomic_io": { "type": "boolean", "default": true },
-        "actionable_errors": { "type": "boolean", "default": true },
-        "doctor_self_check": { "type": "boolean", "default": true },
-        "graceful_shutdown": { "type": "boolean", "default": true },
-        "structured_logging": { "type": "boolean", "default": true },
-        "universal_accessibility": { "type": "boolean", "default": true }
+        "atomic_io": { "type": "boolean", "description": "Enforce atomic temp-file-write and rename on disk operations." },
+        "actionable_errors": { "type": "boolean", "description": "Ensure error messages include What, Why, and How to Fix." },
+        "doctor_self_check": { "type": "boolean", "description": "Support --doctor flag for pre-flight environment validation." },
+        "graceful_shutdown": { "type": "boolean", "description": "Properly trap SIGINT/SIGTERM to release resources cleanly." },
+        "structured_logging": { "type": "boolean", "description": "Use structured logging levels (DEBUG, INFO, WARN, ERROR) instead of raw prints." },
+        "universal_accessibility": { "type": "boolean", "description": "Enforce keyboard navigation and screen-reader accessibility standards." }
       }
     }
   }

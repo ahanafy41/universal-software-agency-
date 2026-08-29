@@ -2,11 +2,10 @@ name: Automated Release & Package
 
 on:
   push:
+    branches:
+      - main
     tags:
       - 'v*'
-    branches:
-      - 'main'
-  workflow_dispatch:
 
 permissions:
   contents: write
@@ -18,35 +17,36 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Determine Version Tag
+      - name: Set Release Tag
         id: vars
         run: |
           if [[ "${{ github.ref }}" == refs/tags/v* ]]; then
             echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
           else
-            echo "TAG_NAME=v2.1.0" >> $GITHUB_OUTPUT
+            echo "TAG_NAME=v2.2.0" >> $GITHUB_OUTPUT
           fi
 
       - name: Package Skill Zip Archive
         run: |
           mkdir -p dist
-          zip -r dist/universal-software-agency-${{ steps.vars.outputs.TAG_NAME }}.zip . -x ".git/*" ".github/*" "dist/*"
+          zip -r dist/universal-software-agency.zip . -x ".git/*" ".github/*" "dist/*" ".backups/*"
 
-      - name: Create or Update GitHub Release
+      - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.vars.outputs.TAG_NAME }}
           name: "${{ steps.vars.outputs.TAG_NAME }} — Universal AI Software Agency"
           body: |
-            ## 🚀 Universal AI Software Engineering Agency ${{ steps.vars.outputs.TAG_NAME }} (Google Antigravity 2.0 & Gemini Agent Ready)
+            ## 🚀 Universal AI Software Engineering Agency ${{ steps.vars.outputs.TAG_NAME }} (Full Multi-File Powerhouse & Cross-Platform Agent Ecosystem)
 
             ### 🌟 Major Release Highlights (${{ steps.vars.outputs.TAG_NAME }})
-            - **Google Antigravity 2.0 Compatibility**: Cleaned and standard YAML frontmatter compliant with `.agents/skills/` and Antigravity slash-command `/universal-software-agency` indexing.
-            - **Cross-Platform Tool Abstraction**: Unified tool mappings supporting both Antigravity 2.0 native execution (`run_command`, `view_file`, `replace_file_content`, `grep_search`, `invoke_subagent`) and cloud/web agent environments.
-            - **Native Subagent Orchestration**: Seamless integration with `.agents/agents/` hierarchical subagent roster (Subagents A through I) with Arrange-Act-Assert testing and zero main-loop bloat.
-            - **5-File Consolidated Powerhouse Architecture**: Lean and mean structure (`SKILL.md`, `project-lifecycle.md`, `diagnostics-and-qa.md`, `craftsmanship-and-devops.md`, and `agency-schemas.json`).
-            - **Senior Human Software Engineering Invariants**: Atomic file I/O, actionable error messages, `--doctor` self-check, graceful `SIGINT` handling, structured logging, and Blast Radius Limiter code preservation.
-            - **Deterministic Verification Engine**: Python AST parser, JSON schema validator, bracket matcher, and reference symbol ingestion verifier (`validate_code.py`).
+            - **Complete Multi-File Powerhouse Architecture**: Comprehensive, uncompressed reference playbooks (`project-lifecycle.md`, `diagnostics-and-qa.md`, `craftsmanship-and-devops.md`) and complete unified schema catalog (`agency-schemas.json`).
+            - **Full AST & Code Integrity Verification Suite**: Complete multi-language AST parser, JSON schema validator, bracket matcher, and reference symbol ingestion verifier (`validate_code.py`).
+            - **Non-Destructive Mutation Engine**: Pre-mutation automated backup manager (`backup_manager.py`) with instant rollback and blast-radius diff verifier (`diff_verifier.py`).
+            - **Universal Accessibility (A11y) & Keyboard-First Standards**: Built-in 100% keyboard navigability, semantic ARIA landmarks, and screen-reader optimized terminal logging.
+            - **Strict Zero-Skipping Reference Ingestion**: Mandatory extraction of symbol tables and API contracts into `references_manifest.json` before writing code.
+            - **Senior Human Software Engineering Standards**: Atomic file I/O, actionable error messages, `--doctor` self-check diagnostic, graceful `SIGINT` handling, structured logging, and failure-mode testing.
+            - **Google Antigravity 2.0 & Gemini Compatibility**: Fully compliant YAML frontmatter and unified tool mapping for both Antigravity 2.0 and Gemini Agent environments.
           draft: false
           prerelease: false
           files: |
