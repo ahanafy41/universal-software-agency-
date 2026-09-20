@@ -1,30 +1,70 @@
-# Universal Software & AI Engineering Agency (Anti-Gravity 2.0 Edition)
+# 🚀 Universal AI Software Engineering Agency (v2.1)
+### وكالة هندسة البرمجيات بالذكاء الاصطناعي الشاملة لكافة لغات البرمجة (الجيل الثاني المطور (v2.1) المتوافق مع Google Antigravity 2.0 وGemini)
 
-Enterprise-grade virtual software engineering agency built on a hierarchical **Orchestrator-Workers Graph**, **Proactive 2026 Live Web Documentation Lookups**, **Universal Accessibility (Keyboard-First / Screen-Reader Friendly)**, **Mandatory Human-in-the-Loop Approval Gates**, **Support Ticket Protocols**, **Human-Grade Senior Craftsmanship**, and **Automated Verification Gatekeepers**.
+[![Version: 2.1](https://img.shields.io/badge/Version-2.0%20Lean%20Powerhouse-blue.svg)](SKILL.md)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE.md)
+[![Architecture: 5-File Powerhouse](https://img.shields.io/badge/Architecture-5--File%20Consolidated-green.svg)](SKILL.md)
+[![Schema: Unified Manifests](https://img.shields.io/badge/Schema-agency--schemas.json-orange.svg)](references/agency-schemas.json)
+[![Safety: Zero-Corruption](https://img.shields.io/badge/Safety-Blast%20Radius%20Limiter-red.svg)](references/craftsmanship-and-devops.md)
 
-## 🌟 What's New in v2.3.0 (Anti-Gravity 2.0 Edition)
-- **Mandatory Live 2026 Web Search Gate**: Enforced real-time SDK and library documentation verification before drafting specifications.
-- **Mandatory Human-in-the-Loop Approval Gate (Stop & Wait Invariant)**: Complete user control to approve, reject, or modify plans and specifications before any code generation or mutation.
-- **Comprehensive Two-Way Scoping**: Deep multi-layer exploration with active two-way dialogue.
-- **Formal Support Ticket & Bug Investigation Protocol (`TICKET.md`)**: Structured bug lifecycle, 3-Branch Root Cause Analysis, live error lookups, and pre-patch approval.
-- **Unified Schema Integration**: Full support for `support_ticket` schema in `agency-schemas.json`.
+وكالة هندسة برمجية متكاملة مدعومة بالذكاء الاصطناعي، مبنية بهندسة خماسية رشيقة فائقة السرعة (**v2.1 Lean & Mean Architecture**). مصممة للتخطيط، والتطوير، والتشخيص الجذري، والتصحيح الدقيق، والاختبارات الآلية للمشاريع والبرمجيات عبر **كافة لغات البرمجة وأطر العمل** (Python, C# .NET, JavaScript/TypeScript, Java/Kotlin, Rust, Go, C/C++, PHP, Ruby, Swift, Lua, Shell، إلخ).
 
-## 📁 Repository Structure
+---
+
+## 🌟 الهيكل المعماري المدمج للجيل الثاني (v2.1 Architecture)
+
+```text
+┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                     🧠 وكالة هندسة البرمجيات بالذكاء الاصطناعي (الإصدار 2.1)                       │
+│                     Universal AI Software & Systems Engineering Agency (v2.1)                    │
+└────────────────────────────────────────────────┬─────────────────────────────────────────────────┘
+                                                 │
+      ┌───────────────────────────┬──────────────┴──────────────┬───────────────────────────┐
+      ▼                           ▼                             ▼                           ▼
+┌───────────┐               ┌───────────┐                 ┌───────────┐               ┌───────────┐
+│ 🗺️ دورة   │               │ 🔬 التشخيص │                 │ 🎯 الحرفية │                 │ 📦 المخططات│
+│   الحياة   │               │  والجودة  │                 │ والديف أوبس│                 │  الموحدة  │
+│ Lifecycle │               │ Diagnostics│                │Craftsmanship│               │  Schemas  │
+└───────────┘               └───────────┘                 └───────────┘               └───────────┘
 ```
-universal-software-agency/
-├── SKILL.md                          # Main Skill Definition & Invariants
-├── AGENT_GUIDE.md                    # Quick Agent Reference & Execution Invariants
-├── README.md                         # Overview & Documentation
-├── LICENSE.md                        # MIT License
-├── references/
-│   ├── project-lifecycle.md          # Scoping, PRD, Tasks, Approval Gate & Blueprints
-│   ├── diagnostics-and-qa.md         # Support Tickets, 3-Branch Matrix, QA & Delivery
-│   ├── craftsmanship-and-devops.md   # 10 Human-Grade Pillars & Live Search Guide
-│   └── agency-schemas.json           # Unified Schema Catalog (Project Spec, Tickets, Manifests)
-├── scripts/
-│   ├── validate_code.py              # Multi-Language AST, Schema & Strict Code Validator
-│   ├── backup_manager.py             # Pre-Mutation Snapshot & Instant Rollback Utility
-│   └── diff_verifier.py              # Blast-Radius Compliance & Diff Verifier
-└── examples/
-    └── sample-project-walkthrough.md # End-to-End Walkthrough Example
-```
+
+---
+
+## 📂 خريطة ملفات المهارة (v2.1 File Map)
+
+| الملف | الوصف والمسؤولية |
+| :--- | :--- |
+| **`SKILL.md`** | النواة التوجيهية الرشيقة، تفويض الوكلاء الفرعيين (Subagents A إلى I)، والبحث الحي لعام 2026. |
+| **`references/project-lifecycle.md`** | دليل دورة حياة المشروع: النمط التفاعلي، وثيقة الـ `PRD.md`، الخريطة الذهنية `project_mindmap.md`، المهام `tasks.md`، والمعمارية للطبقات الثلاث. |
+| **`references/diagnostics-and-qa.md`** | دليل التشخيص والجودة: بوابة الترياج، مصفوفة 3-Branch، تتبع الأعطال، اختبارات الـ AAA وسيناريوهات الفشل، وتقرير التسليم. |
+| **`references/craftsmanship-and-devops.md`** | دليل الحرفية الإنسانية: قواعد الكود الإنساني الـ 6، بروتوكول استيعاب المراجع (Zero-Skipping)، حماية الكود، وقوالب الـ Docker و CI/CD. |
+| **`references/agency-schemas.json`** | ملف المخططات الموحد المتضمن لـ `project_spec` و `debug_manifest` و `references_manifest` وقواعد `craftsmanship_rules`. |
+| **`scripts/validate_code.py`** | السكربت الشامل لفحص الـ AST ومطابقة مراجع الـ JSON آلياً وكشف النواقص. |
+| **`scripts/backup_manager.py`** | أداة النسخ الاحتياطي اللحظي قبل التعديل والاستعادة الفورية بنقرة واحدة. |
+| **`scripts/diff_verifier.py`** | أداة تدقيق الفروقات وتطويق نطاق التعديل (Blast Radius Limiter). |
+
+---
+
+## 🛠️ أبرز ميزات الإصدار 2.1
+
+### 1. ⚡ ترشيق واختصار بنسبة 60% مع استيعاب فائق السرعة
+تم دمج 21 ملفاً مشتتاً في 5 ملفات مركزية رشيقة لتفادي إجهاد السياق وتوفير سرعة استجابة فائقة للنماذج السريعة مثل Gemini Flash و GPT-4o-mini و Claude Haiku.
+
+### 2. 🔒 بروتوكول استيعاب المراجع الإلزامي الصارم (Zero-Skipping Invariant)
+إلزام الوكلاء بتفريغ كافة التوثيقات والمراجع في ملف `references_manifest.json` وفحص التطابق آلياً عبر `validate_code.py --manifest` لمنع تخطي أي سطر أو دالة.
+
+### 3. 🎯 الركائز الست للهندسة البرمجية الإنسانية الاحترافية (Senior Human Standards)
+1. **الكتابة الذرية للملفات (Atomic I/O)**: منع تلف البيانات عند انقطاع البرامج.
+2. **رسائل الخطأ الإرشادية وأمر الفحص الذاتي (`--doctor`)**: تشخيص متطلبات البيئة قبل التشغيل.
+3. **الإغلاق النظيف (Graceful Shutdown)**: معالجة إشارات `SIGINT` / `Ctrl+C` بأمان.
+4. **السجلات المنظمة (Structured Logging)**: إلغاء الـ `print` العشوائي واستخدام السجلات بمستويات محددة.
+5. **اختبارات سيناريوهات الفشل (Failure-Mode Testing)**: محاكاة انقطاع الاتصال وتلف البيانات وتجاوز الحدود.
+6. **إمكانية الوصول الشاملة (Universal A11y)**: توافق كامل مع قارئات الشاشة والتحكم بلوحة المفاتيح.
+
+---
+
+## ⚡ التشغيل الفوري التلقائي (Zero-Config / Out-of-the-Box)
+المهارة تعمل ذاتياً بنسبة 100% بمجرد تنزيلها إلى مجلد المهارات (`~/.gemini/skills/` أو مجلد مهارات الوكيل)، **دون الحاجة لأي إعدادات يدوية أو سكريبتات خارجية**:
+- **بوابة الصفر الإلزامية (Gate 0):** تلجم أي وكيل ذكاء اصطناعي (حتى النماذج السريعة والاقتصادية Flash Low) وتمنعه من توليد أي كود قبل قراءة المخططات وتوليد مانيفست الـ JSON (`project_spec.json` أو `debug_manifest.json`).
+- **توارث القواعد للوكلاء الفرعيين (Subagent Rule Inheritance):** تُلزم الوكيل الرئيسي بتمرير معايير الكود البشري وعقد المانيفست في نص الـ Prompt لأي وكيل فرعي يتم استدعاؤه تلقائياً.
+- **الفحص الإجباري المجاني:** تكليف وكيل الـ QA بتشغيل `validate_code.py` محلياً للتأكد من خلو الكود من أي `print` أو وسوم `TODO` دون استهلاك أي توكنز إضافية.

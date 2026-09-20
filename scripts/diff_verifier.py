@@ -1,45 +1,89 @@
 #!/usr/bin/env python3
 """
-diff_verifier.py - AST & Line Diff Bounds Verifier (Blast Radius Limiter)
-Part of Universal Software & AI Engineering Agency
+Blast Radius & Code Preservation Verifier (Zero-Dependency)
+Compares modified files against backup snapshots to enforce zero-corruption invariants.
+Compatible with Google Anti-Gravity 2.0 sandbox.
 """
-
-import sys
 import os
+import sys
 import difflib
+import json
+import argparse
 
-def verify_diff(original_file, modified_file, max_allowed_churn=100):
-    if not os.path.exists(original_file) or not os.path.exists(modified_file):
-        print("Error: One or both files do not exist.")
-        return False
+def compute_diff(original_file, modified_file, max_allowed_churn_percent=30.0):
+    if not os.path.exists(original_file):
+        return {"success": False, "error": f"Original file not found: {original_file}"}
+    if not os.path.exists(modified_file):
+        return {"success": False, "error": f"Modified file not found: {modified_file}"}
 
-    with open(original_file, "r", encoding="utf-8", errors="ignore") as f1:
-        lines1 = f1.readlines()
-    with open(modified_file, "r", encoding="utf-8", errors="ignore") as f2:
-        lines2 = f2.readlines()
+    try:
+        with open(original_file, 'r', encoding='utf-8', errors='replace') as f:
+            orig_lines = f.readlines()
+        with open(modified_file, 'r', encoding='utf-8', errors='replace') as f:
+            mod_lines = f.readlines()
+    except Exception as e:
+        return {"success": False, "error": f"Failed to read files: {e}"}
 
-    diff = list(difflib.unified_diff(lines1, lines2, fromfile=original_file, tofile=modified_file))
-    churn = len([l for l in diff if l.startswith("+") or l.startswith("-")]) - 2
+    diff = list(difflib.unified_diff(
+        orig_lines, mod_lines,
+        fromfile='snapshot_original',
+        tofile='current_modified',
+        lineterm=''
+    ))
 
-    print(f"Diff verification: Total modified lines (churn) = {churn}")
-    if churn > max_allowed_churn:
-        print(f"Warning: Blast radius exceeded maximum allowed churn ({max_allowed_churn}).")
-        return False
+    added_count = sum(1 for line in diff if line.startswith('+') and not line.startswith('+++'))
+    removed_count = sum(1 for line in diff if line.startswith('-') and not line.startswith('---'))
 
-    print("Diff verification passed: Blast radius within bounds.")
-    return True
+    total_changed = added_count + removed_count
+    total_original = max(len(orig_lines), 1)
+    churn_percent = (total_changed / total_original) * 100.0
+    within_bounds = churn_percent <= max_allowed_churn_percent
+
+    return {
+        "success": True,
+        "original_file": original_file,
+        "modified_file": modified_file,
+        "original_line_count": len(orig_lines),
+        "modified_line_count": len(mod_lines),
+        "lines_added": added_count,
+        "lines_removed": removed_count,
+        "total_changed_lines": total_changed,
+        "churn_percent": round(churn_percent, 2),
+        "max_allowed_churn_percent": max_allowed_churn_percent,
+        "within_blast_radius": within_bounds,
+        "diff_snippet": diff[:40]
+    }
 
 def main():
-    if len(sys.argv) < 3:
-        print("Usage: diff_verifier.py <original_file> <modified_file> [max_churn]")
-        sys.exit(1)
+    parser = argparse.ArgumentParser(description="Blast Radius & Code Diff Verifier (Zero-Dependency)")
+    parser.add_argument("original_path", help="Original snapshot file path")
+    parser.add_argument("modified_path", help="Modified active file path")
+    parser.add_argument("--max-churn", type=float, default=30.0, help="Maximum allowed churn percentage (default: 30.0)")
+    parser.add_argument("--json", action="store_true", help="Output formatted JSON")
+    parser.add_argument("--compact", action="store_true", help="Output compact single-line JSON")
+    parser.add_argument("-q", "--quiet", action="store_true", help="Silent mode (exit code only)")
+    args = parser.parse_args()
 
-    orig = sys.argv[1]
-    mod = sys.argv[2]
-    max_c = int(sys.argv[3]) if len(sys.argv) > 3 else 100
+    res = compute_diff(args.original_path, args.modified_path, args.max_churn)
+    passed = res.get("success", False) and res.get("within_blast_radius", False)
 
-    success = verify_diff(orig, mod, max_c)
-    sys.exit(0 if success else 1)
+    if not args.quiet:
+        if args.compact:
+            print(json.dumps(res, separators=(',', ':')))
+        elif args.json:
+            print(json.dumps(res, indent=2))
+        else:
+            if not res.get("success"):
+                print(f"[FAIL] Error: {res.get('error')}")
+            elif res["within_blast_radius"]:
+                print(f"[PASS] Diff audit passed: {res['churn_percent']}% churn ({res['total_changed_lines']} changed lines <= {args.max_churn}% threshold).")
+            else:
+                print(f"[ALERT] Blast radius exceeded: {res['churn_percent']}% churn exceeds maximum threshold of {args.max_churn}%.")
+                print("Diff sample:")
+                for line in res["diff_snippet"][:20]:
+                    print(f"  {line}")
 
-if __name__ == "__main__":
+    sys.exit(0 if passed else 1)
+
+if __name__ == '__main__':
     main()
