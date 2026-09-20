@@ -35,18 +35,17 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.vars.outputs.TAG_NAME }}
-          name: "${{ steps.vars.outputs.TAG_NAME }} — Universal AI Software Agency"
+          name: "${{ steps.vars.outputs.TAG_NAME }} — Universal AI Software Agency (Lean High-Precision)"
           body: |
-            ## 🚀 Universal AI Software Engineering Agency ${{ steps.vars.outputs.TAG_NAME }} (Full Multi-File Powerhouse & Cross-Platform Agent Ecosystem)
+            ## 🚀 Universal AI Software Engineering Agency ${{ steps.vars.outputs.TAG_NAME }} (Lean High-Precision Architecture)
 
             ### 🌟 Major Release Highlights (${{ steps.vars.outputs.TAG_NAME }})
-            - **Complete Multi-File Powerhouse Architecture**: Comprehensive, uncompressed reference playbooks (`project-lifecycle.md`, `diagnostics-and-qa.md`, `craftsmanship-and-devops.md`) and complete unified schema catalog (`agency-schemas.json`).
-            - **Full AST & Code Integrity Verification Suite**: Complete multi-language AST parser, JSON schema validator, bracket matcher, and reference symbol ingestion verifier (`validate_code.py`).
-            - **Non-Destructive Mutation Engine**: Pre-mutation automated backup manager (`backup_manager.py`) with instant rollback and blast-radius diff verifier (`diff_verifier.py`).
-            - **Universal Accessibility (A11y) & Keyboard-First Standards**: Built-in 100% keyboard navigability, semantic ARIA landmarks, and screen-reader optimized terminal logging.
-            - **Strict Zero-Skipping Reference Ingestion**: Mandatory extraction of symbol tables and API contracts into `references_manifest.json` before writing code.
-            - **Senior Human Software Engineering Standards**: Atomic file I/O, actionable error messages, `--doctor` self-check diagnostic, graceful `SIGINT` handling, structured logging, and failure-mode testing.
-            - **Google Antigravity 2.0 & Gemini Compatibility**: Fully compliant YAML frontmatter and unified tool mapping for both Antigravity 2.0 and Gemini Agent environments.
+            - **Lean High-Precision Quad Architecture**: Optimized 4-agent workflow (Web & Stack Specialist, Planner, Precision Coder, QA Verification) designed specifically for fast and compact AI models.
+            - **Mandatory Live Web Grounding (2026)**: Zero outdated training memory hallucinations — live documentation verification before planning or execution.
+            - **Context Isolation & Hard Gatekeepers**: Closed JSON manifests (`project_spec.json`, `debug_manifest.json`, `references_manifest.json`) strictly enforced via AST tooling.
+            - **Surgical Code Modifications (Zero Overwrites)**: File-safe line-by-line patching with automated pre-mutation backups (`backup_manager.py`) and blast-radius checking (`diff_verifier.py`).
+            - **Universal Screen-Reader & A11y Standards**: Strict output formatting, clean terminal logs, and complete WCAG/ARIA compliance for seamless TalkBack & Jieshuo/CSR workflows.
+            - **Antigravity 2.0 & Gemini Ready**: Native skill configuration compatible with all Antigravity CLI and Gemini Agent environments.
           draft: false
           prerelease: false
           files: |
