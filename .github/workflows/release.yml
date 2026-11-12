@@ -2,8 +2,6 @@ name: Automated Release & Package
 
 on:
   push:
-    branches:
-      - main
     tags:
       - 'v*'
 
@@ -23,29 +21,73 @@ jobs:
           if [[ "${{ github.ref }}" == refs/tags/v* ]]; then
             echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
           else
-            echo "TAG_NAME=v2.2.0" >> $GITHUB_OUTPUT
+            echo "TAG_NAME=v4.0.0" >> $GITHUB_OUTPUT
           fi
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run Mechanical Validation & Tests
+        run: |
+          python3 scripts/validate_code.py --strict --run-tests .
 
       - name: Package Skill Zip Archive
         run: |
           mkdir -p dist
-          zip -r dist/universal-software-agency.zip . -x ".git/*" ".github/*" "dist/*" ".backups/*"
+          zip -r dist/universal-software-agency.zip . -x ".git/*" ".github/*" "dist/*" ".backups/*" "__pycache__/*"
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.vars.outputs.TAG_NAME }}
-          name: "${{ steps.vars.outputs.TAG_NAME }} — Universal AI Software Agency (Lean High-Precision)"
+          name: "${{ steps.vars.outputs.TAG_NAME }} — Universal Socratic Software Engineering Council (v4.0 Lean Powerhouse)"
           body: |
-            ## 🚀 Universal AI Software Engineering Agency ${{ steps.vars.outputs.TAG_NAME }} (Lean High-Precision Architecture)
+            # 🌐 Universal Socratic Software Engineering Council ${{ steps.vars.outputs.TAG_NAME }} (v4.0 Lean Powerhouse)
+            ### المنظومة البرمجية التفاعلية الموحدة للمشاريع الكبيرة وأجهزة الكمبيوتر (الإصدار الرابع الرشيق)
 
-            ### 🌟 Major Release Highlights (${{ steps.vars.outputs.TAG_NAME }})
-            - **Lean High-Precision Quad Architecture**: Optimized 4-agent workflow (Web & Stack Specialist, Planner, Precision Coder, QA Verification) designed specifically for fast and compact AI models.
-            - **Mandatory Live Web Grounding (2026)**: Zero outdated training memory hallucinations — live documentation verification before planning or execution.
-            - **Context Isolation & Hard Gatekeepers**: Closed JSON manifests (`project_spec.json`, `debug_manifest.json`, `references_manifest.json`) strictly enforced via AST tooling.
-            - **Surgical Code Modifications (Zero Overwrites)**: File-safe line-by-line patching with automated pre-mutation backups (`backup_manager.py`) and blast-radius checking (`diff_verifier.py`).
-            - **Universal Screen-Reader & A11y Standards**: Strict output formatting, clean terminal logs, and complete WCAG/ARIA compliance for seamless TalkBack & Jieshuo/CSR workflows.
-            - **Antigravity 2.0 & Gemini Ready**: Native skill configuration compatible with all Antigravity CLI and Gemini Agent environments.
+            منظومة برمجية مؤسسية مستقلة بنسبة 100% (**Zero External Dependencies**) ومبنية بهندسة خماسية رشيقة فائقة السرعة (**5-File Lean Architecture**)، مصممة خصيصاً لأجهزة الكمبيوتر والمشاريع البرمجية الضخمة لتمكين النماذج الصغيرة والكبيرة من بناء أنظمة برمجية متينة وموثوقة.
+
+            ---
+
+            ### 🚀 أبرز ركائز وتحديثات الإصدار الرابع (v4.0.0 Release Highlights):
+
+            1. **الاستقلالية التامة بنسبة 100% (Zero External Dependencies)**:
+               - تحويل المهارة إلى وحدة هندسية مكتفية بذاتها بالكامل؛ تعمل فوراً على أي نظام دون الحاجة لأي مهارات خارجية.
+
+            2. **الهندسة الخماسية الرشيقة (5-File Lean Architecture)**:
+               - تقليص المستودع من 19 ملفاً مشتتاً إلى 5 ملفات مركزة عالية الدقة تلغي حشو التوكنز وتمنع تشتت النماذج.
+
+            3. **الاستجواب السقراطي المستمر في كل كبيرة وصغيرة (Continuous Multi-Phase Socratic Interrogation)**:
+               - حظر البدء في أي كود قبل استجواب تفاعلي يغطي كل التفاصيل من التأسيس إلى المعمارية إلى التنفيذ والاكتمال.
+
+            4. **الرأي الهندسي الصريح ونقد الأخطاء المنطقية (Strictly No Yes-Men)**:
+               - حظر دور المنفذ الأعمى أو المجامل؛ إلزام الذكاء الاصطناعي بإبداء رأيه الهندسي الناقد الصريح والتحذير من أي عيب منطقي أو خطر تصميمي وطرح البديل الأمتن.
+
+            5. **معمارية الوكلاء الفرعيين النشطين للمشاريع الكبيرة (Active Isolated Subagents)**:
+               - تفويض المهام الثقيلة (البحث، التكويد، والتدقيق) لوكلاء فرعيين نشطين بسياقات معزولة لحماية ذاكرة المنسق من التلوث والنسيان.
+               - فرض عقد تفويض إلزامي في نص الطلب يلزم الوكيل الفرعي بشرط الـ 100 سطر وخلو الكود من الـ TODO.
+
+            6. **قاعدة الـ 100 سطر الصارمة للملفات (The 100-Line Limit)**:
+               - حظر تام لأي ملف كود جديد يتجاوز 100 سطر لضمان نقاء المعمارية ومنع كسل أو اختصار النماذج الصغيرة.
+
+            7. **فحص المنطق والـ Assertions الميكانيكية الحتمية**:
+               - حظر الاكتفاء بسلامة السنتاكس؛ تشغيل حقيقي للاختبارات وتأكيد صحة المعادلات بالأرقام والـ `assert` بنسبة 100% نجاح.
+
+            8. **ميثاق الواجهات الشامل الخالي من كليشيهات الذكاء الاصطناعي (Universal UI/UX & A11y Invariant)**:
+               - حظر طاعون الإيموجي في الأزرار والعناوين لحماية تجربة قارئات الشاشة (TalkBack, Jieshuo, NVDA).
+               - فرض معايير إمكانية الوصول في أندرويد (`contentDescription`, 48dp, `sp`)، والديسكتوب (Layouts مرنة وترتيب الكيبورد)، والويب (HTML دلالي وتباين 4.5:1).
+
+            9. **بروتوكول حماية الكود القديم والمشاريع القائمة (The Brownfield Protocol)**:
+               - حظر تضخيم الملفات القديمة الكبيرة وتطبيق نمط (Strangler Fig Pattern) بكتابة الميزات الجديدة في موديولات مستقلة.
+               - حصر نطاق التعديل وفحص الفروقات (`--diff-check`)، ودعم ختم الإعفاء للملفات الموروثة `# allow-large-file`.
+
+            10. **بوابة التصحيح الذاتي الصامتة (3-Strike Self-Healing)**:
+                - تنفيذ حتى 3 محاولات تصحيح ذاتية صامتة عند حدوث أي خطأ قبل تصعيده للمستخدم.
+
+            11. **التسليم السهل والتشغيل الفوري بنقرة واحدة لغير المبرمجين**:
+                - سكريبت تشغيل فوري (`run.sh`/`run.bat`) ينشئ البيئة الافتراضية ويثبت التبعيات تلقائياً ويدعم الفحص الذاتي (`--doctor`).
           draft: false
           prerelease: false
           files: |
