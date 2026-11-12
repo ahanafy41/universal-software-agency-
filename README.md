@@ -1,70 +1,52 @@
-# 🚀 Universal AI Software Engineering Agency (v2.1)
-### وكالة هندسة البرمجيات بالذكاء الاصطناعي الشاملة لكافة لغات البرمجة (الجيل الثاني المطور (v2.1) المتوافق مع Google Antigravity 2.0 وGemini)
+# 🌐 Universal Socratic Software Engineering Council (v4.0 Lean Powerhouse)
+### المنظومة البرمجية التفاعلية الموحدة لكافة المنصات ولغات البرمجة (الإصدار الرابع الرشيق)
 
-[![Version: 2.1](https://img.shields.io/badge/Version-2.0%20Lean%20Powerhouse-blue.svg)](SKILL.md)
+[![Version: 4.0](https://img.shields.io/badge/Version-4.0%20Lean%20Powerhouse-blue.svg)](SKILL.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE.md)
-[![Architecture: 5-File Powerhouse](https://img.shields.io/badge/Architecture-5--File%20Consolidated-green.svg)](SKILL.md)
-[![Schema: Unified Manifests](https://img.shields.io/badge/Schema-agency--schemas.json-orange.svg)](references/agency-schemas.json)
-[![Safety: Zero-Corruption](https://img.shields.io/badge/Safety-Blast%20Radius%20Limiter-red.svg)](references/craftsmanship-and-devops.md)
+[![Zero Dependencies](https://img.shields.io/badge/Dependencies-Zero%20External-brightgreen.svg)](SKILL.md)
+[![File Limit](https://img.shields.io/badge/Code%20Limit-100%20Lines%20Max-orange.svg)](SKILL.md)
+[![Logic Verified](https://img.shields.io/badge/Testing-100%25%20Assertion%20Pass-purple.svg)](scripts/validate_code.py)
+[![A11y Ready](https://img.shields.io/badge/Accessibility-Screen%20Reader%20Ready-teal.svg)](SKILL.md)
 
-وكالة هندسة برمجية متكاملة مدعومة بالذكاء الاصطناعي، مبنية بهندسة خماسية رشيقة فائقة السرعة (**v2.1 Lean & Mean Architecture**). مصممة للتخطيط، والتطوير، والتشخيص الجذري، والتصحيح الدقيق، والاختبارات الآلية للمشاريع والبرمجيات عبر **كافة لغات البرمجة وأطر العمل** (Python, C# .NET, JavaScript/TypeScript, Java/Kotlin, Rust, Go, C/C++, PHP, Ruby, Swift, Lua, Shell، إلخ).
-
----
-
-## 🌟 الهيكل المعماري المدمج للجيل الثاني (v2.1 Architecture)
-
-```text
-┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                     🧠 وكالة هندسة البرمجيات بالذكاء الاصطناعي (الإصدار 2.1)                       │
-│                     Universal AI Software & Systems Engineering Agency (v2.1)                    │
-└────────────────────────────────────────────────┬─────────────────────────────────────────────────┘
-                                                 │
-      ┌───────────────────────────┬──────────────┴──────────────┬───────────────────────────┐
-      ▼                           ▼                             ▼                           ▼
-┌───────────┐               ┌───────────┐                 ┌───────────┐               ┌───────────┐
-│ 🗺️ دورة   │               │ 🔬 التشخيص │                 │ 🎯 الحرفية │                 │ 📦 المخططات│
-│   الحياة   │               │  والجودة  │                 │ والديف أوبس│                 │  الموحدة  │
-│ Lifecycle │               │ Diagnostics│                │Craftsmanship│               │  Schemas  │
-└───────────┘               └───────────┘                 └───────────┘               └───────────┘
-```
+منظومة برمجية مؤسسية مستقلة بنسبة 100% (**Zero External Dependencies**) ومبنية بهندسة خماسية رشيقة فائقة السرعة (**5-File Lean Architecture**). مصممة لتمكين المبتدئين وغير المبرمجين إلى جانب كبار المطورين من بناء برمجيات قوية عبر **حوار عصف ذهني سقراطي مستمر**، وتطبيق **قاعدة الـ 100 سطر للملفات**، واختبار المنطق ميكانيكياً بنسبة 100% عبر كافة المنصات ولغات البرمجة (Python, TypeScript, Go, Rust, C#, Java, Shell, Lua).
 
 ---
 
-## 📂 خريطة ملفات المهارة (v2.1 File Map)
+## 🌟 الركائز الأساسية للإصدار الرابع الرشيق (v4.0)
 
-| الملف | الوصف والمسؤولية |
-| :--- | :--- |
-| **`SKILL.md`** | النواة التوجيهية الرشيقة، تفويض الوكلاء الفرعيين (Subagents A إلى I)، والبحث الحي لعام 2026. |
-| **`references/project-lifecycle.md`** | دليل دورة حياة المشروع: النمط التفاعلي، وثيقة الـ `PRD.md`، الخريطة الذهنية `project_mindmap.md`، المهام `tasks.md`، والمعمارية للطبقات الثلاث. |
-| **`references/diagnostics-and-qa.md`** | دليل التشخيص والجودة: بوابة الترياج، مصفوفة 3-Branch، تتبع الأعطال، اختبارات الـ AAA وسيناريوهات الفشل، وتقرير التسليم. |
-| **`references/craftsmanship-and-devops.md`** | دليل الحرفية الإنسانية: قواعد الكود الإنساني الـ 6، بروتوكول استيعاب المراجع (Zero-Skipping)، حماية الكود، وقوالب الـ Docker و CI/CD. |
-| **`references/agency-schemas.json`** | ملف المخططات الموحد المتضمن لـ `project_spec` و `debug_manifest` و `references_manifest` وقواعد `craftsmanship_rules`. |
-| **`scripts/validate_code.py`** | السكربت الشامل لفحص الـ AST ومطابقة مراجع الـ JSON آلياً وكشف النواقص. |
-| **`scripts/backup_manager.py`** | أداة النسخ الاحتياطي اللحظي قبل التعديل والاستعادة الفورية بنقرة واحدة. |
-| **`scripts/diff_verifier.py`** | أداة تدقيق الفروقات وتطويق نطاق التعديل (Blast Radius Limiter). |
-
----
-
-## 🛠️ أبرز ميزات الإصدار 2.1
-
-### 1. ⚡ ترشيق واختصار بنسبة 60% مع استيعاب فائق السرعة
-تم دمج 21 ملفاً مشتتاً في 5 ملفات مركزية رشيقة لتفادي إجهاد السياق وتوفير سرعة استجابة فائقة للنماذج السريعة مثل Gemini Flash و GPT-4o-mini و Claude Haiku.
-
-### 2. 🔒 بروتوكول استيعاب المراجع الإلزامي الصارم (Zero-Skipping Invariant)
-إلزام الوكلاء بتفريغ كافة التوثيقات والمراجع في ملف `references_manifest.json` وفحص التطابق آلياً عبر `validate_code.py --manifest` لمنع تخطي أي سطر أو دالة.
-
-### 3. 🎯 الركائز الست للهندسة البرمجية الإنسانية الاحترافية (Senior Human Standards)
-1. **الكتابة الذرية للملفات (Atomic I/O)**: منع تلف البيانات عند انقطاع البرامج.
-2. **رسائل الخطأ الإرشادية وأمر الفحص الذاتي (`--doctor`)**: تشخيص متطلبات البيئة قبل التشغيل.
-3. **الإغلاق النظيف (Graceful Shutdown)**: معالجة إشارات `SIGINT` / `Ctrl+C` بأمان.
-4. **السجلات المنظمة (Structured Logging)**: إلغاء الـ `print` العشوائي واستخدام السجلات بمستويات محددة.
-5. **اختبارات سيناريوهات الفشل (Failure-Mode Testing)**: محاكاة انقطاع الاتصال وتلف البيانات وتجاوز الحدود.
-6. **إمكانية الوصول الشاملة (Universal A11y)**: توافق كامل مع قارئات الشاشة والتحكم بلوحة المفاتيح.
+1. **الاستقلالية التامة (Zero External Dependencies)**:
+   - مهارة قائمة بذاتها بالكامل؛ لا تحتاج أي مهارة إضافية، وتعمل بنظام التشغيل الفوري (Zero-Config).
+2. **العصف الذهني السقراطي الدائم**:
+   - حوار مستمر مع المستخدم في كل مرحلة (سؤال إلى سؤالين بخيارات واضحة باللغة العربية)، وتوثيق دائم للقرارات على القرص في `BRAINSTORMING.md` و `DECISIONS.md`.
+3. **قاعدة الـ 100 سطر الصارمة للملفات**:
+   - حظر تام لأي ملف كود يتجاوز 100 سطر كود لضمان تقسيم الكود إلى وحدات معمارية صغيرة وسهلة القراءة ومريحة لقارئات الشاشة وتمنع كسل النماذج الصغيرة.
+4. **فحص المنطق والـ Assertions الميكانيكي**:
+   - حظر الاكتفاء بفحص السنتاكس؛ تشغيل حقيقي للاختبارات وتأكيد صحة المعادلات والنتائج بالأرقام والـ `assert` بنسبة 100% نجاح.
+5. **التسليم السهل لغير المبرمجين**:
+   - تسليم الكود دائماً مع سكريبت تشغيل فوري بنقرة واحدة (`run.sh` أو `run.bat`) وشرح مبسط لما سيظهر على الشاشة.
 
 ---
 
-## ⚡ التشغيل الفوري التلقائي (Zero-Config / Out-of-the-Box)
-المهارة تعمل ذاتياً بنسبة 100% بمجرد تنزيلها إلى مجلد المهارات (`~/.gemini/skills/` أو مجلد مهارات الوكيل)، **دون الحاجة لأي إعدادات يدوية أو سكريبتات خارجية**:
-- **بوابة الصفر الإلزامية (Gate 0):** تلجم أي وكيل ذكاء اصطناعي (حتى النماذج السريعة والاقتصادية Flash Low) وتمنعه من توليد أي كود قبل قراءة المخططات وتوليد مانيفست الـ JSON (`project_spec.json` أو `debug_manifest.json`).
-- **توارث القواعد للوكلاء الفرعيين (Subagent Rule Inheritance):** تُلزم الوكيل الرئيسي بتمرير معايير الكود البشري وعقد المانيفست في نص الـ Prompt لأي وكيل فرعي يتم استدعاؤه تلقائياً.
-- **الفحص الإجباري المجاني:** تكليف وكيل الـ QA بتشغيل `validate_code.py` محلياً للتأكد من خلو الكود من أي `print` أو وسوم `TODO` دون استهلاك أي توكنز إضافية.
+## 📂 خريطة ملفات المهارة الخماسية الرشيقة (The 5-File Map)
+
+| الملف / الأداة | المسار | الوظيفة والمسؤولية |
+| :--- | :--- | :--- |
+| **`SKILL.md`** | `SKILL.md` | النواة التوجيهية الشاملة، ميثاق الفريق الرباعي الرشيق، والمسار التنفيذي الشامل (79 سطراً مركزة). |
+| **`README.md`** | `README.md` | الدليل التوثيقي الكامل للمستخدم والوكلاء لشرح المنظومة وآلية استخدامها. |
+| **`scripts/validate_code.py`** | `scripts/validate_code.py` | الفاحص الشامل الموحد (الـ AST، حد الـ 100 سطر، تشغيل اختبارات المنطق `--run-tests`، وتدقيق الفروقات `--diff-check`). |
+| **`scripts/backup_manager.py`** | `scripts/backup_manager.py` | مدير النسخ الاحتياطي اللحظي قبل لمس أي ملف والاسترجاع بنقرة واحدة. |
+| **`references/agency-schemas.json`** | `references/agency-schemas.json` | المخطط المرجعي الموحد للمشاريع والتشخيص وعقود الكود. |
+
+---
+
+## ⚡ التشغيل والاستخدام
+
+المهارة تعمل فوراً بمجرد نسخها إلى مجلد المهارات:
+- فور طلب أي مهمة برمجية، يطلق الوكيل جلسة العصف الذهني الاستكشافية فوراً.
+- يتم إنشاء ملفات `BRAINSTORMING.md` و `DECISIONS.md` و `tasks.md`.
+- ينفذ الوكيل الكود خطوة بخطوة، مع نسخ احتياطي لحظي، وبكود لا يتجاوز 100 سطر للملف.
+- يتم تشغيل الفاحص الشامل:
+  ```bash
+  python3 scripts/validate_code.py --strict --human-grade --run-tests .
+  ```
+- لا يُعتمد الكود إلا بعد ظهور: `[PASS] All behavioral and assertion tests passed 100%!`.
