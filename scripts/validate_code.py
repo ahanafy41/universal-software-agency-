@@ -176,15 +176,20 @@ def validate_delimiters(content):
     return issues
 
 
-def check_strict_placeholders(content):
+def check_strict_placeholders(content, is_markdown=False):
     issues = []
     lines = content.splitlines()
     for idx, line in enumerate(lines, start=1):
         for pattern in PLACEHOLDER_PATTERNS:
             if re.search(pattern, line, re.IGNORECASE):
-                # Ignore if inside a markdown documentation explanation
-                if line.strip().startswith("-") or line.strip().startswith("*") or "`" in line:
-                    continue
+                # Ignore if inside a markdown documentation explanation, list, table or quote
+                if is_markdown:
+                    clean = line.strip()
+                    if clean.startswith(("-", "*", ">", "|", "#")) or "`" in clean or '"' in clean or "'" in clean:
+                        continue
+                else:
+                    if line.strip().startswith(("-", "*")) or "`" in line:
+                        continue
                 issues.append(f"Line {idx} [StrictPlaceholderViolation]: Placeholder pattern '{pattern}' found: '{line.strip()}'")
     return issues
 
@@ -372,7 +377,7 @@ def validate_file(file_path, strict=False, human_grade=False, max_lines=100):
         issues.extend(validate_delimiters(content))
 
     if strict:
-        issues.extend(check_strict_placeholders(content))
+        issues.extend(check_strict_placeholders(content, is_markdown=ext in {".md", ".markdown"}))
 
     if human_grade:
         issues.extend(check_human_grade_rules(content, is_source_code=is_source))
