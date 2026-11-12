@@ -80,6 +80,12 @@ class TestAgencyMechanicalGates(unittest.TestCase):
             if p2.exists():
                 p2.unlink()
 
+    def test_ui_craftsmanship_detection(self):
+        """Hardcoded desktop coordinates must trigger craftsmanship notice."""
+        bad_code = "btn = Button()\nbtn.place(x=100, y=50)\n"
+        issues = validate_code.check_human_grade_rules(bad_code, is_source_code=True)
+        self.assertTrue(any("place()" in notice for notice in issues))
+
 
 if __name__ == "__main__":
     unittest.main()

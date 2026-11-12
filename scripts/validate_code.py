@@ -38,6 +38,11 @@ NON_ATOMIC_WRITE_PATTERNS = [
     (r"fs\.writeFileSync\s*\(", "Node fs.writeFileSync directly overwriting target - consider atomic tempfile rename"),
 ]
 
+UI_CRAFTSMANSHIP_PATTERNS = [
+    (r"\bplace\s*\(\s*x\s*=", "Hardcoded desktop UI absolute coordinate place() detected - use responsive layout managers (pack/grid/layout)"),
+    (r"<div[^>]+onclick\s*=", "Non-semantic clickable div detected - use native <button> or add role='button' and tabindex"),
+]
+
 IGNORED_DIRS = {
     ".git", ".svn", "__pycache__", ".pytest_cache", "node_modules",
     "bin", "obj", "target", "dist", "build", ".backups", ".venv", "venv"
@@ -217,6 +222,9 @@ def check_human_grade_rules(content, is_source_code=False):
                 # If it's a CLI tool print or deliberate stdout output, note as advisory rather than blocker
                 issues.append(f"Line {idx} [CraftsmanshipNotice]: {msg}")
         for pattern, msg in NON_ATOMIC_WRITE_PATTERNS:
+            if re.search(pattern, clean_line):
+                issues.append(f"Line {idx} [CraftsmanshipNotice]: {msg}")
+        for pattern, msg in UI_CRAFTSMANSHIP_PATTERNS:
             if re.search(pattern, clean_line):
                 issues.append(f"Line {idx} [CraftsmanshipNotice]: {msg}")
     return issues
