@@ -9,6 +9,10 @@ SCRIPTS_DIR = Path(__file__).resolve().parent.parent / "scripts"
 sys.path.insert(0, str(SCRIPTS_DIR))
 import backup_manager
 import validate_code
+try:
+    import code_mapper
+except ImportError:
+    code_mapper = None
 
 
 class TestAgencyMechanicalGates(unittest.TestCase):
@@ -74,6 +78,44 @@ class TestAgencyMechanicalGates(unittest.TestCase):
         finally:
             if tmp.exists():
                 tmp.unlink()
+
+    def test_symbol_mapper_available(self):
+        self.assertIsNotNone(code_mapper, "code_mapper.py must exist in scripts/ directory")
+
+    def test_symbol_mapping_python_ast(self):
+        py_code = "class Calculator:\n    def add(self, a, b):\n        return a + b\n\ndef multiply(x, y):\n    return x * y\n"
+        symbols = code_mapper.parse_python_file(py_code, "calc.py")
+        names = [s["name"] for s in symbols]
+        self.assertIn("Calculator", names)
+        self.assertIn("Calculator.add", names)
+        self.assertIn("multiply", names)
+        # Check line ranges
+        mult_sym = next(s for s in symbols if s["name"] == "multiply")
+        self.assertEqual(mult_sym["start"], 5)
+        self.assertEqual(mult_sym["end"], 6)
+
+    def test_symbol_mapping_lua(self):
+        lua_code = "local function calculate(score)\n    return score * 2\nend\n\nfunction onTouch(x, y)\n    print(x)\nend\n"
+        symbols = code_mapper.parse_lua_file(lua_code, "test.lua")
+        names = [s["name"] for s in symbols]
+        self.assertIn("calculate", names)
+        self.assertIn("onTouch", names)
+        calc_sym = next(s for s in symbols if s["name"] == "calculate")
+        self.assertEqual(calc_sym["start"], 1)
+        self.assertEqual(calc_sym["end"], 3)
+
+    def test_validate_code_map_integration(self):
+        """Verify that validate_code integrates symbol mapping cleanly."""
+        self.assertTrue(hasattr(validate_code, "generate_symbol_map"), "validate_code must expose generate_symbol_map")
+        tmp_py = Path(__file__).parent / "_sample_calc.py"
+        tmp_py.write_text("def add(a, b):\n    return a + b\n", encoding="utf-8")
+        try:
+            res = validate_code.generate_symbol_map(str(tmp_py))
+            self.assertIn("add", res)
+            self.assertIn("Savings", res)
+        finally:
+            if tmp_py.exists():
+                tmp_py.unlink()
 
 
 if __name__ == "__main__":

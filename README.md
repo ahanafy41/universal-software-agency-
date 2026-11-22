@@ -1,21 +1,24 @@
-# 🌐 Universal Socratic Software Engineering Council (v4.0 Lean Powerhouse)
-### المنظومة البرمجية التفاعلية الموحدة للمشاريع الكبيرة وأجهزة الكمبيوتر (الإصدار الرابع الرشيق)
+# 🌐 Universal Socratic Software Engineering Council (v4.1 Lean Powerhouse)
+### المنظومة البرمجية التفاعلية الموحدة للمشاريع الكبيرة وأجهزة الكمبيوتر (الإصدار 4.1 الرشيق)
 
-[![Version: 4.0](https://img.shields.io/badge/Version-4.0%20Lean%20Powerhouse-blue.svg)](SKILL.md)
+[![Version: 4.1](https://img.shields.io/badge/Version-4.1%20Lean%20Powerhouse-blue.svg)](SKILL.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE.md)
 [![Zero Dependencies](https://img.shields.io/badge/Dependencies-Zero%20External-brightgreen.svg)](SKILL.md)
+[![Token Saver](https://img.shields.io/badge/Token%20Savings-95%25%2B-green.svg)](scripts/code_mapper.py)
 [![File Limit](https://img.shields.io/badge/Code%20Limit-100%20Lines%20Max-orange.svg)](SKILL.md)
 [![Logic Verified](https://img.shields.io/badge/Testing-100%25%20Assertion%20Pass-purple.svg)](scripts/validate_code.py)
 [![A11y Ready](https://img.shields.io/badge/Accessibility-Screen%20Reader%20Ready-teal.svg)](SKILL.md)
 
-منظومة برمجية مؤسسية مستقلة بنسبة 100% (**Zero External Dependencies**) ومبنية بهندسة خماسية رشيقة فائقة السرعة (**5-File Lean Architecture**). مصممة خصيصاً **لأجهزة الكمبيوتر والمشاريع البرمجية الضخمة**؛ لتمكين المبتدئين وغير المبرمجين إلى جانب كبار مهندسي البرمجيات من بناء وتطوير وصيانة الأنظمة عبر:
+منظومة برمجية مؤسسية مستقلة بنسبة 100% (**Zero External Dependencies**) ومبنية بهندسة رشيقة فائقة السرعة. مصممة خصيصاً **لأجهزة الكمبيوتر والمشاريع البرمجية الضخمة**؛ لتمكين المبتدئين وغير المبرمجين إلى جانب كبار مهندسي البرمجيات من بناء وتطوير وصيانة الأنظمة عبر:
 1. **استجواب سقراطي تفصيلي مستمر في كل كبيرة وصغيرة (من التأسيس حتى التسليم)**.
 2. **رأي هندسي ناقد وصريح للأخطاء المنطقية والمعمارية (Strictly No Yes-Men)**.
 3. **تفويض إلزامي للوكلاء الفرعيين النشطين بسياقات معزولة (Clean Context Active Subagents)** لمنع تلوث الذاكرة.
 4. **ميثاق الواجهات الشامل الخالي من كليشيهات الذكاء الاصطناعي والداعم لقارئات الشاشة (Screen Reader First)** عبر الويب، الأندرويد، الكمبيوتر، والطرفية.
 5. **بروتوكول حماية الكود القديم والمشاريع القائمة (The Brownfield Protocol)** عبر حصر نطاق التعديل ونمط Strangler Fig.
-6. **قاعدة الـ 100 سطر الصارمة للملفات الجديدة** لضمان نقاء المعمارية ومنع كسل النماذج.
-7. **اختبارات المنطق والـ Assertions الميكانيكية بنسبة 100%** عبر كافة لغات البرمجة والمنصات.
+6. **خريطة الرموز والتنقل الجراحي الموضعي (Code Mapper)** لتوفير > 95% من التوكنز وتحديد أسطر الدوال بالمللي.
+7. **بروتوكول التعديل المحصن للميزات (Bulletproof Feature Modification)** بإثبات العطل أولاً (RED) واختبار الانحدار.
+8. **قاعدة الـ 100 سطر الصارمة للملفات الجديدة** لضمان نقاء المعمارية ومنع كسل النماذج.
+9. **اختبارات المنطق والـ Assertions الميكانيكية بنسبة 100%** عبر كافة لغات البرمجة والمنصات.
 
 > **المبدأ الفولاذي الأساسي**:  
 > **مخالفة حرفية القواعد هي مخالفة لروحها؛ لا يُقبل أي التفاف أو تجاوز بدعوى السرعة أو المرونة.**  

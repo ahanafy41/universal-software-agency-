@@ -14,6 +14,37 @@ import subprocess
 import sys
 from pathlib import Path
 
+try:
+    from . import code_mapper
+except (ImportError, ValueError):
+    try:
+        import code_mapper
+    except ImportError:
+        code_mapper = None
+
+def generate_symbol_map(target_path: str, find_query: str = None) -> str:
+    """Generate compact symbol map for file or directory using code_mapper."""
+    if not code_mapper:
+        return f"Error: code_mapper module not available."
+    p = os.path.abspath(target_path)
+    if os.path.isfile(p):
+        res = code_mapper.analyze_file(p)
+        if not res:
+            return f"Error reading file: {p}"
+        return code_mapper.format_map_output(res, find_query)
+    elif os.path.isdir(p):
+        out = []
+        for root, dirs, files in os.walk(p):
+            dirs[:] = [d for d in dirs if not d.startswith(".") and d not in ("venv", "node_modules", "__pycache__")]
+            for f in sorted(files):
+                if f.endswith((".py", ".lua", ".js", ".ts", ".sh")):
+                    fp = os.path.join(root, f)
+                    res = code_mapper.analyze_file(fp)
+                    if res and res.get("symbols"):
+                        out.append(code_mapper.format_map_output(res, find_query))
+        return "\n\n".join(out) if out else "No symbols found."
+    return f"Target not found: {p}"
+
 PLACEHOLDER_PATTERNS = [
     r"\bTODO\b",
     r"\bFIXME\b",
@@ -405,9 +436,17 @@ def main():
     parser.add_argument("--fail-on-notices", action="store_true", help="Fail build on craftsmanship notices (default treats as advisory warnings)")
     parser.add_argument("--manifest", type=str, default=None, help="Path to references_manifest.json to verify symbol coverage")
     parser.add_argument("--json", action="store_true", help="Output results in machine-readable JSON format")
+    parser.add_argument("--map", action="store_true", help="Generate compact AST symbol map & token savings")
+    parser.add_argument("--find", type=str, default=None, help="Find specific function/class and print exact line range")
     parser.add_argument("-q", "--quiet", action="store_true", help="Only output errors")
 
     args = parser.parse_args()
+
+    if args.map or args.find:
+        if not args.target:
+            parser.error("--map/--find requires a target file or directory")
+        print(generate_symbol_map(args.target, args.find))
+        sys.exit(0)
 
     if args.diff_check:
         orig, mod = args.diff_check
